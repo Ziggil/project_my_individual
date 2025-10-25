@@ -6,7 +6,7 @@ def index(request):
         'title':'Home',
         'content':'Сайт обучения WEB!',
         'list':[22,26,29],
-        'user_auted':False
+        'user_auted':True
     }
 
     return render(request, 'main/index.html', context)
