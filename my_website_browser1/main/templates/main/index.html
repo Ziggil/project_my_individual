@@ -1,11 +1,12 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="ru">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Заголовок страницы</title>
-    <link rel="stylesheet" href="{% static "deps/css/main.css" %}">
+    <link rel="stylesheet" href="{% static "deps/css/index.css" %}">
     <link rel="images" href="{% static "deps/images/test_image_seatch.jpg" %}">
     <link rel="icons" type="test/png" sizes="32x32" href="{% static "deps/icon/test.png" %}">
     
@@ -19,7 +20,7 @@
       <nav>
         <ul>
           <li><a class="btn btn-primary" href="{% url 'index' %}" role="button">На эту страницу</a></li>
-          <li><a class="btn btn-primary" href="{% url 'about' %}" role="button">На главную страницу</a></li>
+          <li><a class="btn btn-primary" href="{% url 'about' %}" role="button">На Главную страницу</a></li>
         </ul>
       </nav>
     </header>
