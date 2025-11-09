@@ -14,4 +14,4 @@ def index(request):
 
 
 def about(request):
-    return HttpResponse("Главная страница")
+    return render(request, 'main/about.html')
