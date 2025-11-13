@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Заголовок страницы</title>
+    <title>Вход</title>
     <link rel="stylesheet" href="{% static "deps/css/index.css" %}">
     <link rel="images" href="{% static "deps/images/test_image_seatch.jpg" %}">
     <link rel="icons" type="test/png" sizes="32x32" href="{% static "deps/icon/test.png" %}">
@@ -15,12 +15,12 @@
   </head>
   <body>
     <header>
-      <h1>Личный сайт</h1>
-      <p>Который сделан на основе готового шаблона</p>
+      <h1>Это сайт обучения WEB!</h1>
+      <p>Всё о Браузерах, Сайтах и Серверах!</p>
       <nav>
         <ul>
-          <li><a class="btn btn-primary" href="{% url 'index' %}" role="button">На эту страницу</a></li>
-          <li><a class="btn btn-primary" href="{% url 'about' %}" role="button">На Главную страницу</a></li>
+          <li><a class="btn btn-primary" href="{% url 'regist' %}" role="button">На страницу регестрации</a></li>
+          <li><a class="btn btn-primary" href="{% url 'about' %}" role="button">На страницу про нас</a></li>
         </ul>
       </nav>
     </header>
