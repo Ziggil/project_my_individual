@@ -1,4 +1,5 @@
 from django.http import HttpResponse
+
 from django.shortcuts import render
 
 def index(request):
@@ -15,6 +16,7 @@ def about(request):
 
 def regist(request):
     return render(request, 'main/regist.html')
+
 
 
 
