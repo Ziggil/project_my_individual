@@ -5,96 +5,52 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Вход</title>
+    <title>Регистрация</title>
     <link rel="stylesheet" href="{% static "deps/css/regist.css" %}">
     <link rel="images" href="{% static "deps/images/test_image_seatch.jpg" %}">
-    <link rel="icons" type="test/png" sizes="32x32" href="{% static "deps/icon/test.png" %}">
     <link rel="stylesheet" href=" {% static "deps/css/buttons.css" %}">
-    
 
-   
   </head>
   <body>
     <header>
-      <h1>Регестрация</h1>
-      <p>А как же без неё?</p>
-      <nav>
-        <ul>
-          <li><a class="button" href="{% url 'index' %}" role="button-lg">Вернутся на начальную страницy</a></li>
-          <li>
+
+      <h1>Регистрация</h1>
+      <h3>А как же без неё?</h3>
+      
+          <main2>
+            <lu>
             Имя
-            <input type="my-button"></input>
-          </li>
-          <li>
+            <e><input></input></e>
+            <e></e>
             Пароль
-            <input type="my-button"></input>
-
-{% comment %} 
-            <form action="/ваш-url-обработчик/" method="post">
-    {% csrf_token %}
-    <label for="имя_поля">Ваш ввод:</label>
-    <input type="text" id="имя_поля" name="имя_поля_для_обработки">
-    <button type="submit">Отправить</button>
-</form> {% endcomment %}
-
-{% comment %} # в вашем файле urls.py
-from django.urls import path
-from . import views
-
-urlpatterns = [
-    path('ваш-url-обработчик/', views.обрабатывающая_функция, name='имя_обработчика'),
-] {% endcomment %}
-
-{% comment %} # в вашем файле urls.py
-from django.urls import path
-from . import views
-
-urlpatterns = [
-    path('ваш-url-обработчик/', views.обрабатывающая_функция, name='имя_обработчика'),
-] {% endcomment %}
-{% comment %} 
-# в вашем файле urls.py
-from django.urls import path
-from . import views
-
-urlpatterns = [
-    path('ваш-url-обработчик/', views.обрабатывающая_функция, name='имя_обработчика'),
-] {% endcomment %}
-
-{% comment %} терминал {% endcomment %}
-{% comment %} python manage.py makemigrations
-python manage.py migrate {% endcomment %}
-
-          </li>
-            
-            
-          {% comment %} <button class="btn btn-success">Сохранить</button> {% endcomment %}
-          {% comment %} <li><a class="my-button" href="{% url 'index' %}" role="button">Кликни меня</a></li> {% endcomment %}
-          {% comment %} <input type="button-dark">Test</input> {% endcomment %}
-        </ul>
-      </nav>
+            <e><input></input></e>
+            </lu>
+          </main2>
+  
     </header>
     <main>
       <article>
+          
         <section>
-          <h2>Первая секция</h2>
-          <p>Она обо мне</p>
-          <img src="deps/icons/test.png" alt="Test_image">
-          <img src="deps/images/test_image_seatch.jpg" alt="Test_image_2">
-          <p>Но может быть и о семантике, я пока не решил.</p>
+          <h2>Переход на другие страницы</h2>
+          <a href="{% url 'index' %}">Вернутся на начальную страницy</a>
+
         </section>
+
         <section>
-          <h2>Вторая секция</h2>
-          <p>Она тоже обо мне</p>
+          <a href="{% url 'about' %}">На страницу про нас</a>
         </section>
+
         <section>
+{% comment %} 
           <h2>И третья</h2>
-          <p>Вы уже должны были начать догадываться.</p>
+          <p>Вы уже должны были начать догадываться.</p> {% endcomment %}
+
         </section>
       </article>
     </main>
     <footer>
-      <p>Сюда бы я вписал информацию об авторе и ссылки на другие сайты</p>
+      <p>Почта создателя и автора сайта: 23zahar051982@gmail.com</p>
     </footer>
     <!-- сюда можно подключить jquery <script src="scripts/app.js" defer></script> -->
   </body>

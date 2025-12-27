@@ -7,44 +7,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Вход</title>
     <link rel="stylesheet" href="{% static "deps/css/index.css" %}">
-    <link rel="images" href="{% static "deps/images/test_image_seatch.jpg" %}">
-    <link rel="icons" type="test/png" sizes="32x32" href="{% static "deps/icon/test.png" %}">
+    {% comment %} <link rel="images" href="{% static "deps/images/test_image_seatch.jpg" %}">
+    <link rel="icons" type="test/png" sizes="32x32" href="{% static "deps/icon/test.png" %}"> {% endcomment %}
+    <img scr="https://m.seonews.ru/glossary/internet-site/">
+    <img scr="deps/icon/test.png">
     
 
    
   </head>
+  
   <body>
     <header>
       <h1>Это сайт обучения WEB!</h1>
-      <p>Всё о Браузерах, Сайтах и Серверах!</p>
-      <nav>
-        <ul>
-          <li><a class="btn btn-primary" href="{% url 'regist' %}" role="button">На страницу регестрации</a></li>
-          <li><a class="btn btn-primary" href="{% url 'about' %}" role="button">На страницу про нас</a></li>
-        </ul>
-      </nav>
+      <h3>Всё о Браузерах, Сайтах и Серверах!</h3>
     </header>
     <main>
       <article>
-        <section>
-          <h2>Первая секция</h2>
-          <p>Она обо мне</p>
-          <img src="deps/icons/test.png" alt="Test_image">
-          <img src="deps/images/test_image_seatch.jpg" alt="Test_image_2">
-          <p>Но может быть и о семантике, я пока не решил.</p>
-        </section>
-        <section>
-          <h2>Вторая секция</h2>
-          <p>Она тоже обо мне</p>
+        {% comment %} <section> {% endcomment %}
+          <h2>Переход на другие страницы</h2>
+
+            <a href="{% url 'regist' %}">На страницу регистрации</a>
+            <a href="{% url 'about' %}">На страницу про нас</a>
+
+         
+          {% comment %} <img src="deps/icons/test.png" alt="Test_image">
+          <img src="deps/images/test_image_seatch.jpg" alt="Test_image_2"> {% endcomment %}
+          
+          
+        {% comment %} </section> {% endcomment %}
+
+        {% comment %} <section>
+              <h2>Вторая</h2>
         </section>
         <section>
           <h2>И третья</h2>
-          <p>Вы уже должны были начать догадываться.</p>
-        </section>
+    
+        </section> {% endcomment %}
       </article>
     </main>
     <footer>
-      <p>Сюда бы я вписал информацию об авторе и ссылки на другие сайты</p>
+      <p>Почта создателя и автора сайта: 23zahar051982@gmail.com</p>
     </footer>
     <!-- сюда можно подключить jquery <script src="scripts/app.js" defer></script> -->
   </body>
