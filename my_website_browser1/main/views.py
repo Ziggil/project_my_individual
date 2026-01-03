@@ -14,8 +14,8 @@ def about(request):
 
 
 
-def register(request):
-    return render(request, 'main/register.html')
+# def register(request):
+#     return render(request, 'main/register.html')
 
 
 

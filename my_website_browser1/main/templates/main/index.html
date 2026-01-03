@@ -26,8 +26,29 @@
         {% comment %} <section> {% endcomment %}
           <h2>Переход на другие страницы</h2>
 
-            <a href="{% url 'register' %}">На страницу регистрации</a>
+            <a href="{% url 'users:register' %}">На страницу регистрации</a>
             <a href="{% url 'about' %}">На страницу про нас</a> 
+
+            {% comment %} {% if user.is_authenticated %} {% endcomment %}
+     {% comment %} <div>
+         <form action="users/login/" method="POST"> {% csrf_token %}
+              <input type="submit" value="Войти" />
+         </form>
+    </div> {% endcomment %}
+{% comment %} {% else %}
+   {% if form.errors %}
+         <p class="error">Сожалеем, вы неправильно ввели логин или пароль</p>
+   {% endif %}
+   <form action="accounts/login" method="post">{% csrf_token %}
+       <label for="username">Логин:</label>
+       <input type="text" name="username" value="" id="username">
+       <label for="password">Пароль:</label>
+       <input type="password" name="password" value="" id="password">
+
+       <input type="submit" value="login" />
+       <input type="hidden" name="next" value="{{ next }}" />
+    </form>
+{%  endif %} {% endcomment %}
 
          
           {% comment %} <img src="deps/icons/test.png" alt="Test_image">

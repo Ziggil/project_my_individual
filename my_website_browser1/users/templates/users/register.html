@@ -13,19 +13,17 @@
   </head>
   <body>
     <header>
+ 
+
 
       <h1>Регистрация</h1>
       <h3>А как же без неё?</h3>
-      
-          <main2>
-            <lu>
-            Имя
-            <e><input></input></e>
-            <e></e>
-            Пароль
-            <e><input></input></e>
-            </lu>
-          </main2>
+      <form method="post"> 
+        {% csrf_token %}
+        <input type="hidden" name="next" value="{{ next }}" />
+        {{ form.as_p }}
+        <p><button type="sumbit">Регистрация</button></p>
+      </form>
   
     </header>
     <main>
@@ -40,7 +38,8 @@
         <section>
           <a href="{% url 'about' %}">На страницу про нас</a>
         </section>
-
+ {% comment %} просто чуть чуть поменять сам шаблон и перенести в users и соотвественно поменять пути {% endcomment %}
+ {% comment %} подумай надо ли делать base.html {% endcomment %}
         <section>
 {% comment %} 
           <h2>И третья</h2>
