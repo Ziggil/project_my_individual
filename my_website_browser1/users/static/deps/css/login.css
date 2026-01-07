@@ -19,19 +19,6 @@ main {
 padding: 10px;  
 }  
 
-main2{
-    color: hsla(110, 4%, 30%, 0.7);
-}
-
-lu{
-    text-align: center;   
-    border-width: 6px;
-    margin-top: -12px;
-    color: hsla(125, 100%, 50%, 0.8);
-    display: block;
-}
-
-
 
 footer {  
 background-color: #2f2f2f;  
@@ -51,6 +38,11 @@ h3{
     color: hsla(65, 79%, 52%, 0.856);
 }
 
+h1{
+    text-align: center;
+    color: hsla(126, 100%, 50%, 0.8);
+
+}
 
 a{
     background-color: rgb(100, 107, 102);
@@ -74,9 +66,7 @@ a:hover{
     transform: scale(1.1);
 }
 
-article{
-    text-align: center; 
-}
+
 
 input{
     display: block;
@@ -89,16 +79,3 @@ input{
 
 }
 
-.left-img {
-  float: left; /* Картинка "плавает" влево */
-  margin-right: 15px; /* Отступ справа от картинки (чтобы текст не прилипал) */
-  margin-top: -22.5%;
-}
-
-iframe{
-  float: right; /* Картинка "плавает" влево */
-  margin-right: -12.5px; /* Отступ справа от картинки (чтобы текст не прилипал) */
-
-  margin-top: -29%;
-
-}

@@ -10,6 +10,7 @@
     <link rel="images" href="{% static "deps/images/test_image_seatch.jpg" %}">
     <link rel="stylesheet" href=" {% static "deps/css/buttons.css" %}">
 
+
   </head>
   <body>
     <header>
@@ -23,29 +24,43 @@
         <input type="hidden" name="next" value="{{ next }}" />
         {{ form.as_p }}
         <p><button type="sumbit">Регистрация</button></p>
+
+
+        
+
       </form>
+        <img scr="deps/images/регестрации" alt="test2" class="left-img">
+        {% comment %} <iframe 
+        src="https://vk.com/video_ext.php?oid=-15755094&id=456426541&hash=f20639e13fb257a6" 
+        width="640" 
+        height="360" 
+        frameborder="0" 
+        allowfullscreen="1" 
+        style="background-color: #000" 
+        allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
+        alt="затычка">
+        </iframe> {% endcomment %}
+        
+          
+
   
     </header>
+          <a href="{% url 'index' %}">Вернуться на начальную страницy</a>
+          <a href="{% url 'about' %}">Вернуться На страницу про нас</a>
     <main>
       <article>
           
-        <section>
-          <h2>Переход на другие страницы</h2>
+
+          {% comment %} <h2>Переход на другие страницы</h2>
           <a href="{% url 'index' %}">Вернутся на начальную страницy</a>
+          <a href="{% url 'about' %}">На страницу про нас</a> {% endcomment %}
 
-        </section>
-
-        <section>
-          <a href="{% url 'about' %}">На страницу про нас</a>
-        </section>
  {% comment %} просто чуть чуть поменять сам шаблон и перенести в users и соотвественно поменять пути {% endcomment %}
  {% comment %} подумай надо ли делать base.html {% endcomment %}
-        <section>
+
 {% comment %} 
           <h2>И третья</h2>
           <p>Вы уже должны были начать догадываться.</p> {% endcomment %}
-
-        </section>
       </article>
     </main>
     <footer>

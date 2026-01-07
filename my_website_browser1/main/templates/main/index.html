@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="{% static "deps/css/index.css" %}">
     {% comment %} <link rel="images" href="{% static "deps/images/test_image_seatch.jpg" %}">
     <link rel="icons" type="test/png" sizes="32x32" href="{% static "deps/icon/test.png" %}"> {% endcomment %}
-    <img scr="https://m.seonews.ru/glossary/internet-site/">
+    <img scr="https://png.klev.club/11837-registracija.html">
     <img scr="deps/icon/test.png">
     
 
@@ -27,6 +27,7 @@
           <h2>Переход на другие страницы</h2>
 
             <a href="{% url 'users:register' %}">На страницу регистрации</a>
+            <a href="{% url 'users:login' %}">На страницу авторизации</a>
             <a href="{% url 'about' %}">На страницу про нас</a> 
 
             {% comment %} {% if user.is_authenticated %} {% endcomment %}

@@ -1,4 +1,6 @@
+import re
 from django.contrib.auth import authenticate, login, logout
+from django.core.signals import request_finished
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
@@ -24,7 +26,29 @@ def logout_user(request):
     return HttpResponseRedirect('users:login')
 
 
+# def register(request):
+#     if request.method == "POST":
+#         form = RegisterUserForm(request.POST)
+#         if form.is_valid():
+#             user = form.save(commit=False) #пока не заносим в бд данные
+#             user.set_password(form.cleaned_data['password']) #шифрование пароля и занисени его password forms
+#             user.save() #сохроняем в бд пароль
+#             return render(request, 'users/register_done.html')
+#     else:
+#         form = RegisterUserForm()
+
+#     return render(request, 'users/register.html', {'form': form})
+
+#Ролик 10:35
 
 def register(request):
-    form=RegisterUserForm()
+    if request.method=="POST":
+        form=RegisterUserForm(request.POST)
+        if form.is_valid():
+            user=form.save(commit=False) #пока не заносим в бд данные 
+            user.set_password(form.cleaned_data['password']) #шифрование пароля и занисени его password forms
+            user.save() #сохроняем в бд пароль
+            return render(request, 'main/index.html')
+    else: 
+        form=RegisterUserForm()
     return render(request,  'users/register.html', {'form':form})

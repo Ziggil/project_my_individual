@@ -1,10 +1,12 @@
-
+{% load static %}
 <html>
 
 <head>
     <title>Авторизация</title>
+    <link rel="stylesheet" href="{% static "deps/css/login.css" %}">
 </head>
 <body>
+    <header>
     <h1>Авторизация</h1>
     <form method="post">
         {% csrf_token %}
@@ -13,6 +15,10 @@
 
 
     </form>   
+    </header>
+    <footer>
+      <p>Почта создателя и автора сайта: 23zahar051982@gmail.com</p>
+    </footer>
 </body>
 </html>
 
