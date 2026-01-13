@@ -7,11 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Вход</title>
     <link rel="stylesheet" href="{% static "deps/css/index.css" %}">
-    {% comment %} <link rel="images" href="{% static "deps/images/test_image_seatch.jpg" %}">
-    <link rel="icons" type="test/png" sizes="32x32" href="{% static "deps/icon/test.png" %}"> {% endcomment %}
-    <img scr="https://png.klev.club/11837-registracija.html">
-    <img scr="deps/icon/test.png">
-    
+
+    <link rel="images" href='{% static "deps/images/test_image_seatch.jpg" %}'>
+    {% comment %} <link rel="icons" type="test/png" sizes="32x32" href="{% static "deps/icon/test.png" %}">  {% endcomment %}
+
+    {% comment %} <img src="https://png.klev.club/11837-registracija.html">
+    <img src="deps/icon/test.png"> {% endcomment %}
+    <img src="deps/images/test_image_seatch.jpg">
 
    
   </head>
@@ -20,6 +22,7 @@
     <header>
       <h1>Это сайт обучения WEB!</h1>
       <h3>Всё о Браузерах, Сайтах и Серверах!</h3>
+
     </header>
     <main>
       <article>
@@ -29,6 +32,8 @@
             <a href="{% url 'users:register' %}">На страницу регистрации</a>
             <a href="{% url 'users:login' %}">На страницу авторизации</a>
             <a href="{% url 'about' %}">На страницу про нас</a> 
+            <a href="{% url 'users:logout' %}">Выйти</a>
+            
 
             {% comment %} {% if user.is_authenticated %} {% endcomment %}
      {% comment %} <div>

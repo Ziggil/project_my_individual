@@ -35,13 +35,18 @@ margin-left: -10px;
 
 h3{
     text-align: center;  
-    color: hsla(65, 79%, 52%, 0.856);
+    color: hsla(60, 7%, 86%, 0.856);
 }
 
 h1{
     text-align: center;
     color: hsla(126, 100%, 50%, 0.8);
 
+}
+
+h2{
+    text-align: center;
+    color: hsla(65, 79%, 52%, 0.856);
 }
 
 a{
@@ -68,14 +73,33 @@ a:hover{
 
 
 
-form{
+button{
     display: block;
     text-align: center;
+    background-color: rgb(141, 142, 144);
+    color: hsla(239, 100%, 50%, 0.6);
     margin-top: 2px;
     border: 2px solid black;
     width: 11.56%;
     margin-left: 44%;
     border-width: 3px;
+    font-weight: bold;
+    font-size: 95%;
 
 }
 
+
+
+button:hover{
+    display: block;
+    text-align: center;
+    background-color: rgb(141, 142, 144);
+    color: rgb(117, 50, 193);
+    margin-top: 2px;
+    border: 2px solid rgb(0, 0, 0);
+    width: 11.56%;
+    margin-left: 44%;
+    border-width: 3px;
+    transform: scale(1.2);
+
+}

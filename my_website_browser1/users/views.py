@@ -1,10 +1,21 @@
-import re
+
 from django.contrib.auth import authenticate, login, logout
 from django.core.signals import request_finished
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 from .forms import LoginUserForm, RegisterUserForm
+
+from django.contrib.auth.views import LogoutView
+
+from django.shortcuts import redirect
+from django.contrib.auth import logout
+from django.contrib.auth.decorators import login_required
+
+
+
+
+
 
 def login_user(request):
     if request.method=='POST':
@@ -21,9 +32,16 @@ def login_user(request):
 
     return render(request, 'users/login.html', {'form': form})
 
+
+
+
 def logout_user(request):
     logout(request)
-    return HttpResponseRedirect('users:login')
+    # return redirect(request,'users/logout.html')
+    return render(request,'users/logout.html')
+
+
+
 
 
 # def register(request):

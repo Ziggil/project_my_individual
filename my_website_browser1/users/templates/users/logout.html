@@ -1,0 +1,23 @@
+{% load static %}
+<html>
+<head>
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static "deps/css/logout.css" %}">
+
+</head>
+<body>
+    <header>
+    <h1>Выход</h1>
+
+    <form action="{% url 'index' %}" method="post">
+    {% csrf_token %}
+    <h2>Эта страница Выхода!</h2>
+    <button type="submit">Выход</button>
+    </header>
+    </form>
+    <h3>Если вы хотите выйти из профиля или посмотреть как это работает(Ctrl+Shift+C), то вы зашли на нужную страницу!</h3>
+    <footer>
+      <p>Почта создателя и автора сайта: 23zahar051982@gmail.com</p>
+    </footer>
+</body>
+</html>
