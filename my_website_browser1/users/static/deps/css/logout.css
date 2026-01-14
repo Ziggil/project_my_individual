@@ -13,6 +13,8 @@ text-align: center;
 border-width: 6px;
 margin-top: -10px;
 border: 6px solid rgb(0, 0, 0);
+border-radius: 10px;
+text-shadow: -1px 1px rgb(0, 0, 0);
 }  
 
 main {          
@@ -30,6 +32,11 @@ position: fixed;
 width: 100%;  
 bottom: 0;  
 margin-left: -10px;
+}
+
+
+footer:hover{
+    color: hsla(34, 100%, 50%, 1.2);
 }
 
 

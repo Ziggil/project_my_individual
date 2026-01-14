@@ -8,14 +8,18 @@
 <body>
     <header>
     <h1>Авторизация</h1>
-    <form method="post">
+  
+    </header>
+
+        <form method="post">
         {% csrf_token %}
+        <input type="hidden" name="next" value="{{ next }}" />
         {{ form.as_p }}
         <p><button type="sumbit">Войти</button></p>
+        </form> 
 
+        <img src='{% static "deps/images/вход.png" %}' alt="test">
 
-    </form>   
-    </header>
     <footer>
       <p>Почта создателя и автора сайта: 23zahar051982@gmail.com</p>
     </footer>

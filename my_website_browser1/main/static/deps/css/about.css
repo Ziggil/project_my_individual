@@ -19,7 +19,9 @@ text-align: center;
 border: 6px double rgb(0, 0, 0);
 border-width: 9px;
 margin-top: -20px;
+border-radius: 10px;
 /* box-shadow: 10px 10px 10px rgb(0, 0, 0); */
+text-shadow: -1px 1px rgb(0, 0, 0);
 }
 
 
@@ -41,6 +43,10 @@ margin-left: -10px;
 
 }
 
+
+footer:hover{
+    color: hsla(34, 100%, 50%, 1.2);
+}
 
 h3{
     text-align: center; 

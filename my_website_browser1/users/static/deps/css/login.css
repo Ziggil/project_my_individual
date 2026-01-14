@@ -9,10 +9,11 @@ background-color: #383535;
 color: hsla(83, 100%, 50%, 0.8);
 padding: 20px;  
 text-align: center;   
-/* border: 6px ridge rgb(0, 0, 0); */
-border-width: 6px;
 margin-top: -10px;
 border: 6px solid rgb(0, 0, 0);
+border-radius: 10px;
+z-index: -1;
+text-shadow: -1px 1px rgb(0, 0, 0);
 }  
 
 main {          
@@ -32,6 +33,10 @@ bottom: 0;
 margin-left: -10px;
 }
 
+footer:hover{
+    color: hsla(34, 100%, 50%, 1.2);
+}
+
 
 h3{
     text-align: center;  
@@ -44,38 +49,46 @@ h1{
 
 }
 
-a{
-    background-color: rgb(100, 107, 102);
-    /* color:  rgb(12, 158, 220); */
-    color: hsla(195, 100%, 50%, 0.6);
-    border: 2px solid black;
-    text-decoration: none;
-    margin-top: 15px;
-    margin-left: 25%;
-    display: block;
-    text-align: center;
-    width: 50%;
-    font-size: 23.5px;
-    
-}
-
-
-a:hover{
-    background-color: rgb(141, 142, 144);
-    color: rgb(64, 50, 193);
-    transform: scale(1.1);
-}
 
 
 
-form{
+input{
     display: block;
     text-align: center;
     margin-top: 2px;
-    border: 2px solid black;
+    border: 2px solid rgb(0, 0, 0);
     width: 11.56%;
     margin-left: 44%;
     border-width: 3px;
 
+
+
 }
 
+input:hover{
+    border: 2px solid rgb(12, 33, 224);
+    transform: scale(1.1);
+    transition: 1s;
+
+
+
+}
+
+form{
+    margin-top: 30px;
+    text-align: center;
+    z-index: 1;
+}
+
+
+
+
+img{
+    display: block;
+    margin: auto;
+    width: 40%;
+    height: 40%;
+    padding: 0;
+    margin-top: 20px ;
+    margin-top: 60px;
+}

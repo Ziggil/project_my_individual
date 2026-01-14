@@ -7,8 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Регистрация</title>
     <link rel="stylesheet" href="{% static "deps/css/register.css" %}">
-    <link rel="images" href="{% static "deps/images/test_image_seatch.jpg" %}">
-    <link rel="stylesheet" href=" {% static "deps/css/buttons.css" %}">
 
 
   </head>
@@ -19,16 +17,7 @@
 
       <h1>Регистрация</h1>
       <h3>А как же без неё?</h3>
-      <form method="post"> 
-        {% csrf_token %}
-        <input type="hidden" name="next" value="{{ next }}" />
-        {{ form.as_p }}
-        <p><button type="sumbit">Регистрация</button></p>
 
-
-        
-
-      </form>
         <img scr="deps/images/регестрации" alt="test2" class="left-img">
         {% comment %} <iframe 
         src="https://vk.com/video_ext.php?oid=-15755094&id=456426541&hash=f20639e13fb257a6" 
@@ -41,10 +30,18 @@
         alt="затычка">
         </iframe> {% endcomment %}
         
-          
-
   
     </header>
+
+          {% comment %} <img src='{% static "deps/images/регестрация.jpg" %}' alt="test"> {% endcomment %}
+
+          <form method="post"> 
+          {% csrf_token %}
+          <input type="hidden" name="next" value="{{ next }}" />
+          {{ form.as_p }}
+          <p><button type="sumbit">Регистрация</button></p>
+          </form>
+
           <a href="{% url 'index' %}">Вернуться на начальную страницy</a>
           <a href="{% url 'about' %}">Вернуться на страницу про нас</a>
     <main>

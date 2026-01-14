@@ -8,12 +8,12 @@
     <title>Вход</title>
     <link rel="stylesheet" href="{% static "deps/css/index.css" %}">
 
-    <link rel="images" href='{% static "deps/images/test_image_seatch.jpg" %}'>
+    
     {% comment %} <link rel="icons" type="test/png" sizes="32x32" href="{% static "deps/icon/test.png" %}">  {% endcomment %}
 
     {% comment %} <img src="https://png.klev.club/11837-registracija.html">
     <img src="deps/icon/test.png"> {% endcomment %}
-    <img src="deps/images/test_image_seatch.jpg">
+   
 
    
   </head>
@@ -33,43 +33,12 @@
             <a href="{% url 'users:login' %}">На страницу авторизации</a>
             <a href="{% url 'about' %}">На страницу про нас</a> 
             <a href="{% url 'users:logout' %}">Выйти</a>
-            
 
-            {% comment %} {% if user.is_authenticated %} {% endcomment %}
-     {% comment %} <div>
-         <form action="users/login/" method="POST"> {% csrf_token %}
-              <input type="submit" value="Войти" />
-         </form>
-    </div> {% endcomment %}
-{% comment %} {% else %}
-   {% if form.errors %}
-         <p class="error">Сожалеем, вы неправильно ввели логин или пароль</p>
-   {% endif %}
-   <form action="accounts/login" method="post">{% csrf_token %}
-       <label for="username">Логин:</label>
-       <input type="text" name="username" value="" id="username">
-       <label for="password">Пароль:</label>
-       <input type="password" name="password" value="" id="password">
+            <img src='{% static "deps/images/web_1.jpg" %}' alt="test">
 
-       <input type="submit" value="login" />
-       <input type="hidden" name="next" value="{{ next }}" />
-    </form>
-{%  endif %} {% endcomment %}
 
-         
-          {% comment %} <img src="deps/icons/test.png" alt="Test_image">
-          <img src="deps/images/test_image_seatch.jpg" alt="Test_image_2"> {% endcomment %}
-          
-          
-        {% comment %} </section> {% endcomment %}
 
-        {% comment %} <section>
-              <h2>Вторая</h2>
-        </section>
-        <section>
-          <h2>И третья</h2>
-    
-        </section> {% endcomment %}
+
       </article>
     </main>
     <footer>
