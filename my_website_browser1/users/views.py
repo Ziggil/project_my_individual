@@ -26,7 +26,7 @@ def login_user(request):
                               password=cd['password'])
             if user and user.is_active:
                 login(request, user)
-                return HttpResponseRedirect(reverse('index'))
+                return HttpResponseRedirect(reverse('home'))
     else:
         form=LoginUserForm()
 

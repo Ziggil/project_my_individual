@@ -9,11 +9,15 @@ def index(request):
 
     return render(request, 'main/index.html')
 
-@login_required
+
 def about(request):
     return render(request, 'main/about.html')
 
+@login_required
+def home(request):
+    return render(request, 'main/home.html')
 
+# и ко всем следующим страницам примеянй этот декоратор!
 
 # def register(request):
 #     return render(request, 'main/register.html')
