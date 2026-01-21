@@ -3,8 +3,6 @@
 <!DOCTYPE html>
 <html lang="ru">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Вход</title>
     <link rel="stylesheet" href="{% static "deps/css/index.css" %}">
 
@@ -32,7 +30,8 @@
             <a href="{% url 'users:register' %}">На страницу регистрации</a>
             <a href="{% url 'users:login' %}">На страницу авторизации</a>
             <a href="{% url 'about' %}">На страницу про нас</a> 
-            <a href="{% url 'users:logout' %}">Выйти</a>
+            <a href="{% url 'users:logout' %}">Выйти</a> 
+            {% comment %} удалить потом выйти{% endcomment %}
 
             <img src='{% static "deps/images/web_1.jpg" %}' alt="test">
 
@@ -44,7 +43,6 @@
     <footer>
       <p>Почта создателя и автора сайта: 23zahar051982@gmail.com</p>
     </footer>
-    <!-- сюда можно подключить jquery <script src="scripts/app.js" defer></script> -->
   </body>
 </html>
 

@@ -4,6 +4,9 @@
     box-sizing: border-box;
 }
 
+
+
+
 body{
     max-width: 100%;
     max-height: 100%;
@@ -12,41 +15,27 @@ body{
 }
 
 
-header {  
-background-color: #383535;  
-/* color: rgb(46, 125, 17);   */
-color: hsla(120, 100%, 50%, 0.8);
-text-align: center;  
-border: 6px ridge rgb(0, 0, 0);
-border-width: 6px;
-margin-top: -20px;
-border-width: 6px;
-/* box-shadow: 10px 10px 10px rgb(0, 0, 0); */
-border-radius: 10px;
-text-shadow: -1px 1px rgb(0, 0, 0);
-padding: 20px;
-}
 
 
 
-main {  
-padding: 10px;  
-}
 
 footer {  
 background-color: #2f2f2f;  
 /* color: rgb(142, 80, 14, 1.2);   */
 color: hsla(34, 100%, 50%, 0.7);
 text-align: center;  
-padding: 20px;  
+padding: 10px;  
+position: fixed;  
 width: 100%;  
-bottom: 0;  
+/* bottom: 0;   */
 
+z-index: -1;
 
 }
 
 footer:hover{
     color: hsla(34, 100%, 50%, 1.2);
+
 }
 
 
@@ -66,17 +55,16 @@ h1{
 }
 
 a{
-    background-color: rgb(100, 107, 102);
-    /* color:  rgb(12, 158, 220); */
+
     color: hsla(195, 100%, 50%, 0.6);
-    border: 2px solid black;
     text-decoration: none;
-    margin-top: 20px;
+    margin-top: 25px;
     margin-left: 25%;
     display: block;
     text-align: center;
-    width: 50%;
+    width: 5%;
     font-size: 20px;
+    
     
 
 
@@ -84,10 +72,9 @@ a{
 
 
 a:hover{
-    background-color: rgb(141, 142, 144);
     color: rgb(64, 50, 193);
     transform: scale(1.1);
-    transition: 1s;
+    transition: 0.6s;
 }
 
 
@@ -103,4 +90,51 @@ img{
 
 }
 
+
+
+aside {
+    float: left;
+    background-color: #232222;  
+    width: 13.5%;
+    padding: 2.5%;
+    height: 100vh;
+    color: #fff;
+    margin-left: -6px;
+
+    text-align: center;
+    border: 3px solid black;
+
+}
+
+ul{
+    color:#fff;
+    display: block;
+    margin-top:50px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+
+
+}
+
+
+
+nav{
+    background-color: #2f2f2f;  
+    border: 3px solid black;
+    padding: 5px;
+    text-align: center;
+    color: hsla(120, 100%, 50%, 0.8);
+    font-size: 20px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+}
+
+
+
+svg{
+    margin-top: 5px;
+}
+
+p{
+    font-size: 20px;
+}
 

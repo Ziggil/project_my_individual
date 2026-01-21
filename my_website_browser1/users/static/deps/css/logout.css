@@ -1,3 +1,9 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {  
     max-width: 100%;
     max-height: 100%;
@@ -15,6 +21,7 @@ margin-top: -10px;
 border: 6px solid rgb(0, 0, 0);
 border-radius: 10px;
 text-shadow: -1px 1px rgb(0, 0, 0);
+padding: 20px;
 }  
 
 main {          
@@ -27,11 +34,11 @@ background-color: #2f2f2f;
 /* color: rgb(142, 80, 14, 1.2);   */
 color: hsla(34, 100%, 50%, 0.7);
 text-align: center;  
-padding: 10px;  
+padding: 20px;  
 position: fixed;  
 width: 100%;  
 bottom: 0;  
-margin-left: -10px;
+
 }
 
 
@@ -85,13 +92,13 @@ button{
     text-align: center;
     background-color: rgb(141, 142, 144);
     color: hsla(239, 100%, 50%, 0.6);
-    margin-top: 2px;
     border: 2px solid black;
     width: 11.56%;
     margin-left: 44%;
     border-width: 3px;
     font-weight: bold;
     font-size: 95%;
+    margin-top: 50px;
 
 }
 
@@ -99,10 +106,7 @@ button{
 
 button:hover{
     display: block;
-    text-align: center;
-    background-color: rgb(141, 142, 144);
     color: rgb(117, 50, 193);
-    margin-top: 2px;
     border: 2px solid rgb(0, 0, 0);
     width: 11.56%;
     margin-left: 44%;
