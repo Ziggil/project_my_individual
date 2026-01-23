@@ -142,3 +142,6 @@ LOGIN_URL = 'users:login'
 LOGOUT_REDIRECT_URL = 'main/index'
 
 
+DIRS = [BASE_DIR / "templates"]
+
+APP_DIRS=True

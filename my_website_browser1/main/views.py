@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+
 
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
@@ -16,8 +16,11 @@ def about(request):
 def home(request):
     return render(request, 'main/home.html')
 
+
 def base(request):
     return render(request, 'main/base.html')
+
+
 
 # и ко всем следующим страницам примеянй этот декоратор!
 

@@ -20,8 +20,9 @@
 
     <form action="{% url 'index' %}" method="post">
     {% csrf_token %}
-    <h2>Эта страница Выхода!</h2>
+    <h2>Вы точно хотите выйтии?</h2>
     <button type="submit">Выход</button>
+    <a class="btn btn-primary" href="{% url 'home' %}" role="button">Назад</a>
     <footer>
       <p>Почта создателя и автора сайта: 23zahar051982@gmail.com</p>
     </footer>

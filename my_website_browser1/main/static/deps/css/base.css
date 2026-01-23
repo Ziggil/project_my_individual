@@ -10,7 +10,7 @@
 body{
     max-width: 100%;
     max-height: 100%;
-    background-color: #4b4b4b;
+    background-color: #424043;
 
 }
 
@@ -72,7 +72,7 @@ a{
 
 
 a:hover{
-    color: rgb(64, 50, 193);
+    color: rgb(41, 26, 180);
     transform: scale(1.1);
     transition: 0.6s;
 }
@@ -100,9 +100,9 @@ aside {
     height: 100vh;
     color: #fff;
     margin-left: -6px;
-
     text-align: center;
-    border: 3px solid black;
+    border: 5px solid rgb(0, 0, 0);
+    
 
 }
 
