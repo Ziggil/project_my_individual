@@ -15,7 +15,18 @@ body{
 }
 
 
+.statia{
+    border: 2px solid rgb(114, 196, 43);
+    width: 50%;
+    /* margin-left:31%; */
+    margin: auto 470px;
+    margin-top: 15px;
+    border-radius: 10px;
+    text-align: center;
+    background-color: rgb(114, 196, 43);
 
+ 
+}
 
 
 
@@ -43,18 +54,38 @@ h3{
     text-align: center;  
     color: hsla(153, 100%, 50%, 0.8);
 
+
 }
 
-h2{
-    text-align: center;  
+.zag_div{
+    width: 50%;
+    margin: auto 470px;
+    
+   
+}
+
+.zag{
+    margin-top: 70px;
+    color: hsl(167, 100%, 50%);
+    border-radius: 20px;
+    padding: 5.5px;
+    border: 2px double rgb(46, 31, 144);
+    background-color: rgb(46, 31, 144);
+    text-align: center;
+}
+
+.zag_statia{
+    text-align: center; 
+
+    
 }
 
 h1{
     text-align: center;  
-    
+
 }
 
-a{
+.my_button{
 
     color: hsla(195, 100%, 50%, 0.6);
     text-decoration: none;
@@ -64,17 +95,33 @@ a{
     text-align: center;
     width: 5%;
     font-size: 20px;
-    
-    
+    text-shadow: -4px 1px rgb(0, 0, 0);
+    transition: transform 0.5s ease;
+
 
 
 }
 
 
-a:hover{
-    color: rgb(41, 26, 180);
-    transform: scale(1.1);
+
+.my_button:hover{
+    color: rgb(31, 180, 26);
+    transform: scale(1.05);
     transition: 0.6s;
+}
+
+.then{
+    display: block;
+    text-align: center;
+    font-size: 15px;
+    text-decoration: none;
+    color: rgb(21, 27, 136);
+    opacity: 0.8;
+    
+}
+
+.then:hover{
+    opacity: 1;
 }
 
 
@@ -102,8 +149,17 @@ aside {
     margin-left: -6px;
     text-align: center;
     border: 5px solid rgb(0, 0, 0);
+    transition: 1s;
+    position: fixed;
+    z-index: 2;
+    top:0;
+
     
 
+}
+
+aside:hover{
+    border: 5px solid rgb(171, 171, 171);
 }
 
 ul{
@@ -111,6 +167,7 @@ ul{
     display: block;
     margin-top:50px;
     font-family: Georgia, 'Times New Roman', Times, serif;
+    transition: transform 0.6s ease;
 
 
 }
@@ -123,18 +180,46 @@ nav{
     padding: 5px;
     text-align: center;
     color: hsla(120, 100%, 50%, 0.8);
-    font-size: 20px;
+    font-size: 30px;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    z-index: 1;
+    width: 100%;
+    position: fixed;
+    top:0;
+    
+}
+
+.nav{
+    margin-left: 190px;
+
 
 }
 
-
+.p_zag{
+    font-size: 20px;
+}
 
 svg{
     margin-top: 5px;
 }
 
+
+
 p{
-    font-size: 20px;
+    font-size: 15px;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.fat{
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.text{
+    margin-top: 15px;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 16.5px;
+    text-align:center;
+
 }
 

@@ -5,6 +5,7 @@
   <head>
     <title>Вход</title>
     <link rel="stylesheet" href="{% static "deps/css/index.css" %}">
+    <link rel="shortcut icon" href="https://i.pinimg.com/originals/b8/b0/1a/b8b01a233103576ebc231661a7324bac.jpg">
 
     
     {% comment %} <link rel="icons" type="test/png" sizes="32x32" href="{% static "deps/icon/test.png" %}">  {% endcomment %}
@@ -24,14 +25,13 @@
     </header>
     <main>
       <article>
-        {% comment %} <section> {% endcomment %}
+
           <h2>Переход на другие страницы</h2>
 
             <a href="{% url 'users:register' %}">На страницу регистрации</a>
             <a href="{% url 'users:login' %}">На страницу авторизации</a>
             <a href="{% url 'about' %}">На страницу про нас</a> 
-            {% comment %} <a href="{% url 'users:logout' %}">Выйти</a>  {% endcomment %}
-            {% comment %} удалить потом выйти{% endcomment %}
+
 
             <img src='{% static "deps/images/web_1.jpg" %}' alt="test">
 

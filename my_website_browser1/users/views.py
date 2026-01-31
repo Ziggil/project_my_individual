@@ -27,8 +27,13 @@ def login_user(request):
             if user and user.is_active:
                 login(request, user)
                 return HttpResponseRedirect(reverse('home'))
+            else:
+                pass
+                    
     else:
         form=LoginUserForm()
+
+
 
     return render(request, 'users/login.html', {'form': form})
 
@@ -70,3 +75,6 @@ def register(request):
     else: 
         form=RegisterUserForm()
     return render(request,  'users/register.html', {'form':form})
+
+def profile(request):
+    return render(request,'users/profile.html')
