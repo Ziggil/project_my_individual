@@ -19,16 +19,28 @@ body{
     border: 2px solid rgb(114, 196, 43);
     width: 50%;
     /* margin-left:31%; */
-    margin: auto 470px;
+    margin:  470px;
     margin-top: 15px;
+    margin-bottom: 15.5px;
+    padding: 12.5px;
     border-radius: 10px;
     text-align: center;
     background-color: rgb(114, 196, 43);
-
+    /* padding: 20px; */
  
 }
 
-
+.pusto{
+    border: 2px solid  #424043;
+    width: 50%;
+    /* margin-left:31%; */
+    margin:  470px;
+    margin-top: 15px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    text-align: center;
+    background-color: #424043;
+}
 
 footer {  
 background-color: #2f2f2f;  
@@ -55,6 +67,20 @@ h3{
     color: hsla(153, 100%, 50%, 0.8);
 
 
+}
+
+
+
+.zag_home_h1{
+    margin-top: 100px;
+    margin-left: 200px;
+    text-align: center;
+}
+
+.zag_home_h2{
+    margin-top: 100px;
+    margin-left: 200px;
+    text-align: center;
 }
 
 .zag_div{
