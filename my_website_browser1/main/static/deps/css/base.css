@@ -72,15 +72,36 @@ h3{
 
 
 .zag_home_h1{
-    margin-top: 100px;
-    margin-left: 200px;
+    margin-top: 80px;
+    margin-left: 466px;
     text-align: center;
+    border: 2px double rgb(46, 31, 144);
+    background-color: rgb(46, 31, 144);
+    color: hsl(167, 100%, 50%);
+    border-radius: 20px;
+    padding: 5.5px;
+    width: 50%;
+    
+
+    /* margin: auto 470px; */
+
 }
 
-.zag_home_h2{
-    margin-top: 100px;
+.zag_home_h3{
+    margin-top: 25px;
     margin-left: 200px;
     text-align: center;
+    color: rgb(18, 86, 187);
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:15px;
+    background-color: rgb(114, 196, 43);
+    border-radius: 20px;
+    padding: 5.5px;
+    width: 50%;
+    margin-left: 466px;
+
+ 
+    
 }
 
 .zag_div{
@@ -121,7 +142,7 @@ h1{
     text-align: center;
     width: 5%;
     font-size: 20px;
-    text-shadow: -4px 1px rgb(0, 0, 0);
+    text-shadow: 4px 4px 5px rgb(0, 0, 0);
     transition: transform 0.5s ease;
 
 
@@ -134,6 +155,7 @@ h1{
     color: rgb(31, 180, 26);
     transform: scale(1.05);
     transition: 0.6s;
+
 }
 
 .then{
@@ -196,6 +218,7 @@ ul{
     transition: transform 0.6s ease;
 
 
+
 }
 
 
@@ -208,12 +231,14 @@ nav{
     color: hsla(120, 100%, 50%, 0.8);
     font-size: 30px;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    transition: 1s;
     z-index: 1;
     width: 100%;
     position: fixed;
     top:0;
     
 }
+
 
 .nav{
     margin-left: 190px;
@@ -223,6 +248,7 @@ nav{
 
 .p_zag{
     font-size: 20px;
+    text-shadow: 1px 4px 1px rgb(0, 0, 0);
 }
 
 svg{
@@ -249,3 +275,37 @@ p{
 
 }
 
+
+.obu{
+    animation:  anim ease 6s infinite;
+   
+}
+
+@keyframes anim{
+0% { 
+    /* transform: rotate3d(0,0,0,0);  */
+    /* transform: translate(0, 0) */
+    /* transform: scale(1); */
+    color:hsla(120, 100%, 50%, 0.8) ;
+
+} 
+
+50%{
+    /* transform: translate(-100px, 0) */
+    /* transform: scale(1.6); */
+    color:hsla(169, 100%, 50%, 0.8) ;
+}
+
+75% { 
+    /* transform: rotate3d(0,1,0,360deg); */
+    /* transform: translate(100px, 0) */
+     /* transform: scale(1);  */
+     color:hsla(229, 100%, 50%, 0.8) ;
+
+}
+
+100%{
+    color:hsla(162, 100%, 50%, 0.8) ;
+}
+
+}
