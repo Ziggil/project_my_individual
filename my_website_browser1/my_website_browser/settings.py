@@ -45,6 +45,9 @@ INSTALLED_APPS = [
     'users',
     'main',
     'blog',
+    'quizes',
+    'questions',
+    'results',
 
 ]
 

@@ -40,7 +40,8 @@ color: hsla(34, 100%, 50%, 0.7);
 text-align: center;  
 padding: 20px;  
 width: 100%;  
-bottom: 0;  
+margin-top: 122px; 
+
 
 
 }
@@ -78,6 +79,7 @@ a{
     width: 50%;
     font-size: 20px;
     
+    
 
 
 }
@@ -100,6 +102,7 @@ img{
     padding: 0;
     border: 2px solid black;
     margin-top: 20px ;
+    
 
 }
 

@@ -48,6 +48,7 @@ bottom: 0;
 
 footer:hover{
     color: hsla(34, 100%, 50%, 1.2);
+    
 }
 
 h3{
@@ -77,6 +78,7 @@ a{
     text-align: center;
     width: 50%;
     font-size: 20px;
+    
 
 
 }
