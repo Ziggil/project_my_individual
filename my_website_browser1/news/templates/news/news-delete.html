@@ -1,0 +1,15 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Удаление статьи{% endblock %}
+
+{% block content %}
+    <div class="features">
+        <h1>Удаление статьи</h1>
+        {# атрибут method,метод передачи данных post #}
+        <form method="post">
+            {% csrf_token %}
+            {# Тип кнопки submit, позволяет при нажатии на кнопку перезагрузить страницу, а так же отправить данные пользователя на сервер #}
+            <button class="btn btn-success" type="submit">Удалить статью</button>
+        </form>
+    </div>
+{% endblock %}

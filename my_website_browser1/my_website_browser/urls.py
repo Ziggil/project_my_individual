@@ -12,8 +12,7 @@ urlpatterns = [
     path('home/', views.home, name='home'),
     path('about/', views.about, name='about'),
     path('blog/', include('blog.urls', namespace="blog" )),
-
-    # path('register/', views.register, name='register'),
+    path('news/', include('news.urls', namespace="news" )),
     path('users/', include('users.urls', namespace="users" )),
 
 

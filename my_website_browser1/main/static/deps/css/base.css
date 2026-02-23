@@ -281,6 +281,21 @@ p{
    
 }
 
+
+.text_no_center{
+    margin-top: 15px;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 16.5px;
+    text-align: right;
+}
+
+form {
+    margin-left: 32%;
+    width: 500px;
+    margin-top: 50px;
+}
+
+
 @keyframes anim{
 0% { 
     /* transform: rotate3d(0,0,0,0);  */

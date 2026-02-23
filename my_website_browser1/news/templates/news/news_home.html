@@ -1,0 +1,31 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Новости на сайте{% endblock %}
+
+{% block content %}
+    <div class="zag_div">
+        <h2 class="zag"> Новости на сайте</h2>
+    </div>    
+        {# Тут условие что если есть news,записи, то включается цикл перебора новостей #}
+        {% if news %}
+            {% for el in news %}
+                <div class='statia'>
+                    
+                    <h2 class="zag_statia">{{ el.title }}</h2>
+
+                    <p>{{ el.anons }}</p>
+                    {% comment %} <p2>{{ el.full_text }}</p2> {% endcomment %}
+                    <a href="{% url 'news:news-detail' el.id %}" class="then" >Читать детальнее</a>
+                </div>
+
+            {% endfor %}
+        {% else %}
+            <p>У вас нет записей!</p>
+        {% endif %}
+
+        {# Вот так создается комментарий #}
+
+    </div>
+
+{% endblock %}
+

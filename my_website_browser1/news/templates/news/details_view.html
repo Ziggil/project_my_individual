@@ -1,0 +1,21 @@
+{% extends 'main/base.html' %}
+
+{% block title %}{{ article.title }}{% endblock %}
+
+{% block content %}
+    <div class="zag_div">
+        <h2 class="zag" >{{ article.title }}</h2>
+    </div>
+
+    <div class="statia">
+        <p class="p_zag">{{ el.anons }}</p>
+        <p>{{ article.date }}</p>
+        <p class="text_no_center">{{ article.full_text|linebreaks }}</p>
+        
+    </div>
+
+{% endblock %}
+
+
+{# btn-danger или btn-info -- дизайны кнопок #}
+{# href-ссылка #}
