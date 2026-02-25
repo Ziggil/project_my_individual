@@ -11,7 +11,6 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('home/', views.home, name='home'),
     path('about/', views.about, name='about'),
-    path('blog/', include('blog.urls', namespace="blog" )),
     path('news/', include('news.urls', namespace="news" )),
     path('users/', include('users.urls', namespace="users" )),
 
