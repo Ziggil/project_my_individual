@@ -1,7 +1,9 @@
 {% extends 'main/base.html' %}
+{% comment %} вверху как бы ссылка, импорт на основной шаблон главной страницы сайта {% endcomment %}
 
 {% block title %}Статьи{% endblock %}
 
+{% comment %} часть страницы сайта которая изменяется {% endcomment %}
 {% block content %}
     <div class="zag_div">
         <h2 class="zag">Статьи</h2>
@@ -14,7 +16,6 @@
                     <h2 class="zag_statia">{{ el.title }}</h2>
 
                     <p>{{ el.anons }}</p>
-                    {% comment %} <p2>{{ el.full_text }}</p2> {% endcomment %}
                     <a href="{% url 'news:news-detail' el.id %}" class="then" >Читать детальнее</a>
                 </div>
 

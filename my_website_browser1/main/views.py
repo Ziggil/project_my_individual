@@ -16,7 +16,7 @@ def about(request):
 def home(request):
     return render(request, 'main/home.html')
 
-
+@login_required
 def base(request):
     return render(request, 'main/base.html')
 

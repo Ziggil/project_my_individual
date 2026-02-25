@@ -42,27 +42,9 @@ def login_user(request):
 
 def logout_user(request):
     logout(request)
-    # return redirect(request,'users/logout.html')
     return render(request,'users/logout.html')
 
 
-
-
-
-# def register(request):
-#     if request.method == "POST":
-#         form = RegisterUserForm(request.POST)
-#         if form.is_valid():
-#             user = form.save(commit=False) #пока не заносим в бд данные
-#             user.set_password(form.cleaned_data['password']) #шифрование пароля и занисени его password forms
-#             user.save() #сохроняем в бд пароль
-#             return render(request, 'users/register_done.html')
-#     else:
-#         form = RegisterUserForm()
-
-#     return render(request, 'users/register.html', {'form': form})
-
-#Ролик 10:35
 
 def register(request):
     if request.method=="POST":

@@ -1,7 +1,9 @@
 {% extends 'main/base.html' %}
+{% comment %} вверху как бы ссылка, импорт на основной шаблон главной страницы сайта {% endcomment %}
 
-{% block title %}{{ article.title }}{% endblock %}
+{% block title %}База данных со статьями{{ article.title }}{% endblock %}
 
+{% comment %} часть страницы сайта которая изменяется {% endcomment %}
 {% block content %}
     <div class="zag_div">
         <h2 class="zag" >{{ article.title }}</h2>
