@@ -13,6 +13,7 @@ urlpatterns = [
     path('about/', views.about, name='about'),
     path('news/', include('news.urls', namespace="news" )),
     path('users/', include('users.urls', namespace="users" )),
+    path('quizes', include('quizes.urls', namespace="quizes" )),
 
 
 ]
