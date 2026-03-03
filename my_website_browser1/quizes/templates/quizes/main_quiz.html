@@ -1,12 +1,55 @@
 {% extends "main/base.html" %}
 
+{% comment %} {% load static %}
+{% block scripts %}
+        <script src="{% static '/deps/js/main_quiz.js' %}" defer></script>
+{% endblock scripts %} {% endcomment %}
+
 {% block title %}Главная страница Тестов{% endblock %}
 
 {% block content %}
+
+
+
 <div class="zag_div">
         <h2 class="zag">Список Тестов</h2>
+        {% for obj in object_list %}
+                <button
+                        class="btn btn-lnk modal-button"
+                        data-pk="{{obj.pk}}"
+                        data-quiz="{{obj.name}}" 
+                        data-queestions="{{obj.number_of_queistions}}"
+                        data-difficulty="{{obj.difficluty}}"
+                        data-time="{{obj.time}}"
+                        data-pass="{{obj.required_score_pass}}"
+                        data-toggle="modal"
+                        data-target="#quizStartModal" >
+                        
+                        {{obj.name}}
+                        
+                </button>
+        {% endfor %} 
 </div> 
 
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="modal-body-confrim">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
 {% comment %} используй свои свои кнопки для тестов и шаблоны блоков для текста {% endcomment %}
 
 

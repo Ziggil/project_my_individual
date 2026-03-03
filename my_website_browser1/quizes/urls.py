@@ -1,13 +1,16 @@
 from urllib import request
+from django import views
 from django.urls import path
 from .views import(
     QuizListView,
-    quiz_view
+    quiz_view,
+
 )
 
 app_name='quizes'
 
 urlpatterns = [
-    path('quizes', QuizListView.as_view(), name='main-view'),
+    path('/quizes_list', QuizListView.as_view(), name='main-view'),
     path('<pk>/', quiz_view, name='quiz-view'),
+
 ]
