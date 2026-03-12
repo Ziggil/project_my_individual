@@ -7,6 +7,7 @@
 
 
 
+
 body{
     max-width: 100%;
     max-height: 100%;
@@ -26,7 +27,7 @@ body{
     border-radius: 10px;
     text-align: center;
     background-color: rgb(114, 196, 43);
-    /* padding: 20px; */
+   
  
 }
 
@@ -71,6 +72,7 @@ h3{
 
 
 
+
 .zag_home_h1{
     margin-top: 80px;
     margin-left: 466px;
@@ -112,7 +114,7 @@ h3{
 }
 
 .zag{
-    margin-top: 70px;
+    margin-top: 80px;
     color: hsl(167, 100%, 50%);
     border-radius: 20px;
     padding: 5.5px;
@@ -171,6 +173,7 @@ h1{
 .then:hover{
     opacity: 1;
 }
+
 
 
 img{
@@ -294,6 +297,28 @@ form {
     margin-left: 32%;
     width: 500px;
     margin-top: 50px;
+}
+
+::selection{
+    color: rgb(77, 224, 60);
+    background-color:rgb(0, 0, 0);
+}
+
+/* стили для классов из бутстрап */
+
+.modal-content{
+    border: 2px solid rgb(114, 196, 43);
+    width: 50%;
+    /* margin-left:31%; */
+    margin:  470px;
+    margin-top: 15px;
+    margin-bottom: 15.5px;
+    padding: 12.5px;
+    border-radius: 10px;
+    text-align: center;
+    background-color: rgb(114, 196, 43);
+
+
 }
 
 

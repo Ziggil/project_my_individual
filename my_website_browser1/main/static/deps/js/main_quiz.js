@@ -1,7 +1,10 @@
 console.log("hello world")
 
 const modalBtns=[...document.getElementsByClassName('modal-button')]
-const modalBody=document.getElementById('modal-body-confirm')
+const modalBody=document.querySelector('#modal-body-confirm')
+const startBtn=document.getElementById('start-button')
+
+const url=window.location.href
 
 modalBtns.forEach(modalBtn=>modalBtn.addEventListener('click',()=>{
     const pk=modalBtn.getAttribute('data-pk')
@@ -17,10 +20,13 @@ modalBtns.forEach(modalBtn=>modalBtn.addEventListener('click',()=>{
             <ul>
                 <li>сложность:<b>${difficluty}</b></li>
                 <li>количество вопросов:<b>${numQuestions}</b></li>
-                <li>баллы для прохождения:<b>${scoreToPass}</b></li>
+                <li>баллы для прохождения:<b>${scoreToPass}%</b></li>
                 <li>время:<b>${time}минут</b></li>
             <ul>
          </div>
     `
+    startBtn.addEventListener('click', ()=>{
+        window.location.href=url+pk
+    })
         
 }));
