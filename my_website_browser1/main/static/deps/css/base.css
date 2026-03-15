@@ -304,7 +304,7 @@ form {
     background-color:rgb(0, 0, 0);
 }
 
-/* стили для классов из бутстрап */
+/* стили для классов из бутстрап и классов для всем связанным с quiz */
 
 .modal-content{
     border: 2px solid rgb(114, 196, 43);
@@ -317,8 +317,15 @@ form {
     border-radius: 10px;
     text-align: center;
     background-color: rgb(114, 196, 43);
+    text-decoration: none;
 
 
+}
+
+.data_quiz_ul{
+    text-decoration: none;
+    color: red;
+    list-style-type: none;
 }
 
 

@@ -1,4 +1,6 @@
-console.log("hello world")
+console.log("script working")
+
+
 
 const modalBtns=[...document.getElementsByClassName('modal-button')]
 const modalBody=document.querySelector('#modal-body-confirm')
@@ -15,13 +17,15 @@ modalBtns.forEach(modalBtn=>modalBtn.addEventListener('click',()=>{
     const time=modalBtn.getAttribute('data-time')
 
     modalBody.innerHTML=
-        `<div>Уверены ли вы что хотите начать?"<b>${name}</b>"?</div>
+
+        `
+        <div>Уверены ли вы что хотите начать<br><b>${name}</b>?</div>
          <div>
-            <ul>
-                <li>сложность:<b>${difficluty}</b></li>
-                <li>количество вопросов:<b>${numQuestions}</b></li>
-                <li>баллы для прохождения:<b>${scoreToPass}%</b></li>
-                <li>время:<b>${time}минут</b></li>
+            <ul data_quiz_ul>
+                <li class="data_quiz">сложность: <b>${difficluty}</b></li>
+                <li  class="data_quiz">количество вопросов: <b>${numQuestions}</b></li>
+                <li  class="data_quiz">баллы для прохождения: <b>${scoreToPass}%</b></li>
+                <li  class="data_quiz">время: <b>${time}минут</b></li>
             <ul>
          </div>
     `
@@ -30,3 +34,4 @@ modalBtns.forEach(modalBtn=>modalBtn.addEventListener('click',()=>{
     })
         
 }));
+
