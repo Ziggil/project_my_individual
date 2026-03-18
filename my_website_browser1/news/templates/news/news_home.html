@@ -10,13 +10,13 @@
     </div>    
         {# Тут условие что если есть news,записи, то включается цикл перебора новостей #}
         {% if news %}
-            {% for el in news %}
+            {% for el in news|dictsort:"date" %}
                 <div class='statia'>
                     
                     <h2 class="zag_statia">{{ el.title }}</h2>
 
                     <p>{{ el.anons }}</p>
-                    <a href="{% url 'news:news-detail' el.id %}" class="then" >Читать детальнее</a>
+                    <a href="{% url 'news:news-detail' el.id %}" class="then" >Читать далее</a>
                 </div>
 
             {% endfor %}

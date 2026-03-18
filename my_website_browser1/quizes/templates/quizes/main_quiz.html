@@ -1,9 +1,9 @@
 {% extends "main/base.html" %}
 
-{% comment %} {% load static %}
+{% load static %}
 {% block scripts %}
         <script src="{% static '/deps/js/main_quiz.js' %}" defer></script>
-{% endblock scripts %} {% endcomment %}
+{% endblock scripts %}
 
 {% block title %}Главная страница Тестов{% endblock %}
 
@@ -18,7 +18,7 @@
                         class="btn btn-lnk modal-button"
                         data-pk="{{obj.pk}}"
                         data-quiz="{{obj.name}}" 
-                        data-queestions="{{obj.number_of_queistions}}"
+                        data-questions="{{obj.number_of_questions}}"
                         data-difficluty="{{obj.difficluty}}"
                         data-time="{{obj.time}}"
                         data-pass="{{obj.required_score_pass}}"
@@ -41,7 +41,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body" id="modal-body-confrim">
+      <div class="modal-body" id="modal-body-confirm">
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

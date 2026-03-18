@@ -7,6 +7,7 @@
 
 
 
+
 body{
     max-width: 100%;
     max-height: 100%;
@@ -26,14 +27,29 @@ body{
     border-radius: 10px;
     text-align: center;
     background-color: rgb(114, 196, 43);
-    /* padding: 20px; */
+   
  
 }
+
+
+.no_center{
+    border: 2px solid rgb(114, 196, 43);
+    width: 50%;
+
+    margin:  470px;
+    margin-top: 15px;
+    margin-bottom: 15.5px;
+    padding: 12.5px;
+    border-radius: 10px;
+
+    background-color: rgb(114, 196, 43);
+}
+
 
 .pusto{
     border: 2px solid  #424043;
     width: 50%;
-    /* margin-left:31%; */
+
     margin:  470px;
     margin-top: 15px;
     margin-bottom: 20px;
@@ -50,7 +66,7 @@ text-align: center;
 padding: 10px;  
 position: fixed;  
 width: 100%;  
-/* bottom: 0;   */
+
 
 z-index: -1;
 
@@ -71,6 +87,7 @@ h3{
 
 
 
+
 .zag_home_h1{
     margin-top: 80px;
     margin-left: 466px;
@@ -83,7 +100,7 @@ h3{
     width: 50%;
     
 
-    /* margin: auto 470px; */
+
 
 }
 
@@ -112,7 +129,7 @@ h3{
 }
 
 .zag{
-    margin-top: 70px;
+    margin-top: 80px;
     color: hsl(167, 100%, 50%);
     border-radius: 20px;
     padding: 5.5px;
@@ -173,6 +190,7 @@ h1{
 }
 
 
+
 img{
     display: block;
     margin: auto;
@@ -207,7 +225,7 @@ aside {
 }
 
 aside:hover{
-    border: 5px solid rgb(171, 171, 171);
+    border: 5px solid rgb(153, 209, 229);
 }
 
 ul{
@@ -277,11 +295,17 @@ p{
 }
 
 
+
+
 .obu{
     animation:  anim ease 6s infinite;
    
 }
 
+.p_zag_anim{
+    font-size: 20px;
+    animation:  anim_p ease 6s infinite;
+}
 
 .text_no_center{
     margin-top: 15px;
@@ -294,6 +318,28 @@ form {
     margin-left: 32%;
     width: 500px;
     margin-top: 50px;
+}
+
+::selection{
+    color: rgb(77, 224, 60);
+    background-color:rgb(0, 0, 0);
+}
+
+/* стили для классов из бутстрап */
+
+.modal-content{
+    border: 2px solid rgb(114, 196, 43);
+    width: 50%;
+    /* margin-left:31%; */
+    margin:  470px;
+    margin-top: 15px;
+    margin-bottom: 15.5px;
+    padding: 12.5px;
+    border-radius: 10px;
+    text-align: center;
+    background-color: rgb(114, 196, 43);
+
+
 }
 
 
@@ -325,3 +371,40 @@ form {
 }
 
 }
+
+
+@keyframes anim_p{
+0% { 
+    /* transform: rotate3d(0,0,0,0);  */
+    /* transform: translate(0, 0) */
+    /* transform: scale(1); */
+    /* color:hsla(120, 100%, 50%, 0.8) ; */
+    color:hsla(158, 100%, 50%, 0.8) ;
+
+} 
+
+50%{
+    /* transform: translate(-100px, 0) */
+    /* transform: scale(1.6); */
+    /* color:hsla(154, 100%, 50%, 0.8) ; */
+    color:hsla(224, 100%, 50%, 0.8) ;
+}
+
+
+
+75% { 
+    /* transform: rotate3d(0,1,0,360deg); */
+    /* transform: translate(100px, 0) */
+     /* transform: scale(1);  */
+     /* color:hsla(224, 100%, 50%, 0.8) ; */
+     color:hsla(154, 100%, 50%, 0.8) ;
+
+}
+
+100%{
+    /* color:hsla(158, 100%, 50%, 0.8) ; */
+     color:hsla(120, 100%, 50%, 0.8) ;
+}
+
+}
+
