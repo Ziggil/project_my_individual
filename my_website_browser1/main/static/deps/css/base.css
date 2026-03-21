@@ -31,10 +31,35 @@ body{
  
 }
 
+.statia.quiz_statia{
+    background-color:rgb(27, 158, 198);
+    border: 2px solid rgb(27, 158, 198);
+    margin-left:  170px;
+
+}
+
+.statia.quizes_center{
+    margin-left:  50px;
+}
+
+.no_center{
+    border: 2px solid rgb(114, 196, 43);
+    width: 50%;
+
+    margin:  470px;
+    margin-top: 15px;
+    margin-bottom: 15.5px;
+    padding: 12.5px;
+    border-radius: 10px;
+
+    background-color: rgb(114, 196, 43);
+}
+
+
 .pusto{
     border: 2px solid  #424043;
     width: 50%;
-    /* margin-left:31%; */
+
     margin:  470px;
     margin-top: 15px;
     margin-bottom: 20px;
@@ -51,7 +76,7 @@ text-align: center;
 padding: 10px;  
 position: fixed;  
 width: 100%;  
-/* bottom: 0;   */
+
 
 z-index: -1;
 
@@ -85,7 +110,7 @@ h3{
     width: 50%;
     
 
-    /* margin: auto 470px; */
+
 
 }
 
@@ -160,6 +185,19 @@ h1{
 
 }
 
+
+.button{
+    background-color: black;
+    color:rgb(74, 74, 213);
+    transform: scale(1.5);
+}
+
+.button:hover{
+    color: blue;
+    transition: 0.6s;
+}
+
+
 .then{
     display: block;
     text-align: center;
@@ -210,7 +248,7 @@ aside {
 }
 
 aside:hover{
-    border: 5px solid rgb(171, 171, 171);
+    border: 5px solid rgb(153, 209, 229);
 }
 
 ul{
@@ -280,11 +318,17 @@ p{
 }
 
 
+
+
 .obu{
     animation:  anim ease 6s infinite;
    
 }
 
+.p_zag_anim{
+    font-size: 20px;
+    animation:  anim_p ease 6s infinite;
+}
 
 .text_no_center{
     margin-top: 15px;
@@ -304,7 +348,7 @@ form {
     background-color:rgb(0, 0, 0);
 }
 
-/* стили для классов из бутстрап и классов для всем связанным с quiz */
+/* стили для классов из бутстрап */
 
 .modal-content{
     border: 2px solid rgb(114, 196, 43);
@@ -317,17 +361,48 @@ form {
     border-radius: 10px;
     text-align: center;
     background-color: rgb(114, 196, 43);
-    text-decoration: none;
 
 
 }
 
-.data_quiz_ul{
-    text-decoration: none;
-    color: red;
-    list-style-type: none;
+.btn-danger{
+    background-color: black;
+    color:rgb(74, 74, 213);
+    transform: scale(1.2);
 }
 
+.btn-danger:hover{
+    color: blue;
+    transition: 0.6s;
+}
+
+
+.btn-success{
+    background-color: black;
+    color:rgb(74, 74, 213);
+    transform: scale(1.2);
+    margin: 10px;
+    
+}
+
+.btn-success:hover{
+    color: blue;
+    transition: 0.6s;
+}
+
+.modal-button{
+    background-color: rgb(27, 158, 198);
+    color:rgb(25, 207, 46);
+    transform: scale(1.2);
+    margin: 10px;
+    border: 1px solid rgb(27, 158, 198);
+    font-weight: bold;
+}
+
+.modal-button:hover{
+    color:rgb(74, 213, 90);
+    transition: 0.6s;
+}
 
 @keyframes anim{
 0% { 
@@ -357,3 +432,40 @@ form {
 }
 
 }
+
+
+@keyframes anim_p{
+0% { 
+    /* transform: rotate3d(0,0,0,0);  */
+    /* transform: translate(0, 0) */
+    /* transform: scale(1); */
+    /* color:hsla(120, 100%, 50%, 0.8) ; */
+    color:hsla(158, 100%, 50%, 0.8) ;
+
+} 
+
+50%{
+    /* transform: translate(-100px, 0) */
+    /* transform: scale(1.6); */
+    /* color:hsla(154, 100%, 50%, 0.8) ; */
+    color:hsla(224, 100%, 50%, 0.8) ;
+}
+
+
+
+75% { 
+    /* transform: rotate3d(0,1,0,360deg); */
+    /* transform: translate(100px, 0) */
+     /* transform: scale(1);  */
+     /* color:hsla(224, 100%, 50%, 0.8) ; */
+     color:hsla(154, 100%, 50%, 0.8) ;
+
+}
+
+100%{
+    /* color:hsla(158, 100%, 50%, 0.8) ; */
+     color:hsla(120, 100%, 50%, 0.8) ;
+}
+
+}
+

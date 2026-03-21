@@ -14,6 +14,7 @@
 <div class="zag_div">
         <h2 class="zag">Список Тестов</h2>
         {% for obj in object_list %}
+        <div class="statia quiz_statia">
                 <button
                         class="btn btn-lnk modal-button"
                         data-pk="{{obj.pk}}"
@@ -28,6 +29,7 @@
                         {{obj.name}}
                         
                 </button><br>
+        </div>
         {% endfor %} 
 </div> 
 
@@ -37,9 +39,9 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Начать?</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        {% comment %} <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
-        </button>
+        </button> {% endcomment %}
       </div>
       <div class="modal-body" id="modal-body-confirm">
       </div>

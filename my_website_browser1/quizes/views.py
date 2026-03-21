@@ -2,7 +2,7 @@ import json
 from urllib import request
 from django.shortcuts import render
 
-from my_website_browser1 import questions
+import questions
 
 
 from .models import Quiz
