@@ -11,9 +11,11 @@
     <div class="zag_div">
         <h2 class="zag">{{obj.name}}</h2>
         <form id="quiz-form">
+            
              {% csrf_token %} 
-            <div id="quiz-box"><div>
-            <button class="button" type="submit" >save<button>
+            <div id="quiz-box"></div>
+            <button class="button quiz_save_button" type="submit" >Сохранить</button>
+            
         </form>
     </div>  
 {% endblock %}

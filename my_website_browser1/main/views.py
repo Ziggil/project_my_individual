@@ -20,6 +20,9 @@ def home(request):
 def base(request):
     return render(request, 'main/base.html')
 
+def links(request):
+    return render(request, 'main/links.html')
+
 
 
 # и ко всем следующим страницам примеянй этот декоратор!

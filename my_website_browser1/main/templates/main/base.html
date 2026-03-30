@@ -1,35 +1,43 @@
 {% load static %}
-{% comment %} сверху ссылка, импорт на папку статик в которой содеражться все картинки и шаблоны css {% endcomment %}
+
 <!DOCTYPE html>
+<!-- тег который обьявляет html -->
 <html>
+    <!-- тег для Хранения информации -->
 <head>
+    <!-- тег для названия страницы -->
     <title>{% block title %}Base{% endblock %}</title>
+    <!-- ссылка на css стиль -->
     <link rel="stylesheet" href="{% static "deps/css/base.css" %}">
 </head>
         
-        {% comment %} конкретный путь к папке с конкретным стилем {% endcomment %}
+           <!--ссылка на иконку для страницы сайта в браузере -->
         <link rel="shortcut icon" href="https://i.pinimg.com/originals/d6/21/1b/d6211bb08e7e3f80c6d381baa3d4a42e.png">
+        <!-- ссылка на скрипты -->
         <script src="{% static '/deps/js/main_quiz.js' %}" defer></script>
         <script src="{% static '/deps/js/quiz.js' %}" defer></script>
 <body>
+        <!-- тег для боковой навигационной панели -->
         <aside>
             <p>Навигация</p>
+            <!-- ссылка на иконку -->
             <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-back" viewBox="0 0 16 16">
             <path d="M0 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2h2a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1z"/>
             </svg>
 
-            
+            <!-- список -->
             <ul>
-                
+                <!-- кнопки и куда они ведут -->
                 <a class="my_button" href="{% url 'home' %}">Дом</a>
-                {% comment %} сам url и путь и html страница находяться в гланом приложении, поэтому не надо указывать namespace {% endcomment %}
+                 <!-- сам url и путь и html страница находяться в гланом приложении, поэтому не надо указывать namespace  -->
                 <a class="my_button" href="{% url 'news:news_home' %}">Статьи</a>
-                {% comment %} тут такое же дело как и с users ниже {% endcomment %}
+                 <!-- тут такое же дело как и с users ниже  -->
                 <a class="my_button" href="{% url 'quizes:main-view' %}">Тесты</a>
+                <a class="my_button" href="{% url 'links' %}">Ссылки</a>
                 <a class="my_button" href="{% url 'users:logout' %}">Выйти</a>
-                {% comment %} двоеточие после users:... ставиться потому, что в url указано хранилище имён(namespace) 
+                 <!-- двоеточие после users:... ставиться потому, что в url указано хранилище имён(namespace) 
           для всех url путей и html файллов приложение users имя users, некий общий тег и тут как бы нужно ссылаться по этому тегу на путь, 
-          который потом будет ссылаться на путь, который будет запускать функцию с отображением страницы{% endcomment %}
+          который потом будет ссылаться на путь, который будет запускать функцию с отображением страницы -->
 
 
             </ul>
@@ -37,10 +45,12 @@
 
         </aside>
 
+        <!-- тег для верхней панели сайта, тут по факту на шапку сайта -->
         <nav>
             <div class='nav'>
 
             <p class="p_zag_anim">СodnitoWeb - сайт обучения web-у</p>
+            <!-- ссылка на иконку книги -->
             <svg class="obu" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-book" viewBox="0 0 16 16">
             <path d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811V2.828zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"/>
             </svg>
@@ -50,6 +60,7 @@
 
     {% block content %}
     {% endblock %}
+    <!-- ссылка на бутстрап -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </body>

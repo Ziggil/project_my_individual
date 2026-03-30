@@ -1,22 +1,24 @@
 {% extends 'main/base.html' %}
-{% comment %} вверху как бы ссылка, импорт на основной шаблон главной страницы сайта {% endcomment %}
+
 
 {% block title %}Статьи{% endblock %}
 
-{% comment %} часть страницы сайта которая изменяется {% endcomment %}
+
 {% block content %}
     <div class="zag_div">
         <h2 class="zag">Статьи</h2>
     </div>    
-        {# Тут условие что если есть news,записи, то включается цикл перебора новостей #}
+
         {% if news %}
             {% for el in news|dictsort:"date" %}
-            {#  dictsort тут позволяет как бы перебирать новые стати/новости по дате, и отображать от самой первой до самой новой сверху вниз#}
+             
+                     
                 <div class='statia'>
                     
                     <h2 class="zag_statia">{{ el.title }}</h2>
 
                     <p>{{ el.anons }}</p>
+                    <!-- кнопка которая перенаправляет на страницу со всем текстов статьи -->
                     <a href="{% url 'news:news-detail' el.id %}" class="then" >Читать далее</a>
                 </div>
 
@@ -25,7 +27,7 @@
             <p>У вас нет записей!</p>
         {% endif %}
 
-        {# Вот так создается комментарий #}
+        
 
     </div>
 

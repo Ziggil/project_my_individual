@@ -1,0 +1,25 @@
+{% extends "./base.html" %} 
+{% comment %} вверху как бы ссылка, импорт на основной шаблон главной страницы сайта {% endcomment %}
+
+
+{% block title %}Домашняя страница{% endblock %}
+
+{% comment %} часть страницы сайта которая изменяется {% endcomment %}
+{% block content %}
+<h1 class="zag_home_h1">Это страница с сслыками на видео-ролики которые помогли создать данный сайт!</h1>
+
+<!--кнопки на ссылки видео-->
+
+<h1 class="zag_home_h3">
+<a class="links_a" href="https://yandex.ru/video/preview/6750824863773655915">Создание Quiz</a>
+</h1>
+
+<h1 class="zag_home_h3">
+<a class="links_a" href="https://m.youtube.com/watch?v=L-FyeHQwo4U&list=PLDyJYA6aTY1nZ9fSGcsK4wqeu-xaJksQQ&index=1&pp=iAQB0gcJCdsKAYcqIYzv">Создание сайта на Django Новости</a>
+</h1>
+
+<h1 class="zag_home_h3">
+<a class="links_a" href="https://yandex.ru/video/preview/15166621322203317646">Создание сайта на Django Интернет-магазин</a>
+</h1>
+
+{% endblock %}

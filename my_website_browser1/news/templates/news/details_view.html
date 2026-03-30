@@ -1,9 +1,9 @@
 {% extends 'main/base.html' %}
-{% comment %} вверху как бы ссылка, импорт на основной шаблон главной страницы сайта {% endcomment %}
+
 
 {% block title %}База данных со статьями{{ article.title }}{% endblock %}
-
-{% comment %} часть страницы сайта которая изменяется {% endcomment %}
+<!--
+часть страницы сайта которая изменяется-->
 {% block content %}
     <div class="zag_div">
         <h2 class="zag" >{{ article.title }}</h2>
@@ -19,5 +19,5 @@
 {% endblock %}
 
 
-{# btn-danger или btn-info -- дизайны кнопок #}
-{# href-ссылка #}
+ <!-- btn-danger или btn-info  дизайны кнопок
+href-ссылка  -->

@@ -11,6 +11,7 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('home/', views.home, name='home'),
     path('about/', views.about, name='about'),
+    path('links/', views.links, name='links'),
     path('news/', include('news.urls', namespace="news" )),
     path('users/', include('users.urls', namespace="users" )),
     path('quizes', include('quizes.urls', namespace="quizes" )),

@@ -1,5 +1,5 @@
 {% load static %}
-{% comment %} сверху ссылка, импорт на папку статик в которой содеражться все картинки и шаблоны css {% endcomment %}
+
 
 <!DOCTYPE html>
 <html lang="ru">
@@ -7,13 +7,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Страница про нас</title>
-  
+    
+     <!-- конкретный путь к папке с конкретным стилем  -->
     <link rel="stylesheet" href="{% static "deps/css/about.css" %}">
-    {% comment %} конкретный путь к папке с конкретным стилем {% endcomment %}
+    <!-- путь к изображению который хранится в папке проекта -->
     <link rel="images" href="{% static "static/deps/images/test_image_seatch.jpg" %}">
-    {% comment %} путь к изображению, что хранится в файлах самого проекта {% endcomment %}
+     <!-- ссылка на иконку страницы сайта в браузере  -->
     <link rel="shortcut icon" href="https://i.pinimg.com/originals/b8/b0/1a/b8b01a233103576ebc231661a7324bac.jpg">
-    {% comment %} путь к изображению для вкладки со страницей сайта {% endcomment %}
+    
 
   
     
@@ -32,11 +33,11 @@
         <section>
           <h2>Переход на другие страницы</h2>
           <a class="btn btn-primary" href="{% url 'users:register' %}" role="button">На страницу регестрации</a>
-          {% comment %} двоеточие после users:register ставиться потому, что в url указано хранилище имён(namespace) 
+           <!-- двоеточие после users:register ставиться потому, что в url указано хранилище имён(namespace) 
           для всех url путей и html файллов приложение users имя users, некий общий тег и тут как бы нужно ссылаться по этому тегу на путь, 
-          который потом будет ссылаться на путь, который будет запускать функцию с отображением страницы{% endcomment %}
+          который потом будет ссылаться на путь, который будет запускать функцию с отображением страницы -->
           <a class="btn btn-primary" href="{% url 'index' %}" role="button">На начальную страницу</a>
-          {% comment %} сам url и путь и html страница находяться в гланом приложении, поэтому не надо указывать namespace {% endcomment %}
+           <!-- сам url и путь и html страница находяться в гланом приложении, поэтому не надо указывать namespace  -->
 
         </section>
         <section>

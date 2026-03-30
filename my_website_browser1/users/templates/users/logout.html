@@ -2,30 +2,34 @@
 {% comment %} сверху ссылка, импорт на папку статик в которой содеражться все картинки и шаблоны css {% endcomment %}
 <html>
 <head>
+   <!-- тег для названия страницы-->
     <title>Выход</title>
+     <!-- конкретный путь к папке с конкретным стилем -->
     <link rel="stylesheet" href="{% static "deps/css/logout.css" %}">
-    {% comment %} конкретный путь к папке с конкретным стилем {% endcomment %}
+    
+    <!-- путь к изображению для вкладки со страницей сайта -->
     <link rel="shortcut icon" href="https://i.pinimg.com/originals/b8/b0/1a/b8b01a233103576ebc231661a7324bac.jpg">
-  {% comment %} путь к изображению для вкладки со страницей сайта {% endcomment %}
+  
 </head>
 <body>
     <header>
     <h1>Выход</h1>
 
-    {% comment %} <form action="{% url 'index' %}" method="post">
-    {% csrf_token %}
-    <h2>Эта страница Выхода!</h2>
-    <button type="submit">Выход</button> {% endcomment %}
+
     </header>
     </form>
 
     <h3>Если вы хотите выйти из профиля или посмотреть как это работает(Ctrl+Shift+C), то вы зашли на нужную страницу!</h3>
 
+      <!-- кнопка, куда она ведёт и метод для получения данных -->
     <form action="{% url 'index' %}" method="post">
     {% csrf_token %}
     <h2>Вы точно хотите выйтии?</h2>
+   <!-- кнопка для выхода -->
     <button type="submit">Выход</button>
     <a class="btn btn-primary" href="{% url 'home' %}" role="button">Назад</a>
+
+    <!-- тег для нижей части сайта -->
     <footer>
       <p>Почта создателя и автора сайта: 23zahar051982@gmail.com</p>
     </footer>

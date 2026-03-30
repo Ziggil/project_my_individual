@@ -39,7 +39,7 @@ body{
 }
 
 .statia.quizes_center{
-    margin-left:  50px;
+    margin-left:  25%;
 }
 
 .no_center{
@@ -197,6 +197,12 @@ h1{
     transition: 0.6s;
 }
 
+.button.quiz_save_button{
+   margin-top: 10px;
+   margin-bottom: 15px;;
+   margin-left: 19.5%;
+}
+
 
 .then{
     display: block;
@@ -317,7 +323,9 @@ p{
 
 }
 
-
+.links_a{
+    text-decoration: none;
+}
 
 
 .obu{
@@ -341,6 +349,12 @@ form {
     margin-left: 32%;
     width: 500px;
     margin-top: 50px;
+}
+
+#quiz-box{
+  
+   text-align: center;
+   margin-left: -235px;
 }
 
 ::selection{

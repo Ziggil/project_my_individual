@@ -1,5 +1,5 @@
 {% load static %}
-{% comment %} сверху ссылка, импорт на папку статик в которой содеражться все картинки и шаблоны css {% endcomment %}
+
 
 <!DOCTYPE html>
 <html lang="ru">
@@ -7,10 +7,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Регистрация</title>
+    <!-- конкретный путь к папке с конкретным стилем  -->
     <link rel="stylesheet" href="{% static "deps/css/register.css" %}">
-    {% comment %} конкретный путь к папке с конкретным стилем {% endcomment %}
+   <!-- путь к изображению для вкладки со страницей сайта  -->
     <link rel="shortcut icon" href="https://i.pinimg.com/originals/b8/b0/1a/b8b01a233103576ebc231661a7324bac.jpg">
-    {% comment %} путь к изображению для вкладки со страницей сайта {% endcomment %}
+    
 
   </head>
   <body>
@@ -21,30 +22,25 @@
       <h1>Регистрация</h1>
       <h3>А как же без неё?</h3>
 
+      <!-- ссылка на изображение -->
         <img scr="deps/images/регестрации" alt="test2" class="left-img">
-        {% comment %} <iframe 
-        src="https://vk.com/video_ext.php?oid=-15755094&id=456426541&hash=f20639e13fb257a6" 
-        width="640" 
-        height="360" 
-        frameborder="0" 
-        allowfullscreen="1" 
-        style="background-color: #000" 
-        allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
-        alt="затычка">
-        </iframe> {% endcomment %}
+        
         
   
     </header>
 
-          {% comment %} <img src='{% static "deps/images/регестрация.jpg" %}' alt="test"> {% endcomment %}
-
+        
+            <!-- метод post для получения данных -->
           <form method="post"> 
+           
           {% csrf_token %}
+         <!-- кнопка, которая даёт войти, если данные верны и не повторяются -->
           <input type="hidden" name="next" value="{{ next }}" />
           {{ form.as_p }}
           <p><button type="sumbit">Регистрация</button></p>
           </form>
           <article>
+            <!-- кнопки и их пути -->
           <a href="{% url 'index' %}">Вернуться на начальную страницy</a>
           <a href="{% url 'about' %}">Вернуться на страницу про нас</a>
           </article>
@@ -52,18 +48,13 @@
       <article>
           
 
-          {% comment %} <h2>Переход на другие страницы</h2>
-          <a href="{% url 'index' %}">Вернутся на начальную страницy</a>
-          <a href="{% url 'about' %}">На страницу про нас</a> {% endcomment %}
+    
 
- {% comment %} просто чуть чуть поменять сам шаблон и перенести в users и соотвественно поменять пути {% endcomment %}
- {% comment %} подумай надо ли делать base.html {% endcomment %}
 
-{% comment %} 
-          <h2>И третья</h2>
-          <p>Вы уже должны были начать догадываться.</p> {% endcomment %}
       </article>
     </main>
+
+    <!-- тег для нижей части сайта -->
     <footer>
       <p>Почта создателя и автора сайта: 23zahar051982@gmail.com</p>
     </footer>
