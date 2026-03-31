@@ -14,6 +14,8 @@ class Question(models.Model):
     
     def get_answers(self):
         return self.answer_set.all()
+    
+
 
 
 class Answer(models.Model):
