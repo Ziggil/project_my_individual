@@ -32,16 +32,15 @@
       <article>
         <section>
           <h2>Переход на другие страницы</h2>
-          <a class="btn btn-primary" href="{% url 'users:register' %}" role="button">На страницу регестрации</a>
-           <!-- двоеточие после users:register ставиться потому, что в url указано хранилище имён(namespace) 
-          для всех url путей и html файллов приложение users имя users, некий общий тег и тут как бы нужно ссылаться по этому тегу на путь, 
-          который потом будет ссылаться на путь, который будет запускать функцию с отображением страницы -->
-          <a class="btn btn-primary" href="{% url 'index' %}" role="button">На начальную страницу</a>
-           <!-- сам url и путь и html страница находяться в гланом приложении, поэтому не надо указывать namespace  -->
+          <a href="{% url 'users:register' %}">На страницу регестрации</a>
+      
+          <a  href="{% url 'index' %}" >На начальную страницу</a>
+         
 
         </section>
         <section>
           
+          <img src="/static/deps/images/хекслет_тёмный.png" alt="img_about">
 
         </section>
         <section>

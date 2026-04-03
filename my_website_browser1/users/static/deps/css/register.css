@@ -79,6 +79,7 @@ a{
     text-align: center;
     width: 50%;
     font-size: 23.5px;
+    transition: 1s;
     
 }
 
@@ -87,7 +88,7 @@ a:hover{
     background-color: rgb(141, 142, 144);
     color: rgb(64, 50, 193);
     transform: scale(1.1);
-    transition: 1s;
+    
 }
 
 article{
@@ -105,13 +106,14 @@ input{
     border-width: 3px;
     padding: 1px;
     opacity: 0.9;
+    transition: 0.5s;
 
 }
 
 input:hover{
     border-color:  rgb(10, 49, 220);
     /* transform: scale(1.1); */
-    transition: 0.5s;
+    
     opacity: 1;
 }
 
@@ -151,6 +153,7 @@ img{
 button{
     margin-top: 15px;
     padding: 2px;
+    transition: 0.6s;
 
 }
 

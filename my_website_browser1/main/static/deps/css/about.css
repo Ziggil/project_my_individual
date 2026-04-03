@@ -77,6 +77,7 @@ a{
     text-align: center;
     width: 50%;
     font-size: 20px;
+    transition: 1s;
 
 
 }
@@ -86,7 +87,15 @@ a:hover{
     background-color: rgb(141, 142, 144);
     color: rgb(64, 50, 193);
     transform: scale(1.1);
-    transition: 1s;
+    
+}
+
+img{
+    width: 40%;
+    height: 30%;
+    margin-left: 450px;
+    margin-top: 50px;
+    border-radius: 20px;
 }
 
 

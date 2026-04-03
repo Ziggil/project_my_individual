@@ -1,21 +1,26 @@
-{% extends "main/base.html" %} 
+{% extends "main/base.html" %}
 
 {% load static %}
 {% block scripts %}
-        <script src="{% static '/deps/js/quiz.js' %}" defer></script>
+    <script src="{% static '/deps/js/quiz.js' %}" defer></script>
 {% endblock scripts %}
 
 {% block title %}{{obj.name}}{% endblock %}
 
 {% block content %}
-    <div class="zag_div">
-        <h2 class="zag">{{obj.name}}</h2>
+<div class="zag_div">
+    <h2 class="zag">{{obj.name}}</h2>
+    <h3 class="zag_home_h3 required_score_pass">Необходимые баллы {{obj.required_score_pass}}%<h3>
+    <!-- Обертка контейнера для формы -->
+    <div id="quizContainer">
         <form id="quiz-form">
-            
-             {% csrf_token %} 
+            {% csrf_token %}
             <div id="quiz-box"></div>
-            <button class="button quiz_save_button" type="submit" >Сохранить</button>
-            
+            <!-- Кнопка "Сохранить" -->
+            <button class="button quiz_save_button" type="submit" id="saveBtn">Сохранить</button>
         </form>
-    </div>  
+    </div>
+    <div id="score-box"></div>
+    <div id="result-box"></div>
+</div>
 {% endblock %}
