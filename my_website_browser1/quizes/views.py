@@ -17,7 +17,7 @@ from questions.models import Answer, Question
 from results.models import Result
 
 
-# @login_required
+
 class QuizListView(ListView):
     model=Quiz
     template_name='quizes/main_quiz.html'

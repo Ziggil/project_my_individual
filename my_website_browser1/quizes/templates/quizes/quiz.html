@@ -10,7 +10,11 @@
 {% block content %}
 <div class="zag_div">
     <h2 class="zag">{{obj.name}}</h2>
-    <h3 class="zag_home_h3 required_score_pass">Необходимые баллы {{obj.required_score_pass}}%<h3>
+    <h3 class="zag_home_h3 required_score_pass">Необходимые баллы {{obj.required_score_pass}}%</h3>
+    <a  class="back" href="{% url 'quizes:main-view' %}">Назад</a>
+
+    
+
     <!-- Обертка контейнера для формы -->
     <div id="quizContainer">
         <form id="quiz-form">
@@ -19,6 +23,7 @@
             <!-- Кнопка "Сохранить" -->
             <button class="button quiz_save_button" type="submit" id="saveBtn">Сохранить</button>
         </form>
+        
     </div>
     <div id="score-box"></div>
     <div id="result-box"></div>

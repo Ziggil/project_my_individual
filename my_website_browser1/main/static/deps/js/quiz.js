@@ -114,7 +114,7 @@
             console.log('Ответ сервера:', response);
             responses = response.results;
 
-            scoreBox.innerHTML=`${response.passed, 'Поздравляем!'} Ваш результат равен ${response.score.toFixed(2)}%`
+            scoreBox.innerHTML=` <div class="zag_home_h3 score">${response.passed, 'Поздравляем!'} Ваш результат равен ${response.score.toFixed(2)}% </div>`
 
             // Отобразим результаты на странице
             const resDiv = document.createElement('div');

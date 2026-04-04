@@ -20,6 +20,8 @@ def home(request):
 def base(request):
     return render(request, 'main/base.html')
 
+
+@login_required
 def links(request):
     return render(request, 'main/links.html')
 
