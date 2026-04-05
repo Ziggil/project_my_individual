@@ -36,6 +36,9 @@ def logout_user(request):
     return render(request,'users/logout.html')
 
 
+# Импортируем класс формы регистрации пользователя из файла forms.py, расположенного в том же приложении
+from .forms import RegisterUserForm
+
  # Эта функция обрабатывает регистрацию нового пользователя
 def register(request):
    
@@ -59,6 +62,8 @@ def register(request):
 
     # В любом случае (при GET или если есть ошибки в форме) показываем страницу с формой
     return render(request, 'users/register.html', {'form': form})
+
+
 
 def profile(request):
     return render(request,'users/profile.html')
