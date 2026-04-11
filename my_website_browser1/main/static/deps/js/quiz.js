@@ -1,12 +1,10 @@
 // Объявляем весь код внутри IIFE для изоляции
 (function() {
   console.log("script quiz working");
-
   const url = window.location.href;
   const quizBox = document.getElementById('quiz-box');
   const scoreBox=document.getElementById('score-box');
   const resultBox=document.getElementById('result-box');
-
 
   let questionData = null; // для хранения данных вопросов
   let responses = null; // для хранения полученных результатов

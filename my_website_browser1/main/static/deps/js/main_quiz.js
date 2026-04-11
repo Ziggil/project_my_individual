@@ -1,11 +1,9 @@
 console.log("script working");
-
 // Находим все кнопки открытия модалки
 const modalBtns = [...document.getElementsByClassName('modal-button')];
 const modalBody = document.querySelector('#modal-body-confirm');
 // Кнопка "Да"
 const startBtn = document.getElementById('start-button');
-
 let selectedButton = null; // Переменная для хранения выбранной кнопки
 
 // Обработчики для открытия модалки

@@ -1,14 +1,11 @@
 {% extends 'main/base.html' %}
 
-
 {% block title %}Статьи{% endblock %}
-
 
 {% block content %}
     <div class="zag_div">
         <h2 class="zag">Статьи</h2>
     </div>    
-
         {% if news %}
             {% for el in news|dictsort:"date" %}
              
@@ -26,8 +23,6 @@
         {% else %}
             <p>У вас нет записей!</p>
         {% endif %}
-
-        
 
     </div>
 
