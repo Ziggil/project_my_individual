@@ -10,6 +10,27 @@
 <h3 class="zag_home_h3">Сам сайт создан для начального обучения людей, которым интересно как работают сайты и связанные с этим процессы.</h3> 
 <h3 class="zag_home_h3">То есть, для людей, которые хотят углубиться в web - backend и frontend разработчики!</h3>
 
+
+
+<div class="statia">
+    <div>
+        <h2 class="h3_home_3">Данные пользователя</h2>
+    </div>
+
+    <div>
+        <h3 class="h3_home">Имя: <h3 class="h3_home_2"> {{ user.username }}</h3></h3>
+    </div>
+
+    <div>
+        <h3 class="h3_home">Email: <h3 class="h3_home_2"> {{ user.email }}</h3></h3>
+    </div>
+
+    <div>
+        <h3 class="h3_home">Ваши результаты тестов:</h3>
+    <div class="enter_div" id="user-results-container"></div>
+    </div>
+</div>
+
 <img class="home_img" src="/static/deps/images/веб_разработка.png" alt="img_home">
 
 {% endblock %}

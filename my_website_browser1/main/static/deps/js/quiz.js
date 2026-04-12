@@ -152,4 +152,56 @@
       });
     }
   });
+
+
+  //Загрузка результатов тестов для главной страницы
+  fetch('/api/user-results/')
+    .then(response => response.json())
+    .then(data => {
+      const container = document.getElementById('user-results-container');
+      if (!container) return;
+
+      container.innerHTML = ''; // Очистка контейнера
+
+      if (data.results.length === 0) {
+        container.innerHTML = '<p>У вас пока нет результатов тестов.</p>';
+        return;
+      }
+
+      data.results.forEach(res => {
+        // Удаление старых результатов этого теста
+        const existingResults = document.querySelectorAll(
+          `.result-item[data-quiz-name="${res.quiz_name}"]`
+        );
+        existingResults.forEach(el => el.remove());
+
+        // Вставка нового результата
+        const resultDiv = document.createElement('div');
+        resultDiv.className = 'result-item';
+
+        // ВСТАВЛЕНО: добавляем класс в зависимости от прохождения
+        if (res.passed) {
+          resultDiv.classList.add('passed');
+        } else {
+          resultDiv.classList.add('not-passed');
+        }
+
+        resultDiv.setAttribute('data-quiz-name', res.quiz_name);
+
+        resultDiv.innerHTML = `
+          <h4>${res.quiz_name}</h4>
+          <p class="p_color">Процент вашего прохождения: <p class="p_color one"> ${res.score_percent.toFixed(2)}%</p></p>
+          <p class="p_color">Требуется для прохождения: <p class="p_color one"> ${res.pass_score}%</p></p>
+          <p class="p_color">Статус: <p class="p_color one"> ${res.passed ? 'Пройден' : 'Не пройден'}</p></p>
+        `;
+
+        container.appendChild(resultDiv);
+      });
+    })
+    .catch(error => {
+      console.error('Ошибка загрузки результатов:', error);
+    });
+
 })();
+
+

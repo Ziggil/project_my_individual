@@ -69,7 +69,6 @@ body{
 .pusto{
     border: 2px solid  #424043;
     width: 50%;
-
     margin:  470px;
     margin-top: 15px;
     margin-bottom: 20px;
@@ -102,10 +101,28 @@ h3{
     text-align: center;  
     color: hsla(153, 100%, 50%, 0.8);
 
-
 }
 
 
+.h3_home{
+    text-align: center;
+    color: rgb(42, 34, 187);
+    display: inline-block;
+    margin-top: 1.5px;
+    margin-bottom: 2.5px;
+}
+
+.h3_home_2{
+    display: inline;
+    text-align: center;
+    color: rgb(21, 133, 164);
+   
+}
+
+.h3_home_3{
+    text-align: center;
+    color: rgb(33, 33, 216);
+}
 
 
 .zag_home_h1{
@@ -118,11 +135,10 @@ h3{
     border-radius: 20px;
     padding: 5.5px;
     width: 50%;
-    
-
-
 
 }
+
+
 
 .zag_home_h3{
     margin-top: 25px;
@@ -177,6 +193,11 @@ h1{
 
 }
 
+
+.enter_div{
+    margin-top: 5px;
+}
+
 .my_button{
 
     color: hsla(195, 100%, 50%, 0.6);
@@ -193,6 +214,24 @@ h1{
 
 
 }
+
+.result-item{
+    border: 1px solid blue; 
+    padding: 10px; 
+    margin-bottom: 10px;
+    border-radius:10px;
+}
+
+
+.result-item.not-passed {
+  border: 2px solid rgb(158, 23, 23);
+  background-color: #ffe5e5d1;
+}
+.result-item.passed {
+  border: 2px solid green;
+  background-color: #e5ffe5c4;
+}
+
 
 
 
@@ -285,6 +324,7 @@ h1{
     padding: 0;
     margin-left:  710px;
     margin-top: 60px ;
+    margin-bottom: 20px;
 
 }
 
@@ -370,6 +410,16 @@ nav{
 .p_zag.question{
     color: rgb(10, 39, 167);
     font-weight: bold;
+}
+
+.p_color{
+    display: inline-block;
+    font-size: 18px;
+}
+
+.p_color.one{
+    display: inline;
+    color: rgb(1, 46, 182);
 }
 
 svg{
