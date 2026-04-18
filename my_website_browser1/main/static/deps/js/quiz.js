@@ -179,7 +179,7 @@
         const resultDiv = document.createElement('div');
         resultDiv.className = 'result-item';
 
-        // ВСТАВЛЕНО: добавляем класс в зависимости от прохождения
+        // добавляем класс в зависимости от прохождения
         if (res.passed) {
           resultDiv.classList.add('passed');
         } else {

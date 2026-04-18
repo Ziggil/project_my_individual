@@ -49,12 +49,14 @@
           Run
           <form action="submit.php" method="post">
   <input type="text" name="name" placeholder="Ваше имя" />
-  <input type="email" name="email" placeholder="Ваш email" />
+  <input type="email" name="email" ="Ваш email" />
   <button type="submit">Отправить</button>
 </form>
       
 action — это адрес, куда отправляются данные (например, скрипт submit.php).
 method — способ передачи данных: post или get.
+placeholder - текстовая подсказка внутри поля ввода формы, которая отображается до того, как пользователь начнёт вводить данные.
+
 
 
 Почему важны формы для начинающего веб-разработчика?

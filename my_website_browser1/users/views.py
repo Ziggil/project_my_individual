@@ -36,7 +36,7 @@ def logout_user(request):
     return render(request,'users/logout.html')
 
 
-# Импортируем класс формы регистрации пользователя из файла forms.py, расположенного в том же приложении
+# Импортируем класс формы регистрации пользователя из файла forms.py, расположенного в этом же приложении(users)
 from .forms import RegisterUserForm
 
  # Эта функция обрабатывает регистрацию нового пользователя
@@ -46,24 +46,21 @@ def register(request):
     # Если пользователь отправил форму (нажал кнопку "зарегистрироваться")
     if request.method == "POST":
         
-        form = RegisterUserForm(request.POST)  # Создаем форму с отправленными данными
+        form = RegisterUserForm(request.POST)  
 
-        # Если данные в форме правильные и проходят проверку
         if form.is_valid():
             
-            user = form.save(commit=False)  # Создаем объект пользователя, но пока не сохраняем его в базу
-            user.set_password(form.cleaned_data['password'])  # Меняем пароль на его зашифрованный вариант
-            user.save()  # Сохраняем нового пользователя с зашифрованным паролем в базу данных
-            return render(request, 'main/index.html')  # После регистрации показываем главную страницу
+            user = form.save(commit=False)  
+            user.set_password(form.cleaned_data['password'])  
+            user.save()  
+            return render(request, 'main/index.html') 
 
+    # Если пользователь зашел на страницу впервые или просто обновил ее (метод GET)
     else:
-        # Если пользователь зашел на страницу впервые или просто обновил ее (метод GET)
-        form = RegisterUserForm()  # Создаем пустую форму для регистрации
+        form = RegisterUserForm() 
 
     # В любом случае (при GET или если есть ошибки в форме) показываем страницу с формой
     return render(request, 'users/register.html', {'form': form})
 
 
 
-def profile(request):
-    return render(request,'users/profile.html')
