@@ -21,7 +21,9 @@ class QuizListView(ListView):
 @login_required  
 def quiz_view(request, pk):
 
-    return render(request, 'quizes/quiz.html', {'obj': quiz})
+    quiz = Quiz.objects.get(pk=pk)
+    return render(request, 'quizes/quiz.html', {'quiz': quiz})
+    # return render(request, 'quizes/quiz.html', {'obj': quiz})
 
 # 3) для получения данных викторины в формате JSON (для фронтенда)
 def quiz_data_view(request, pk):
