@@ -36,10 +36,9 @@ def logout_user(request):
     return render(request,'users/logout.html')
 
 
-# Импортируем класс формы регистрации пользователя из файла forms.py, расположенного в этом же приложении(users)
+
 from .forms import RegisterUserForm
 
- # Эта функция обрабатывает регистрацию нового пользователя
 def register(request):
    
 
