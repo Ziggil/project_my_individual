@@ -5,6 +5,13 @@ from django.urls import include, path
 
 from main import views
 
+# Импортируем готовые вьюхи для JWT токенов
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+)
+from users.views import get_jwt_from_session # Импортируем нашу новую вьюху
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -14,9 +21,16 @@ urlpatterns = [
     path('links/', views.links, name='links'),
     path('news/', include('news.urls', namespace="news" )),
     path('users/', include('users.urls', namespace="users" )),
-    path('quizes', include('quizes.urls', namespace="quizes" )),
+    path('quizes/', include('quizes.urls', namespace="quizes")),
     path('api/user-results/', views.user_results_summary, name='user-results-summary'),
 
+     # Новые эндпоинты для генерации и обновления JWT-токенов
+    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+
+
+    #НОВЫЙ ЭНДПОИНТ: Обмен сессии на JWT-токен
+    path('api/token/from-session/', get_jwt_from_session, name='token_from_session'),
 
 ]
 

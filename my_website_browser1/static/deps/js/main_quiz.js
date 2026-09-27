@@ -1,3 +1,5 @@
+console.log("main_quiz.js v2");
+
 console.log("script working");
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -41,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
         startBtn.addEventListener('click', () => {
             if (selectedButton) {
                 const pk = selectedButton.getAttribute('data-pk');
-                window.location.href = window.location.origin + `/quiz/${pk}/`;
+                window.location.href = window.location.origin + `/quizes/${pk}/`;
             }
         });
     }

@@ -63,3 +63,45 @@ def register(request):
 
 
 
+
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework.response import Response
+from rest_framework import status
+from rest_framework_simplejwt.tokens import RefreshToken
+from .serializers import UserRegisterSerializer
+
+
+@api_view(['POST'])
+@permission_classes([AllowAny])
+def api_register(request):
+    """Регистрация пользователя через JSON-запрос"""
+    serializer = UserRegisterSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response({"message": "Пользователь успешно зарегистрирован!"}, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def api_user_profile(request):
+    """Получение данных студента, авторизованного через JWT"""
+    user = request.user
+    return Response({
+        "username": user.username,
+        "email": user.email,
+        "date_joined": user.date_joined
+    })
+
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def get_jwt_from_session(request):
+    """Обмен активной Django-сессии на JWT-токены"""
+    user = request.user
+    refresh = RefreshToken.for_user(user)
+    return Response({
+        'access': str(refresh.access_token),
+        'refresh': str(refresh),
+    })

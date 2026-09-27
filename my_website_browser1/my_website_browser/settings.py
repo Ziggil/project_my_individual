@@ -63,6 +63,9 @@ INSTALLED_APPS = [
     'quizes',
     'results',
 
+    'rest_framework',
+    'rest_framework_simplejwt',
+
 ]
 
 MIDDLEWARE = [
@@ -178,3 +181,11 @@ LOGOUT_REDIRECT_URL = 'main/index'
 DIRS = [BASE_DIR / "templates"]
 
 APP_DIRS=True
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ),
+}

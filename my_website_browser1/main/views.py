@@ -31,21 +31,43 @@ from django.http import JsonResponse
 from results.models import Result  # замените на рею модели результатов
 from quizes.models import Quiz   # если нужна информация о тесте
 
-@login_required
+# @login_required
+# def user_results_summary(request):
+#     user = request.user
+#     results = Result.objects.filter(user=user).select_related('quiz')
+
+#     data = []
+#     for res in results:
+#         data.append({
+#             'quiz_name': res.quiz.name,
+#             'score_percent': res.score,  # предполагается, что это процент
+#             'pass_score': res.quiz.required_score_pass,
+#             'passed': res.score >= res.quiz.required_score_pass,
+#         })
+
+#     return JsonResponse({'results': data})
+
+
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
+from results.models import Result
+from results.serializers import UserResultSummarySerializer
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])  # Вот эта строка ТЕПЕРЬ заменяет @login_required для JWT!
 def user_results_summary(request):
     user = request.user
+    
+    # Оптимизированный запрос к PostgreSQL
     results = Result.objects.filter(user=user).select_related('quiz')
+    
+    # Сериализатор берет на себя всю работу по сборке словарей (цикл for больше не нужен!)
+    serializer = UserResultSummarySerializer(results, many=True)
+    
+    # Возвращаем современный REST-ответ
+    return Response({'results': serializer.data})
 
-    data = []
-    for res in results:
-        data.append({
-            'quiz_name': res.quiz.name,
-            'score_percent': res.score,  # предполагается, что это процент
-            'pass_score': res.quiz.required_score_pass,
-            'passed': res.score >= res.quiz.required_score_pass,
-        })
-
-    return JsonResponse({'results': data})
 
 
 
