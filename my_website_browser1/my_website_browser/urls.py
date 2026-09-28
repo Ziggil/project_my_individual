@@ -12,6 +12,13 @@ from rest_framework_simplejwt.views import (
 )
 from users.views import get_jwt_from_session # Импортируем нашу новую вьюху
 
+from rest_framework.routers import DefaultRouter
+from quizes.views import QuizViewSet
+
+
+# Роутер для DRF
+router = DefaultRouter()
+router.register(r'api/quizes', QuizViewSet, basename='quiz-api')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -31,6 +38,10 @@ urlpatterns = [
 
     #НОВЫЙ ЭНДПОИНТ: Обмен сессии на JWT-токен
     path('api/token/from-session/', get_jwt_from_session, name='token_from_session'),
+
+     # Подключаем роутер DRF — все /api/quizes/... маршруты
+    path('', include(router.urls)),
+
 
 ]
 

@@ -54,28 +54,29 @@ from rest_framework.response import Response
 from results.models import Result
 from results.serializers import UserResultSummarySerializer
 
+from django.db.models import Max
+
 @api_view(['GET'])
-@permission_classes([IsAuthenticated])  # Вот эта строка ТЕПЕРЬ заменяет @login_required для JWT!
+@permission_classes([IsAuthenticated])
 def user_results_summary(request):
     user = request.user
     
-    # Оптимизированный запрос к PostgreSQL
-    results = Result.objects.filter(user=user).select_related('quiz')
+    # Находим id последнего результата для каждого теста
+    latest_ids = (
+        Result.objects
+        .filter(user=user)
+        .values('quiz')
+        .annotate(latest_id=Max('id'))
+        .values_list('latest_id', flat=True)
+    )
     
-    # Сериализатор берет на себя всю работу по сборке словарей (цикл for больше не нужен!)
+    # Оставляем только эти записи
+    results = Result.objects.filter(id__in=latest_ids).select_related('quiz')
     serializer = UserResultSummarySerializer(results, many=True)
-    
-    # Возвращаем современный REST-ответ
     return Response({'results': serializer.data})
 
 
 
-
-
-# и ко всем следующим страницам примеянй этот декоратор!
-
-# def register(request):
-#     return render(request, 'main/register.html')
 
 
 

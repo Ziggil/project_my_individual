@@ -18,49 +18,59 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Загрузка вопросов для страницы теста
   const loadQuestions = () => {
-    // Если на этой странице нет quiz-контейнера — не грузим вопросы
-    if (!quizBox) {
-      console.log("quiz-box не найден на этой странице, пропускаем загрузку вопросов");
-      return;
-    }
+  // Если нет quiz-box на странице — выходим
+  if (!quizBox) {
+    console.log("quiz-box не найден, пропускаем");
+    return;
+  }
 
-    $.ajax({
-      type: 'GET',
-      url: `${url}data/`,
-      dataType: 'json',
-      success: function(response) {
-        const data = response.data;
-        if (!data) {
-          console.error('Нет data в ответе');
-          return;
-        }
+  // Достаём ID теста из URL. Например /quizes/7/ - '7'
+  const pathParts = window.location.pathname.split('/').filter(Boolean);
+  const quizId = pathParts[pathParts.length - 1];
+  console.log("ID теста из URL:", quizId);
 
-        questionData = data;
+  // Запрос на новый DRF-эндпоинт
+  $.ajax({
+    type: 'GET',
+    url: `/api/quizes/${quizId}/questions/`,   //  новый URL
+    dataType: 'json',
 
-        data.forEach(el => {
-          for (const [question, answers] of Object.entries(el)) {
-            // Вопрос
-            quizBox.innerHTML += `
-              <div class="statia quizes_center">
-                <p class="p_zag question">Вопрос: ${question}</p>
-              </div>
-            `;
-            // Варианты ответов
-            answers.forEach(answer => {
-              quizBox.innerHTML += `
-                <div class="statia quizes_center">
-                  <input type="radio" class="ans" id="${question}-${answer}" name="${question}" value="${answer}">
-                  <label for="${question}-${answer}">${answer}</label>
-                </div>
-              `;
-            });
-          }
-        });
-      },
-      error: function(error) {
-        // console.error('Ошибка при загрузке данных:', error);
+    success: function(response) {
+      const data = response.data;
+      if (!data) {
+        console.error('Нет data в ответе');
+        return;
       }
-    });
+
+      // Проходим по каждому вопросу
+      data.forEach(el => {
+        const question = el.text;        //  текст вопроса
+        const answers = el.answers;      //  массив ответов
+
+        // Рисуем вопрос
+        quizBox.innerHTML += `
+          <div class="statia quizes_center">
+            <p class="p_zag question">Вопрос: ${question}</p>
+          </div>
+        `;
+
+        // Рисуем каждый ответ
+        answers.forEach(answer => {
+          quizBox.innerHTML += `
+            <div class="statia quizes_center">
+              <input type="radio" class="ans" id="${question}-${answer.text}" name="${question}" value="${answer.text}">
+              <label for="${question}-${answer.text}">${answer.text}</label>
+            </div>
+          `;
+        });
+      });
+    },
+
+    error: function(error) {
+      console.error('Ошибка загрузки вопросов:', error);
+    }
+  });
+
   };
 
   loadQuestions();

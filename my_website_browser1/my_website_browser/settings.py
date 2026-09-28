@@ -36,7 +36,8 @@ from dotenv import load_dotenv
 # Загружаем переменные из файла .env
 load_dotenv()
 
-# ТАК ДОЛЖНО СТАТЬ ТЕПЕРЬ:
+
+# Пытаемся взять Ключ из .env, иначе - временный для разработки
 SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-localkey-nsdakcjdbcahsdbc')
 
 

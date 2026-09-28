@@ -11,6 +11,31 @@ from django.http import JsonResponse
 from questions.models import Answer, Question  
 from results.models import Result  
 
+
+# импорты для DR
+from rest_framework import viewsets
+from rest_framework.decorators import action
+from rest_framework.response import Response
+from rest_framework.permissions import AllowAny
+from .serializers import QuizSerializer, QuestionSerializer
+
+
+class QuizViewSet(viewsets.ModelViewSet):
+    queryset = Quiz.objects.all()
+    serializer_class = QuizSerializer
+    permission_classes = [AllowAny]
+
+    @action(detail=True, methods=['get'])
+    def questions(self, request, pk=None):
+        quiz = self.get_object()
+        questions = quiz.get_questions()
+        serializer = QuestionSerializer(questions, many=True)
+        return Response({
+            'data': serializer.data,
+            'time': quiz.time,
+        })
+
+
 # 1) спискок викторин: отображает все викторины в шаблоне
 class QuizListView(ListView):
 
