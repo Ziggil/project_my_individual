@@ -17,24 +17,88 @@ from rest_framework import viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.permissions import AllowAny
-from .serializers import QuizSerializer, QuestionSerializer
-
-
+from .serializers import QuizSerializer, QuestionSerializer, QuizSubmissionSerializer
+from rest_framework.permissions import AllowAny, IsAuthenticated
 class QuizViewSet(viewsets.ModelViewSet):
     queryset = Quiz.objects.all()
     serializer_class = QuizSerializer
     permission_classes = [AllowAny]
 
+    # Эндпоинт 1: получить вопросы теста (GET /api/quizes/<pk>/questions/)
     @action(detail=True, methods=['get'])
     def questions(self, request, pk=None):
-        quiz = self.get_object()
-        questions = quiz.get_questions()
-        serializer = QuestionSerializer(questions, many=True)
+        quiz = self.get_object()  # достаём тест по pk из URL
+        questions = quiz.get_questions()  # метод модели: перемешивает и обрезает
+        serializer = QuestionSerializer(questions, many=True)  # many=True — список
         return Response({
             'data': serializer.data,
             'time': quiz.time,
         })
 
+    # Эндпоинт 2: сохранить ответы студента (POST /api/quizes/<pk>/save/)
+    # permission_classes только для этого action — IsAuthenticated
+    @action(detail=True, methods=['post'], permission_classes=[IsAuthenticated])
+    def save(self, request, pk=None):
+        quiz = self.get_object()  # достаём тест по pk
+
+        # Валидируем входные данные через сериализатор
+        serializer = QuizSubmissionSerializer(data=request.data)
+
+        if not serializer.is_valid():
+            # Возвращаем 400 с ошибками сериализатора
+            return Response(serializer.errors, status=400)
+
+        # Достаём проверенные ответы студента: {"вопрос": "ответ"}
+        answers = serializer.validated_data['answers']
+
+        score = 0  # счётчик правильных ответов
+        results = []  # структура для фронта: разбор каждого вопроса
+
+        # Проходим по каждому вопросу и ответу студента
+        for question_text, selected_answer in answers.items():
+            # Находим вопрос в БД по тексту
+            question = Question.objects.filter(text=question_text).first()
+            if not question:
+                    continue
+
+            # Находим правильный ответ на этот вопрос
+            correct = Answer.objects.filter(question=question, correct=True).first()
+
+            # Если студент не ответил — особый случай
+            if selected_answer == '' or selected_answer is None:
+                results.append({str(question): 'not answered'})
+                continue  # переходим к следующему вопросу
+
+            # Студент ответил. Сравниваем с правильным
+            if correct and correct.text == selected_answer:
+                score += 1  # +1 к счёту
+                results.append({
+                    str(question): {
+                        'correct_answer': correct.text,
+                        'answered': selected_answer,
+                    }
+                })
+            else:
+                # Ответ неверный — добавляем разбор
+                results.append({
+                    str(question): {
+                        'correct_answer': correct.text if correct else '',
+                        'answered': selected_answer,
+                    }
+                })
+
+        # Считаем процент: правильные * 100 / общее число вопросов
+        score_percent = score * 100 / quiz.number_of_questions
+
+        # Создаём запись Result в БД для текущего пользователя
+        Result.objects.create(quiz=quiz, user=request.user, score=score_percent)
+
+        # Возвращаем JSON: прошёл / не прошёл, процент, разбор
+        return Response({
+            'passed': score_percent >= quiz.required_score_pass,
+            'score': score_percent,
+            'results': results,
+        })
 
 # 1) спискок викторин: отображает все викторины в шаблоне
 class QuizListView(ListView):

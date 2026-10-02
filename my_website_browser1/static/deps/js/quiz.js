@@ -9,6 +9,11 @@ document.addEventListener('DOMContentLoaded', () => {
     url += '/';
   }
 
+  // Достаём ID теста из URL. Например /quizes/7/ - '7'
+  const pathParts = window.location.pathname.split('/').filter(Boolean);
+  const quizId = pathParts[pathParts.length - 1];
+  console.log("ID теста из URL:", quizId);
+
   const quizBox = document.getElementById('quiz-box');
   const scoreBox = document.getElementById('score-box');
   const resultBox = document.getElementById('result-box');
@@ -18,59 +23,53 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Загрузка вопросов для страницы теста
   const loadQuestions = () => {
-  // Если нет quiz-box на странице — выходим
-  if (!quizBox) {
-    console.log("quiz-box не найден, пропускаем");
-    return;
-  }
+    // Если нет quiz-box на странице — выходим
+    if (!quizBox) {
+      console.log("quiz-box не найден, пропускаем");
+      return;
+    }
 
-  // Достаём ID теста из URL. Например /quizes/7/ - '7'
-  const pathParts = window.location.pathname.split('/').filter(Boolean);
-  const quizId = pathParts[pathParts.length - 1];
-  console.log("ID теста из URL:", quizId);
+    // Запрос на новый DRF-эндпоинт
+    $.ajax({
+      type: 'GET',
+      url: `/api/quizes/${quizId}/questions/`,   // новый URL
+      dataType: 'json',
 
-  // Запрос на новый DRF-эндпоинт
-  $.ajax({
-    type: 'GET',
-    url: `/api/quizes/${quizId}/questions/`,   //  новый URL
-    dataType: 'json',
+      success: function(response) {
+        const data = response.data;
+        if (!data) {
+          console.error('Нет data в ответе');
+          return;
+        }
 
-    success: function(response) {
-      const data = response.data;
-      if (!data) {
-        console.error('Нет data в ответе');
-        return;
-      }
+        // Проходим по каждому вопросу
+        data.forEach(el => {
+          const question = el.text;        // текст вопроса
+          const answers = el.answers;      // массив ответов
 
-      // Проходим по каждому вопросу
-      data.forEach(el => {
-        const question = el.text;        //  текст вопроса
-        const answers = el.answers;      //  массив ответов
-
-        // Рисуем вопрос
-        quizBox.innerHTML += `
-          <div class="statia quizes_center">
-            <p class="p_zag question">Вопрос: ${question}</p>
-          </div>
-        `;
-
-        // Рисуем каждый ответ
-        answers.forEach(answer => {
+          // Рисуем вопрос
           quizBox.innerHTML += `
             <div class="statia quizes_center">
-              <input type="radio" class="ans" id="${question}-${answer.text}" name="${question}" value="${answer.text}">
-              <label for="${question}-${answer.text}">${answer.text}</label>
+              <p class="p_zag question">Вопрос: ${question}</p>
             </div>
           `;
+
+          // Рисуем каждый ответ
+          answers.forEach(answer => {
+            quizBox.innerHTML += `
+              <div class="statia quizes_center">
+                <input type="radio" class="ans" id="${question}-${answer.text}" name="${question}" value="${answer.text}">
+                <label for="${question}-${answer.text}">${answer.text}</label>
+              </div>
+            `;
+          });
         });
-      });
-    },
+      },
 
-    error: function(error) {
-      console.error('Ошибка загрузки вопросов:', error);
-    }
-  });
-
+      error: function(error) {
+        console.error('Ошибка загрузки вопросов:', error);
+      }
+    });
   };
 
   loadQuestions();
@@ -116,10 +115,20 @@ document.addEventListener('DOMContentLoaded', () => {
         data['csrfmiddlewaretoken'] = csrfToken.value;
       }
 
+      // Формат для DRF: {"answers": {"вопрос": "ответ"}}
+      const payload = { answers: {} };
+      questionNames.forEach(name => {
+        payload.answers[name] = data[name] || '';
+      });
+
       $.ajax({
         type: 'POST',
-        url: `${url}save/`,
-        data: data,
+        url: `/api/quizes/${quizId}/save/`,   // ← НОВЫЙ URL
+        contentType: 'application/json',
+        data: JSON.stringify(payload),
+        headers: {
+          'X-CSRFToken': csrfToken ? csrfToken.value : '',
+        },
         success: function(response) {
           responses = response.results;
 
@@ -161,7 +170,7 @@ document.addEventListener('DOMContentLoaded', () => {
           }
         },
         error: function(error) {
-          // console.error('Ошибка при отправке данных:', error);
+          console.error('Ошибка при отправке данных:', error);
         }
       });
     });

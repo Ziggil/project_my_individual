@@ -23,3 +23,13 @@ class QuizSerializer(serializers.ModelSerializer):
     class Meta:
         model = Quiz
         fields = ['name', 'topic', 'time', 'questions']
+
+
+class QuizSubmissionSerializer(serializers.Serializer):
+    answers = serializers.DictField()
+    
+    def validate_answers(self, value):
+        for question_text in value:
+            if not Question.objects.filter(text=question_text).exists():
+                raise serializers.ValidationError(f"Вопрос '{question_text}' не найден")
+        return value
