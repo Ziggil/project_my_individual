@@ -30,7 +30,7 @@ source .venv_linux/bin/activate
 # [В ТЕРМИНАЛЕ VS CODE] Обновляем установщик пакетов
 pip install --upgrade pip setuptools
 
-# [В ТЕРМИНАЛЕ VS CODE] Устанавливаем Django, dotenv, psycopg и др.
+# [В ТЕРМИНАЛЕ VS CODE] Устанавливаем Django, DRF, JWT, dotenv, psycopg и др.
 pip install -r requirements.txt
 ```
 
@@ -54,8 +54,8 @@ SECRET_KEY=вставьте_сюда_скопированную_строку
 
 DB_HOST=localhost
 DB_PORT=5432
-DB_NAME=h_quiz_db
-DB_USER=fizzi_dev
+DB_NAME=web_learning_db
+DB_USER=dev_learning_user
 DB_PASSWORD=ваш_надежный_пароль_для_базы
 ```
 *Сохраните файл в VS Code (`Ctrl + S`).*
@@ -73,13 +73,13 @@ DB_PASSWORD=ваш_надежный_пароль_для_базы
 
 ```sql
 -- [В КОНСОЛИ POSTGRES] Создаем пользователя (пароль должен совпадать с .env)
-CREATE USER fizzi_dev WITH PASSWORD 'ваш_надежный_пароль_для_базы';
+CREATE USER dev_learning_user WITH SUPERUSER PASSWORD 'ваш_надежный_пароль_для_базы';
 
 -- [В КОНСОЛИ POSTGRES] Создаем пустую базу данных
-CREATE DATABASE h_quiz_db OWNER fizzi_dev;
+CREATE DATABASE web_learning_db OWNER dev_learning_user;
 
 -- [В КОНСОЛИ POSTGRES] Даем права пользователю
-GRANT ALL PRIVILEGES ON DATABASE h_quiz_db TO fizzi_dev;
+GRANT ALL PRIVILEGES ON DATABASE web_learning_db TO dev_learning_user;
 
 -- [В КОНСОЛИ POSTGRES] Выходим обратно в систему
 \q
@@ -108,7 +108,7 @@ python manage.py loaddata content_fixtures.json
 python manage.py runserver
 ```
 
-Откройте любой браузер на компьютере и перейдите по адресу: **`http://127.0.0`**
+Откройте любой браузер на компьютере и перейдите по адресу: **`http://127.0.0.1:8000/`**
 </details>
 
 ---
@@ -166,8 +166,8 @@ SECRET_KEY=вставьте_сюда_скопированную_строку
 
 DB_HOST=localhost
 DB_PORT=5432
-DB_NAME=h_quiz_db
-DB_USER=fizzi_dev
+DB_NAME=web_learning_db
+DB_USER=dev_learning_user
 DB_PASSWORD=ваш_надежный_пароль_для_базы
 ```
 *Сохраните файл в VS Code (`Ctrl + S`).*
@@ -180,13 +180,13 @@ DB_PASSWORD=ваш_надежный_пароль_для_базы
 
 ```sql
 -- [В ОКНЕ SQL SHELL] Создаем пользователя
-CREATE USER fizzi_dev WITH PASSWORD 'ваш_надежный_пароль_для_базы';
+CREATE USER dev_learning_user WITH SUPERUSER PASSWORD 'ваш_надежный_пароль_для_базы';
 
 -- [В ОКНЕ SQL SHELL] Создаем базу данных
-CREATE DATABASE h_quiz_db OWNER fizzi_dev;
+CREATE DATABASE web_learning_db OWNER dev_learning_user;
 
 -- [В ОКНЕ SQL SHELL] Выдаем права доступа
-GRANT ALL PRIVILEGES ON DATABASE h_quiz_db TO fizzi_dev;
+GRANT ALL PRIVILEGES ON DATABASE web_learning_db TO dev_learning_user;
 
 -- [В ОКНЕ SQL SHELL] Закрываем окно
 \q
@@ -214,13 +214,50 @@ python manage.py loaddata content_fixtures.json
 python manage.py runserver
 ```
 
-Откройте ваш браузер и перейдите по адресу: **`http://127.0.0`**
+Откройте ваш браузер и перейдите по адресу: **`http://127.0.0.1:8000/`**
 </details>
 
 ---
 
 ## 🛠 Технологический стек
-* **Backend:** Python 3.13, Django 6.1.1
-* **Database:** PostgreSQL (драйвер `psycopg 3`)
-* **Environment:** python-dotenv (управление конфигурацией)
-* **DevOps:** Docker (файлы конфигурации `Dockerfile` и `docker-compose.yml` в корне репозитория)
+
+**Backend:**
+- Python 3.13
+- Django 6.1.1
+- Django REST Framework (DRF)
+- SimpleJWT (JWT-авторизация)
+- python-dotenv (управление конфигурацией)
+
+**База данных:**
+- PostgreSQL (драйвер `psycopg 3`)
+
+**Frontend:**
+- JavaScript (jQuery 3.6)
+- Bootstrap 4.4.1
+- HTML, CSS
+
+**Инструменты:**
+- Git, GitHub
+- Docker (Dockerfile, docker-compose.yml в корне репозитория)
+- VS Code
+
+---
+
+## 🔌 API-эндпоинты
+
+**Тесты:**
+- `GET /quizes/api/quizes/` — список тестов
+- `GET /api/quizes/<pk>/questions/` — вопросы теста
+- `POST /api/quizes/<pk>/save/` — сохранение ответов (JWT)
+
+**Результаты:**
+- `GET /api/user-results/` — результаты студента (JWT)
+
+**Авторизация:**
+- `POST /api/token/` — получение JWT-токена
+- `POST /api/token/refresh/` — обновление токена
+- `POST /api/token/from-session/` — обмен сессии на JWT
+
+**Пользователи:**
+- `POST /users/api/register/` — регистрация через API
+- `GET /users/api/profile/` — профиль (JWT)
