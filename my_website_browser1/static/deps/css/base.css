@@ -88,19 +88,19 @@ h3 {
 
 .h3_home {
     text-align: center;
-    color: rgb(42, 34, 187);
+    color: rgb(1, 0, 80);
     display: inline-block;
     margin: 1.5px 0;
 }
 
 .h3_home_2 {
     display: inline;
-    color: rgb(21, 133, 164);
+    color: rgb(9, 139, 9);
 }
 
 .h3_home_3 {
     text-align: center;
-    color: rgb(33, 33, 216);
+    color: rgb(8, 8, 122);
 }
 
 .zag_home_h1 {
@@ -117,7 +117,7 @@ h3 {
 .zag_home_h3 {
     margin: 25px auto 0;
     text-align: center;
-    color: rgb(18, 86, 187);
+    color: rgb(11, 14, 170);
     font-family: Arial, Helvetica, sans-serif;
     font-size: 15px;
     background-color: rgb(114, 196, 43);
@@ -165,7 +165,7 @@ h3 {
 }
 
 .statia.quiz_statia {
-    background-color: #1a1a1a;
+    background-color: rgb(114, 196, 43);
     border: 3px solid #4caf50;
 }
 
@@ -214,13 +214,13 @@ h3 {
 }
 
 .result-item.not-passed {
-    border: 2px solid rgb(158, 23, 23);
-    background-color: #ffe5e5d1;
+    border: 2px solid #000000;
+    background-color: #a31e1ed1;
 }
 
 .result-item.passed {
-    border: 2px solid green;
-    background-color: #e5ffe5c4;
+    border: 2px solid #000000;
+    background-color: #1e851ec4;
 }
 
 /* ----- ССЫЛКИ И КНОПКИ ----- */
@@ -465,8 +465,8 @@ svg {
     font-weight: bold;
     padding: 14px 28px;
     line-height: 1.4;
-    background-color: #1a1a1a;
-    color: #6fdc6f;
+    background-color: rgb(114, 196, 43);
+    color: #154615;
     border: 0 none;
     outline: 0 none;
     box-shadow: none;
