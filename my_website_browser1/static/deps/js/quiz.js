@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Запрос на новый DRF-эндпоинт
     $.ajax({
       type: 'GET',
-      url: `/api/quizes/${quizId}/questions/`,   // новый URL
+      url: `/api/quizes/${quizId}/questions/`,
       dataType: 'json',
 
       success: function(response) {
@@ -44,12 +44,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Проходим по каждому вопросу
         data.forEach(el => {
-          const question = el.text;        // текст вопроса
-          const answers = el.answers;      // массив ответов
+          const question = el.text;
+          const answers = el.answers;
 
           // Рисуем вопрос
           quizBox.innerHTML += `
-            <div class="statia quizes_center">
+            <div class="statia quizes_center quiz-question-card">
               <p class="p_zag question">Вопрос: ${question}</p>
             </div>
           `;
@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
           // Рисуем каждый ответ
           answers.forEach(answer => {
             quizBox.innerHTML += `
-              <div class="statia quizes_center">
+              <div class="statia quizes_center quiz-answer-card">
                 <input type="radio" class="ans" id="${question}-${answer.text}" name="${question}" value="${answer.text}">
                 <label for="${question}-${answer.text}">${answer.text}</label>
               </div>
@@ -123,7 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       $.ajax({
         type: 'POST',
-        url: `/api/quizes/${quizId}/save/`,   // ← НОВЫЙ URL
+        url: `/api/quizes/${quizId}/save/`,
         contentType: 'application/json',
         data: JSON.stringify(payload),
         headers: {

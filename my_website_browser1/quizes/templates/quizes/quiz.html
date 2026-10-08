@@ -11,9 +11,10 @@
 <div class="zag_div">
     <h2 class="zag">{{quiz.name}}</h2>
     <h3 class="zag_home_h3 required_score_pass">Необходимые баллы {{quiz.required_score_pass}}%</h3>
-    <a  class="back" href="{% url 'quizes:main-view' %}">Назад</a>
 
-    
+    <div class="quiz-nav-center">
+        <a class="back quiz-back-button" href="{% url 'quizes:main-view' %}">Назад</a>
+    </div>
 
     <!-- Обертка контейнера для формы -->
     <div id="quizContainer">
@@ -21,10 +22,10 @@
             {% csrf_token %}
             <div id="quiz-box"></div>
             <!-- Кнопка "Сохранить" -->
-            <button class="button quiz_save_button" type="submit" id="saveBtn">Сохранить</button>
+            <button class="button quiz_save_button quiz-save-button" type="submit" id="saveBtn">Сохранить</button>
         </form>
-        
     </div>
+
     <div id="score-box"></div>
     <div id="result-box"></div>
 </div>

@@ -17,15 +17,15 @@
         <!--- блок со всей информацией о тесте -->
         <div class="statia quiz_statia">
                 <button
-                        class="btn btn-lnk modal-button"
-                        data-pk="{{obj.pk}}"
-                        data-quiz="{{obj.name}}" 
-                        data-questions="{{obj.number_of_questions}}"
-                        data-difficluty="{{obj.difficluty}}"
-                        data-time="{{obj.time}}"
-                        data-pass="{{obj.required_score_pass}}"
-                        data-toggle="modal"
-                        data-target="#quizStartModal" >
+    class="btn btn-lnk modal-button quiz-list-button"
+    data-pk="{{obj.pk}}"
+    data-quiz="{{obj.name}}"
+    data-questions="{{obj.number_of_questions}}"
+    data-difficluty="{{obj.difficluty}}"
+    data-time="{{obj.time}}"
+    data-pass="{{obj.required_score_pass}}"
+    data-toggle="modal"
+    data-target="#quizStartModal">
                         
                         {{obj.name}}
                         
