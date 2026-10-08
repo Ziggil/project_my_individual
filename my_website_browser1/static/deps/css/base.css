@@ -1,629 +1,468 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-
-body{
-    max-width: 100%;
-    max-height: 100%;
+body {
     background-color: #424043;
-
+    min-height: 100vh;
+    padding-top: 80px;
+    padding-left: 15%;
+    padding-bottom: 60px;
 }
 
-
-.statia{
-    border: 2px solid rgb(114, 196, 43);
-    width: 50%;
-    /* margin-left:31%; */
-    margin:  470px;
-    margin-top: 15px;
-    margin-bottom: 15.5px;
-    padding: 12.5px;
-    border-radius: 10px;
+/* ----- ASIDE (боковая панель) ----- */
+aside {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 13.5%;
+    height: 100vh;
+    background-color: #232222;
+    color: #fff;
+    padding: 2.5%;
     text-align: center;
-    background-color: rgb(114, 196, 43);
-   
- 
+    border: 5px solid rgb(0, 0, 0);
+    transition: 1s;
+    z-index: 2;
 }
 
-.statia.quiz_statia{
-    background-color:rgb(27, 158, 198);
-    border: 2px solid rgb(27, 158, 198);
-    margin-left:  170px;
-
+aside:hover {
+    border: 5px solid rgb(153, 209, 229);
 }
 
-.statia.quizes_center{
-    margin-left:  25%;
-    color: black;
+aside ul {
+    list-style: none;
+    margin-top: 50px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
-.statia.quizes_center.bd-success{
-    color: rgb(0, 113, 0);
-     margin-left:  31.5%;
-     margin-top:20px;
-}
-
-.statia.quizes_center.bd-danger{
-    color:rgb(122, 0, 0);
-     margin-left:  31.5%;
-     margin-top: 20px;
-}
-
-.no_center{
-    border: 2px solid rgb(114, 196, 43);
-    width: 50%;
-
-    margin:  470px;
-    margin-top: 15px;
-    margin-bottom: 15.5px;
-    padding: 12.5px;
-    border-radius: 10px;
-
-    background-color: rgb(114, 196, 43);
-}
-
-
-.pusto{
-    border: 2px solid  #424043;
-    width: 50%;
-    margin:  470px;
-    margin-top: 15px;
-    margin-bottom: 20px;
-    border-radius: 10px;
+/* ----- NAV (верхняя панель) ----- */
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #2f2f2f;
+    border: 3px solid black;
+    padding: 5px;
+    padding-left: 15%;
     text-align: center;
-    background-color: #424043;
+    color: hsla(120, 100%, 50%, 0.8);
+    font-size: 20px;
+    font-family: 'Trebuchet MS', Arial, sans-serif;
+    z-index: 1;
 }
 
-footer {  
-background-color: #2f2f2f;  
-/* color: rgb(142, 80, 14, 1.2);   */
-color: hsla(34, 100%, 50%, 0.7);
-text-align: center;  
-padding: 10px;  
-position: fixed;  
-width: 100%;  
-
-
-z-index: -1;
-
+.nav {
+    text-align: center;
 }
 
-footer:hover{
+/* ----- FOOTER ----- */
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #2f2f2f;
+    color: hsla(34, 100%, 50%, 0.7);
+    text-align: center;
+    padding: 10px;
+    z-index: 2;
+}
+
+footer:hover {
     color: hsla(34, 100%, 50%, 1.2);
-
 }
 
+/* ----- ЗАГОЛОВКИ ----- */
+h1 {
+    text-align: center;
+}
 
-h3{
-    text-align: center;  
+h3 {
+    text-align: center;
     color: hsla(153, 100%, 50%, 0.8);
-
 }
 
-
-.h3_home{
+.h3_home {
     text-align: center;
     color: rgb(42, 34, 187);
     display: inline-block;
-    margin-top: 1.5px;
-    margin-bottom: 2.5px;
+    margin: 1.5px 0;
 }
 
-.h3_home_2{
+.h3_home_2 {
     display: inline;
-    text-align: center;
     color: rgb(21, 133, 164);
-   
 }
 
-.h3_home_3{
+.h3_home_3 {
     text-align: center;
     color: rgb(33, 33, 216);
 }
 
-
-.zag_home_h1{
-    margin-top: 80px;
-    margin-left: 466px;
+.zag_home_h1 {
+    margin: 20px auto 0;
     text-align: center;
     border: 2px double rgb(46, 31, 144);
     background-color: rgb(46, 31, 144);
     color: hsl(167, 100%, 50%);
     border-radius: 20px;
-    padding: 5.5px;
-    width: 50%;
-
+    padding: 6px;
+    max-width: 700px;
 }
 
-
-
-.zag_home_h3{
-    margin-top: 25px;
-    margin-left: 200px;
+.zag_home_h3 {
+    margin: 25px auto 0;
     text-align: center;
     color: rgb(18, 86, 187);
-    font-family:Arial, Helvetica, sans-serif;
-    font-size:15px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
     background-color: rgb(114, 196, 43);
     border-radius: 20px;
-    padding: 5.5px;
-    width: 50%;
-    margin-left: 466px;
-
- 
-    
+    padding: 6px;
+    max-width: 700px;
 }
 
-.zag_home_h3.required_score_pass{
-    margin-left: 25%;
+.zag_home_h3.required_score_pass,
+.zag_home_h3.score {
+    margin-left: auto;
 }
 
-.zag_home_h3.score{
-    margin-left: 25%;
+.zag_div {
+    max-width: 700px;
+    margin: 0 auto;
 }
 
-.zag_div{
-    width: 50%;
-    margin: auto 470px;
-    
-   
-}
-
-.zag{
-    margin-top: 80px;
+.zag {
+    margin: 20px auto 0;
     color: hsl(167, 100%, 50%);
     border-radius: 20px;
-    padding: 5.5px;
+    padding: 6px;
     border: 2px double rgb(46, 31, 144);
     background-color: rgb(46, 31, 144);
     text-align: center;
 }
 
-.zag_statia{
-    text-align: center; 
-
-    
+/* ----- КАРТОЧКИ И ТЕКСТ ----- */
+.statia {
+    border: 2px solid rgb(114, 196, 43);
+    max-width: 700px;
+    margin: 15px auto;
+    padding: 12.5px;
+    border-radius: 10px;
+    text-align: center;
+    background-color: rgb(114, 196, 43);
 }
 
-h1{
-    text-align: center;  
-
+.statia.quiz_statia {
+    background-color: rgb(27, 158, 198);
+    border: 2px solid rgb(27, 158, 198);
 }
 
+.statia.quizes_center {
+    color: black;
+}
 
-.enter_div{
+.statia.quizes_center.bd-success {
+    color: rgb(0, 113, 0);
+    margin-top: 20px;
+}
+
+.statia.quizes_center.bd-danger {
+    color: rgb(122, 0, 0);
+    margin-top: 20px;
+}
+
+.no_center {
+    border: 2px solid rgb(114, 196, 43);
+    max-width: 700px;
+    margin: 15px auto;
+    padding: 12.5px;
+    border-radius: 10px;
+    background-color: rgb(114, 196, 43);
+}
+
+.pusto {
+    border: 2px solid #424043;
+    max-width: 700px;
+    margin: 15px auto 20px;
+    border-radius: 10px;
+    text-align: center;
+    background-color: #424043;
+}
+
+.enter_div {
     margin-top: 5px;
 }
 
-.my_button{
+/* ----- РЕЗУЛЬТАТЫ ----- */
+.result-item {
+    border: 1px solid blue;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+}
 
+.result-item.not-passed {
+    border: 2px solid rgb(158, 23, 23);
+    background-color: #ffe5e5d1;
+}
+
+.result-item.passed {
+    border: 2px solid green;
+    background-color: #e5ffe5c4;
+}
+
+/* ----- ССЫЛКИ И КНОПКИ ----- */
+.my_button {
     color: hsla(195, 100%, 50%, 0.6);
     text-decoration: none;
     margin-top: 25px;
-    margin-left: 25%;
     display: block;
     text-align: center;
-    width: 5%;
     font-size: 20px;
     text-shadow: 4px 4px 5px rgb(0, 0, 0);
     transition: transform 0.5s ease;
-
-
-
 }
 
-.result-item{
-    border: 1px solid blue; 
-    padding: 10px; 
-    margin-bottom: 10px;
-    border-radius:10px;
-}
-
-
-.result-item.not-passed {
-  border: 2px solid rgb(158, 23, 23);
-  background-color: #ffe5e5d1;
-}
-.result-item.passed {
-  border: 2px solid green;
-  background-color: #e5ffe5c4;
-}
-
-
-
-
-.my_button:hover{
+.my_button:hover {
     color: rgb(31, 180, 26);
     transform: scale(1.05);
-    transition: 0.6s;
-
 }
 
-
-.button{
+.button {
     background-color: black;
-    color:rgb(74, 74, 213);
-    transform: scale(1.5);
+    color: rgb(74, 74, 213);
+    padding: 6px 12px;
 }
 
-.button:hover{
+.button:hover {
     color: blue;
     transition: 0.6s;
 }
 
-.button.quiz_save_button{
-   margin-top: 10px;
-   margin-bottom: 20px;
-   margin-left: 100px;
-
+.button.quiz_save_button {
+    margin: 10px auto 20px;
+    display: block;
 }
 
-
-.back{
-    margin-left: 325px;
-    margin-top: 10px;
-    padding: 10px 20px; /* добавьте внутренние отступы */
-    font-size: 18px;   /* задайте размер шрифта */
+.back {
+    margin: 10px auto;
+    padding: 10px 20px;
+    font-size: 18px;
     border: 2px solid rgb(130, 130, 130);
     border-radius: 20px;
     text-decoration: none;
     color: rgb(74, 74, 213);
     background-color: black;
-    display: inline-block; /* чтобы padding и размеры работали */
-    transform: scale(1);
-    transition: transform 0.3s; /* плавное увеличение */
+    display: inline-block;
     transition: 0.6s;
 }
 
-.back:hover{
+.back:hover {
     color: blue;
 }
 
-.data_quiz_ul{
+/* ----- ФОРМЫ И ТЕСТЫ ----- */
+form {
+    max-width: 500px;
+    margin: 50px auto 0;
+}
+
+#quiz-box {
+    border: 6px solid rgb(0, 0, 0);
+    border-radius: 20px;
+    background-color: #302e31;
+    text-align: center;
+    max-width: 700px;
+    margin: 20px auto;
+}
+
+.not-visible {
+    display: none;
+}
+
+.data_quiz_ul {
     list-style-type: none;
     margin-bottom: 70px;
 }
 
-.data_quiz{
+.data_quiz {
     color: rgb(29, 68, 211);
 }
 
-.ans{
+.ans {
     accent-color: #0c4dd0;
 }
 
-.ans:hover{
+.ans:hover {
     accent-color: #0c7ed0;
 }
 
-.then{
+.then {
     display: block;
     text-align: center;
     font-size: 15px;
     text-decoration: none;
     color: rgb(21, 27, 136);
     opacity: 0.8;
-    
 }
 
-.then:hover{
+.then:hover {
     opacity: 1;
 }
 
-
-
-.home_img{
+/* ----- КАРТИНКИ ----- */
+.home_img {
     display: block;
-   
-    width: 18%;
-    height: 18%;
+    max-width: 20%;
+    height: auto;
     border-radius: 20px;
-    padding: 0;
-    margin-left:  710px;
-    margin-top: 60px ;
-    margin-bottom: 20px;
-
+    margin: 30px auto 20px;
 }
 
-.img_links{
-
+.img_links {
     display: block;
-   
-    width: 22.5%;
-    height: 22.5;
+    max-width: 20%;
+    height: auto;
     border-radius: 20px;
-    padding: 0;
-    margin-left:  660px;
-    margin-top: 60px ;
-
+    margin: 30px auto 20px;
 }
 
-
-
-aside {
-    float: left;
-    background-color: #232222;  
-    width: 13.5%;
-    padding: 2.5%;
-    height: 100vh;
-    color: #fff;
-    margin-left: -6px;
-    text-align: center;
-    border: 5px solid rgb(0, 0, 0);
-    transition: 1s;
-    position: fixed;
-    z-index: 2;
-    top:0;
-
-    
-
-}
-
-aside:hover{
-    border: 5px solid rgb(153, 209, 229);
-}
-
-ul{
-    color:#fff;
-    display: block;
-    margin-top:50px;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    transition: transform 0.6s ease;
-
-
-
-}
-
-
-
-nav{
-    background-color: #2f2f2f;  
-    border: 3px solid black;
-    padding: 5px;
-    text-align: center;
-    color: hsla(120, 100%, 50%, 0.8);
-    font-size: 30px;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    transition: 1s;
-    z-index: 1;
-    width: 100%;
-    position: fixed;
-    top:0;
-    
-}
-
-
-.nav{
-    margin-left: 190px;
-
-
-}
-
-.p_zag{
+/* ----- ПРОЧЕЕ ----- */
+.p_zag {
     font-size: 20px;
-    
 }
 
-.p_zag.question{
+.p_zag.question {
     color: rgb(10, 39, 167);
     font-weight: bold;
 }
 
-.p_color{
+.p_color {
     display: inline-block;
     font-size: 18px;
 }
 
-.p_color.one{
+.p_color.one {
     display: inline;
     color: rgb(1, 46, 182);
 }
 
-svg{
-    margin-top: 5px;
+.p_zag_anim {
+    font-size: 20px;
+    animation: anim_p ease 6s infinite;
 }
 
-
-
-p{
-    font-size: 15px;
-    font-family: 'Times New Roman', Times, serif;
+.obu {
+    animation: anim ease 6s infinite;
 }
 
-.fat{
-    font-weight: bold;
-    margin-top: 10px;
-}
-
-.text{
+.text {
     margin-top: 15px;
     font-family: 'Times New Roman', Times, serif;
     font-size: 16.5px;
-    text-align:center;
-
+    text-align: center;
 }
 
-.links_a{
-    text-decoration: none;
-    color: rgba(0, 0, 255, 0.799);
-    opacity: 0.8;
-    transition: 0.6s;
-    
-}
-
-.links_a:hover{
-    opacity: 1;
-    color: rgba(0, 106, 255, 0.92);
-    
-
-}
-
-.obu{
-    animation:  anim ease 6s infinite;
-   
-}
-
-.p_zag_anim{
-    font-size: 20px;
-    animation:  anim_p ease 6s infinite;
-}
-
-.text_no_center{
+.text_no_center {
     margin-top: 15px;
     font-family: 'Times New Roman', Times, serif;
     font-size: 16.5px;
     text-align: right;
 }
 
-form {
-    margin-left: 32%;
-    width: 500px;
-    margin-top: 50px;
+.links_a {
+    text-decoration: none;
+    color: rgba(0, 0, 255, 0.799);
+    opacity: 0.8;
+    transition: 0.6s;
 }
 
-#quiz-box{
-  border: 6px solid rgb(0, 0, 0);
-  border-radius: 20px;
-  background-color: #302e31;
-   text-align: center;
-   margin-left: -235px;
+.links_a:hover {
+    opacity: 1;
+    color: rgba(0, 106, 255, 0.92);
 }
 
-#quiz-form{
-    
+.fat {
+    font-weight: bold;
+    margin-top: 10px;
 }
 
-.not-visible {
-  display: none;
+p {
+    font-size: 15px;
+    font-family: 'Times New Roman', Times, serif;
 }
 
-::selection{
+svg {
+    margin-top: 5px;
+}
+
+::selection {
     color: rgb(77, 224, 60);
-    background-color:rgb(0, 0, 0);
+    background-color: rgb(0, 0, 0);
 }
 
 /* стили для классов из бутстрап */
-
-.modal-content{
+.modal-content {
     border: 2px solid rgb(114, 196, 43);
-    width: 50%;
-    /* margin-left:31%; */
-    margin:  470px;
-    margin-top: 15px;
-    margin-bottom: 15.5px;
+    max-width: 700px;
+    margin: 15px auto;
     padding: 12.5px;
     border-radius: 10px;
     text-align: center;
     background-color: rgb(114, 196, 43);
-
-
 }
 
-.btn-danger{
+.btn-danger {
     background-color: black;
-    color:rgb(74, 74, 213);
-    transform: scale(1.2);
+    color: rgb(74, 74, 213);
+    padding: 8px 15px;
 }
 
-.btn-danger:hover{
+.btn-danger:hover {
     color: blue;
-    transition: 0.6s;
 }
 
-
-.btn-success{
+.btn-success {
     background-color: black;
-    color:rgb(74, 74, 213);
-    transform: scale(1.2);
+    color: rgb(74, 74, 213);
+    padding: 8px 15px;
     margin: 10px;
-    
 }
 
-.btn-success:hover{
+.btn-success:hover {
     color: blue;
-    transition: 0.6s;
 }
 
-.modal-button{
+.modal-button {
     background-color: rgb(27, 158, 198);
-    color:rgb(25, 207, 46);
-    transform: scale(1.2);
+    color: rgb(25, 207, 46);
+    padding: 8px 15px;
     margin: 10px;
     border: 1px solid rgb(27, 158, 198);
     font-weight: bold;
     transition: 0.6s;
 }
 
-.modal-button:hover{
-    color:rgb(74, 213, 90);
-    
+.modal-button:hover {
+    color: rgb(74, 213, 90);
 }
 
-@keyframes anim{
-0% { 
-    /* transform: rotate3d(0,0,0,0);  */
-    /* transform: translate(0, 0) */
-    /* transform: scale(1); */
-    color:hsla(120, 100%, 50%, 0.8) ;
-
-} 
-
-50%{
-    /* transform: translate(-100px, 0) */
-    /* transform: scale(1.6); */
-    color:hsla(169, 100%, 50%, 0.8) ;
+/* ----- АНИМАЦИИ ----- */
+@keyframes anim {
+    0% { color: hsla(120, 100%, 50%, 0.8); }
+    50% { color: hsla(169, 100%, 50%, 0.8); }
+    75% { color: hsla(229, 100%, 50%, 0.8); }
+    100% { color: hsla(162, 100%, 50%, 0.8); }
 }
 
-75% { 
-    /* transform: rotate3d(0,1,0,360deg); */
-    /* transform: translate(100px, 0) */
-     /* transform: scale(1);  */
-     color:hsla(229, 100%, 50%, 0.8) ;
-
+@keyframes anim_p {
+    0% { color: hsla(158, 100%, 50%, 0.8); }
+    50% { color: hsla(224, 100%, 50%, 0.8); }
+    75% { color: hsla(154, 100%, 50%, 0.8); }
+    100% { color: hsla(120, 100%, 50%, 0.8); }
 }
-
-100%{
-    color:hsla(162, 100%, 50%, 0.8) ;
-}
-
-}
-
-
-@keyframes anim_p{
-0% { 
-    /* transform: rotate3d(0,0,0,0);  */
-    /* transform: translate(0, 0) */
-    /* transform: scale(1); */
-    /* color:hsla(120, 100%, 50%, 0.8) ; */
-    color:hsla(158, 100%, 50%, 0.8) ;
-
-} 
-
-50%{
-    /* transform: translate(-100px, 0) */
-    /* transform: scale(1.6); */
-    /* color:hsla(154, 100%, 50%, 0.8) ; */
-    color:hsla(224, 100%, 50%, 0.8) ;
-}
-
-
-
-75% { 
-    /* transform: rotate3d(0,1,0,360deg); */
-    /* transform: translate(100px, 0) */
-     /* transform: scale(1);  */
-     /* color:hsla(224, 100%, 50%, 0.8) ; */
-     color:hsla(154, 100%, 50%, 0.8) ;
-
-}
-
-100%{
-    /* color:hsla(158, 100%, 50%, 0.8) ; */
-     color:hsla(120, 100%, 50%, 0.8) ;
-}
-
-}
-
