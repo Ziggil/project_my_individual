@@ -165,8 +165,8 @@ h3 {
 }
 
 .statia.quiz_statia {
-    background-color: rgb(27, 158, 198);
-    border: 2px solid rgb(27, 158, 198);
+    background-color: #1a1a1a;
+    border: 3px solid #4caf50;
 }
 
 .statia.quizes_center {
@@ -459,16 +459,17 @@ svg {
     color: rgb(74, 213, 90);
 }
 
-
 /* ----- Кнопки списка тестов ----- */
 .quiz-list-button {
     font-size: 22px;
     font-weight: bold;
-    padding: 12px 24px;
+    padding: 14px 28px;
     line-height: 1.4;
-    background-color: rgb(27, 158, 198);
-    color: rgb(25, 207, 46);
-    border: 1px solid rgb(27, 158, 198);
+    background-color: #1a1a1a;
+    color: #6fdc6f;
+    border: 0 none;
+    outline: 0 none;
+    box-shadow: none;
     border-radius: 10px;
     cursor: pointer;
     transition: 0.6s;
@@ -476,12 +477,16 @@ svg {
     word-wrap: break-word;
 }
 
-.quiz-list-button:hover {
-    color: rgb(74, 213, 90);
+.quiz-list-button:hover,
+.quiz-list-button:focus,
+.quiz-list-button:active {
+    background-color: #1a1a1a;
+    color: #6fdc6f;
+    border: 0 none;
+    outline: 0 none;
+    box-shadow: none;
     transform: scale(1.05);
-    background-color: rgb(20, 130, 170);
 }
-
 
 /* ----- Карточки вопросов и ответов на странице теста ----- */
 .quiz-question-card {
@@ -532,7 +537,6 @@ svg {
     line-height: 1.4;
 }
 
-
 /* ----- Кнопки на странице теста ----- */
 .quiz-nav-center {
     text-align: center;
@@ -582,9 +586,6 @@ svg {
     transform: scale(1.05);
 }
 
-
-
-
 /* ----- АНИМАЦИИ ----- */
 @keyframes anim {
     0% { color: hsla(120, 100%, 50%, 0.8); }
@@ -599,4 +600,3 @@ svg {
     75% { color: hsla(154, 100%, 50%, 0.8); }
     100% { color: hsla(120, 100%, 50%, 0.8); }
 }
-
