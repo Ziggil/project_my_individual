@@ -8,40 +8,39 @@
     <title>Регистрация</title>
     <!-- конкретный путь к папке с конкретным стилем  -->
     <link rel="stylesheet" href="{% static "deps/css/register.css" %}">
-   <!-- путь к изображению для вкладки со страницей сайта  -->
+    <!-- путь к изображению для вкладки со страницей сайта  -->
     <link rel="shortcut icon" href="https://i.pinimg.com/originals/b8/b0/1a/b8b01a233103576ebc231661a7324bac.jpg">
-    
   </head>
   <body>
     <header>
       <h1>Регистрация</h1>
       <h3>А как же без неё?</h3>
-
-      <!-- ссылка на изображение -->
-        <img scr="deps/images/регестрации" alt="test2" class="left-img">
     </header>
 
-        
-            <!-- метод post для получения данных -->
-          <form method="post"> 
-           
-          {% csrf_token %}
-         <!-- кнопка, которая даёт войти, если данные верны и не повторяются -->
-          <input type="hidden" name="next" value="{{ next }}" />
-          {{ form.as_p }}
-          <p><button type="sumbit">Регистрация</button></p>
-          </form>
-          <article>
-            <!-- кнопки и их пути -->
-          <a href="{% url 'index' %}">Вернуться на начальную страницy</a>
-          <a href="{% url 'about' %}">Вернуться на страницу про нас</a>
-          </article>
+    <main>
+      <!-- метод post для получения данных -->
+      <form method="post">
+        {% csrf_token %}
+        <!-- кнопка, которая даёт войти, если данные верны и не повторяются -->
+        <input type="hidden" name="next" value="{{ next }}" />
+        {{ form.as_p }}
+        <p><button type="submit">Регистрация</button></p>
+      </form>
 
-    <!-- тег для нижей части сайта -->
+      <!-- ссылка на изображение -->
+      <img src="{% static 'deps/images/регестрация.jpg' %}" alt="img_register">
+
+      <article>
+        <!-- кнопки и их пути -->
+        <a href="{% url 'index' %}">Вернуться на начальную страницу</a>
+        <a href="{% url 'about' %}">Вернуться на страницу про нас</a>
+      </article>
+    </main>
+
+    <!-- тег для нижней части сайта -->
     <footer>
       <p>Почта создателя и автора сайта: 23zahar051982@gmail.com</p>
     </footer>
     <!-- сюда можно подключить jquery <script src="scripts/app.js" defer></script> -->
   </body>
 </html>
-

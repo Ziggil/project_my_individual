@@ -1,73 +1,64 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-body{
-    max-width: 100%;
-    max-height: 100%;
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
     background-color: rgb(75, 75, 75);
-
 }
 
-
-header {  
-background-color: #383535;  
-/* color: rgb(46, 125, 17);   */
-color: hsla(120, 100%, 50%, 0.8);
-text-align: center;  
-border: 6px double rgb(0, 0, 0);
-border-width: 9px;
-margin-top: 0;
-border-radius: 10px;
-/* box-shadow: 10px 10px 10px rgb(0, 0, 0); */
-text-shadow: -1px 1px rgb(0, 0, 0);
-padding: 20px;
+header {
+    background-color: #383535;
+    color: hsla(120, 100%, 50%, 0.8);
+    text-align: center;
+    border: 6px double rgb(0, 0, 0);
+    border-width: 9px;
+    border-radius: 10px;
+    text-shadow: -1px 1px rgb(0, 0, 0);
+    padding: 20px;
 }
 
-
-
-main {  
-padding: 10px;  
+main {
+    flex: 1;
+    padding: 10px;
 }
 
-footer {  
-background-color: #2f2f2f;  
-/* color: rgb(142, 80, 14, 1.2);   */
-color: hsla(34, 100%, 50%, 0.7);
-text-align: center;  
-padding: 20px;  
-position: fixed;  
-width: 100%;  
-bottom: 0;  
-/* margin-left: -10px; */
-
+article {
+    text-align: center;
+    margin-top: 30px;
 }
 
+footer {
+    background-color: #2f2f2f;
+    color: hsla(34, 100%, 50%, 0.7);
+    text-align: center;
+    padding: 20px;
+    width: 100%;
+}
 
-footer:hover{
+footer:hover {
     color: hsla(34, 100%, 50%, 1.2);
 }
 
-h3{
-    text-align: center; 
+h1 {
+    text-align: center;
+}
+
+h2 {
+    text-align: center;
+}
+
+h3 {
+    text-align: center;
     color: hsla(279, 85%, 50%, 0.7);
 }
 
-h2{
-    text-align: center;  
-
-
-}
-
-h1{
-    text-align: center;  
-}
-
-a{
+a {
     background-color: rgb(100, 107, 102);
-    /* color:  rgb(12, 158, 220); */
     color: hsla(195, 100%, 50%, 0.6);
     border: 2px solid black;
     text-decoration: none;
@@ -78,24 +69,18 @@ a{
     width: 50%;
     font-size: 20px;
     transition: 1s;
-
-
 }
 
-
-a:hover{
+a:hover {
     background-color: rgb(141, 142, 144);
     color: rgb(64, 50, 193);
     transform: scale(1.1);
-    
 }
 
-img{
-    width: 40%;
-    height: 30%;
-    margin-left: 450px;
-    margin-top: 50px;
+img {
+    display: block;
+    margin: 40px auto 20px;
+    max-width: 40%;
+    height: auto;
     border-radius: 20px;
 }
-
-
