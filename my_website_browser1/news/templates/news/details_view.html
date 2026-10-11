@@ -11,8 +11,8 @@
     <div class="statia">
         <p class="p_zag">{{ el.anons }}</p>
         <p>{{ article.date }}</p>
-        <p class="text_no_center">{{ article.full_text|linebreaks }}</p>
         
+        <p class="p_article">{{ article.full_text|linebreaksbr }}</p>
     </div>
 
 {% endblock %}

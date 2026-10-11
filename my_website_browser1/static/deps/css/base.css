@@ -375,11 +375,16 @@ form {
     text-align: center;
 }
 
-.text_no_center {
-    margin-top: 15px;
-    font-family: 'Times New Roman', Times, serif;
+
+
+/* ----- Текст статьи ----- */
+.p_article {
+    color: #000000;
     font-size: 16.5px;
-    text-align: right;
+    font-family: 'Times New Roman', Times, serif;
+    text-align: left;
+    margin-top: 15px;
+    line-height: 1.6;
 }
 
 .links_a {
