@@ -243,6 +243,38 @@ python manage.py runserver
 
 ---
 
+## 📚 Документация проекта
+
+Вся документация лежит в папке `docs/` репозитория.
+
+### Статьи о разработке
+
+Серия статей о том, как проект развивался: переезд с SQLite на PostgreSQL, переход на DRF + JWT, работа с фронтендом.
+
+🔗 [Все статьи](https://github.com/Ziggil/project_my_individual/tree/h_quiz_v8_postgresql_drf/docs/articles)
+
+### Roadmap
+
+План развития проекта, карта версий и текущий статус.
+
+🔗 [Roadmap](https://github.com/Ziggil/project_my_individual/blob/h_quiz_v8_postgresql_drf/docs/plans/roadmap.md)
+
+### Медиа: как проект выглядел и как выглядит сейчас
+
+Скриншоты, видео и презентации. Показывают, как проект работал и выглядел в старых версиях (начиная с v7 на SQLite) и как выглядит в текущей версии.
+
+🔗 [Все медиа-материалы](https://github.com/Ziggil/project_my_individual/tree/h_quiz_v8_postgresql_drf/docs/assets)
+
+Внутри:
+
+- [`screenshots/v7_sqlite/`](https://github.com/Ziggil/project_my_individual/tree/h_quiz_v8_postgresql_drf/docs/assets/screenshots/v7_sqlite) — скриншоты старой версии на SQLite.
+- [`screenshots/v8.3.5_postgresql_drf/`](https://github.com/Ziggil/project_my_individual/tree/h_quiz_v8_postgresql_drf/docs/assets/screenshots/v8.3.5_postgresql_drf) — скриншоты текущей версии.
+- [`screenshots/current/`](https://github.com/Ziggil/project_my_individual/tree/h_quiz_v8_postgresql_drf/docs/assets/screenshots/current) — всегда актуальные скриншоты.
+- [`videos/`](https://github.com/Ziggil/project_my_individual/tree/h_quiz_v8_postgresql_drf/docs/assets/videos) — видео работы сайта.
+- [`presentations/`](https://github.com/Ziggil/project_my_individual/tree/h_quiz_v8_postgresql_drf/docs/assets/presentations) — презентации о проекте.
+
+---
+
 ## 🔌 API-эндпоинты
 
 **Тесты:**
