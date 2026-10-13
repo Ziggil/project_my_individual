@@ -1,6 +1,18 @@
 # Обучающая веб-платформа CodnitoWeb
 
+![Python](https://img.shields.io/badge/Python-3.13-blue)
+![Django](https://img.shields.io/badge/Django-6.1.1-green)
+![DRF](https://img.shields.io/badge/DRF-latest-red)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-blue)
+![License](https://img.shields.io/badge/License-MIT-yellow)
+
 Веб-приложение для обучения веб-разработке. Содержит теоретические статьи, интерактивные тесты для проверки знаний и личный кабинет пользователя.
+
+---
+
+## 📸 Как выглядит
+
+![Главная страница](docs/assets/screenshots/v8.3.5_postgresql_drf/home_v8.png)
 
 ---
 
