@@ -1,6 +1,6 @@
 // Изолируем переменные в самовызывающейся функции
 (function() {
-    console.log("register.js запущен");
+    console.log("register.js script working");
 
     // Находим форму и кнопку
     const form = document.querySelector('#register-form');
