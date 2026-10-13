@@ -3,6 +3,7 @@
 {% block title %}Удаление статьи{% endblock %}
 
 <!-- часть страницы сайта которая изменяется  -->
+ {% comment %} {% block content %} {% endcomment %}
 {% block content %}
     <div class="features">
         <h1>Удаление статьи</h1>
@@ -10,6 +11,7 @@
         <form method="post">
             <!-- уникальное и непредсказуемое значение, которое сервер генерирует для защиты веб-приложений от CSRF-атак (межсайтовой подделки запросов) -->
             {% csrf_token %}
+             {% comment %} {% csrf_token %} {% endcomment %}
              <!-- Тип кнопки submit, позволяет при нажатии на кнопку перезагрузить страницу, а так же отправить данные пользователя на сервер  -->
             <button class="btn btn-success" type="submit">Удалить статью</button>
         </form>

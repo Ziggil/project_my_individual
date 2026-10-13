@@ -1,4 +1,5 @@
 {% load static %}
+{% comment %} {% load static %} {% endcomment %}
 {% comment %} подгружаем статические файлы {% endcomment %}
 
 <!DOCTYPE html>
@@ -67,6 +68,8 @@
     </nav>
 
     {% comment %} контентная часть которая изменяется {% endcomment %}
+    {% comment %} {% block content %}
+    {% endblock %} {% endcomment %}
     {% block content %}
     {% endblock %}
 </body>
