@@ -30,13 +30,12 @@ def login_user(request):
 
     return render(request, 'users/login.html', {'form': form})
 
-
+@login_required
 def logout_user(request):
-    logout(request)
-    return render(request,'users/logout.html')
-
-
-
+    if request.method == 'POST':
+        logout(request)
+        return redirect('index')
+    return render(request, 'users/logout.html')
 from .forms import RegisterUserForm
 
 def register(request):

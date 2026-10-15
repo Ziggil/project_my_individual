@@ -13,7 +13,7 @@
 {% block content %}
   <h3>Если вы хотите выйти из профиля или посмотреть как это работает (Ctrl+Shift+C), то вы зашли на нужную страницу!</h3>
 
-  <form action="{% url 'index' %}" method="post">
+  <form action="{% url 'users:logout' %}" method="post">
     {% csrf_token %}
     <h2>Вы точно хотите выйти?</h2>
     <button type="submit">Выход</button>

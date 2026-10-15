@@ -15,7 +15,7 @@ from django.contrib.auth.decorators import login_required
 #То есть, к примеру 'main/index.html'-значит что я сейчас буду отображать такой html шаблон который находиться в папке main
 @login_required
 
-#странийа со всеми статьями
+#страница со всеми статьями
 def news_home(request):
     #Порядок сортировки(без сортировки просто news=Articles.objects.all()-тоесть мы просто выводим все записи)
     #А тут сортируем либо по title от большего к меньшему -названию либо по дате date от строго к новогоу(в обратном порядке '-title' или '-date'
@@ -45,6 +45,7 @@ class NewsDeleteView(DeleteView):
     template_name = "news/news-delete.html"
 
 #редактированеи статьи
+@login_required
 def create(request):
     error=''
     if request.method=="POST":
