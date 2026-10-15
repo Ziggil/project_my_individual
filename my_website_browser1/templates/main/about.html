@@ -1,52 +1,25 @@
+{% extends 'base2.html' %}
 {% load static %}
 
+{% block title %}Страница про нас{% endblock %}
 
-<!DOCTYPE html>
-<html lang="ru">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Страница про нас</title>
-    
-     <!-- конкретный путь к папке с конкретным стилем  -->
-    <link rel="stylesheet" href="{% static "deps/css/about.css" %}">
-    <!-- путь к изображению который хранится в папке проекта -->
-    <link rel="images" href="{% static "deps/images/хекслет_тёмный.png"%}">
-     <!-- ссылка на иконку страницы сайта в браузере  -->
-    <link rel="shortcut icon" href="https://i.pinimg.com/originals/b8/b0/1a/b8b01a233103576ebc231661a7324bac.jpg">
-   
-  </head>
-  <body>
-    <header>
-      <h1>Хотите узнать о нас?</h1>
-      <h3>Этот сайт сделан студентом АНПОО «Хекслет колледж»</h3>
-      <h3>Обучающегося по специальности ИСИП/РИУПО</p>
+{% block css %}
+  <link rel="stylesheet" href="{% static 'deps/css/about.css' %}">
+{% endblock %}
 
-    </header>
-    <main>
-      <article>
-        <section>
-          <h2>Переход на другие страницы</h2>
-          <a href="{% url 'users:register' %}">На страницу регистрации</a>
-      
-          <a  href="{% url 'index' %}" >На начальную страницу</a>
-         
+{% block header_title %}Хотите узнать о нас?{% endblock %}
+{% block header_subtitle %}Этот сайт сделан студентом АНПОО «Хекслет колледж»{% endblock %}
 
-        </section>
-        <section>
-          
-          <img src="/static/deps/images/хекслет_тёмный.png" alt="img_about">
+{% block content %}
+  <article>
+    <section>
+      <h2>Переход на другие страницы</h2>
+      <a href="{% url 'users:register' %}">На страницу регистрации</a>
+      <a href="{% url 'index' %}">На начальную страницу</a>
+    </section>
 
-        </section>
-        <section>
-      
-
-        </section>
-      </article>
-    </main>
-    <footer>
-      <p>Почта создателя и автора сайта: 23zahar051982@gmail.com</p>
-    </footer>
-  </body>
-</html>
-
+    <section>
+      <img src="{% static 'deps/images/хекслет_тёмный.png' %}" alt="img_about">
+    </section>
+  </article>
+{% endblock %}

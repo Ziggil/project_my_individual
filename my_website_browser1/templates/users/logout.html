@@ -1,39 +1,24 @@
+{% extends 'base2.html' %}
 {% load static %}
-{% comment %} сверху ссылка, импорт на папку статик в которой содеражться все картинки и шаблоны css {% endcomment %}
-<html>
-<head>
-    <!-- тег для названия страницы-->
-    <title>Выход</title>
-    <!-- конкретный путь к папке с конкретным стилем -->
-    <link rel="stylesheet" href="{% static "deps/css/logout.css" %}">
 
-    <!-- путь к изображению для вкладки со страницей сайта -->
-    <link rel="shortcut icon" href="https://i.pinimg.com/originals/b8/b0/1a/b8b01a233103576ebc231661a7324bac.jpg">
-</head>
-<body>
-    <header>
-        <h1>Выход</h1>
-    </header>
+{% block title %}Выход{% endblock %}
 
-    <main>
-        <h3>Если вы хотите выйти из профиля или посмотреть как это работает (Ctrl+Shift+C), то вы зашли на нужную страницу!</h3>
+{% block css %}
+  <link rel="stylesheet" href="{% static 'deps/css/logout.css' %}">
+{% endblock %}
 
-        <!-- кнопка, куда она ведёт и метод для получения данных -->
-        <form action="{% url 'index' %}" method="post">
-            {% csrf_token %}
-            <h2>Вы точно хотите выйти?</h2>
-            <!-- кнопка для выхода -->
-            <button type="submit">Выход</button>
-            <a class="btn btn-primary" href="{% url 'home' %}" role="button">Назад</a>
-        </form>
+{% block header_title %}Выход{% endblock %}
+{% block header_subtitle %}{% endblock %}
 
-        <img src="{% static 'deps/images/exit.png' %}" alt="img_exit">
+{% block content %}
+  <h3>Если вы хотите выйти из профиля или посмотреть как это работает (Ctrl+Shift+C), то вы зашли на нужную страницу!</h3>
 
-    </main>
+  <form action="{% url 'index' %}" method="post">
+    {% csrf_token %}
+    <h2>Вы точно хотите выйти?</h2>
+    <button type="submit">Выход</button>
+    <a class="btn btn-primary" href="{% url 'home' %}" role="button">Назад</a>
+  </form>
 
-    <!-- тег для нижней части сайта -->
-    <footer>
-        <p>Почта создателя и автора сайта: 23zahar051982@gmail.com</p>
-    </footer>
-</body>
-</html>
+  <img src="{% static 'deps/images/exit.png' %}" alt="img_exit">
+{% endblock %}
