@@ -3,9 +3,6 @@
 
 {% block title %}Авторизация{% endblock %}
 
-{% block css %}
-  <link rel="stylesheet" href="{% static 'deps/css/login.css' %}">
-{% endblock %}
 
 {% block header_title %}Авторизация{% endblock %}
 {% block header_subtitle %}{% endblock %}
@@ -18,7 +15,7 @@
     <p><button type="submit">Войти</button></p>
   </form>
 
-  <img src="{% static 'deps/images/вход.png' %}" alt="img_login">
+  <img src="{% static 'deps/images/вход.png' %}" alt="img_login" class="no-border-img">
 
   <a class="btn btn-primary" href="{% url 'index' %}" role="button">На начальную страницу</a>
 {% endblock %}

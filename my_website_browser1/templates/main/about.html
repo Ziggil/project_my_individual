@@ -3,10 +3,6 @@
 
 {% block title %}Страница про нас{% endblock %}
 
-{% block css %}
-  <link rel="stylesheet" href="{% static 'deps/css/about.css' %}">
-{% endblock %}
-
 {% block header_title %}Хотите узнать о нас?{% endblock %}
 {% block header_subtitle %}Этот сайт сделан студентом АНПОО «Хекслет колледж»{% endblock %}
 
@@ -19,7 +15,8 @@
     </section>
 
     <section>
-      <img src="{% static 'deps/images/хекслет_тёмный.png' %}" alt="img_about">
+      <!-- Добавили класс about-img -->
+      <img src="{% static 'deps/images/хекслет_тёмный.png' %}" alt="img_about" class="about-img">
     </section>
   </article>
 {% endblock %}

@@ -3,9 +3,6 @@
 
 {% block title %}Выход{% endblock %}
 
-{% block css %}
-  <link rel="stylesheet" href="{% static 'deps/css/logout.css' %}">
-{% endblock %}
 
 {% block header_title %}Выход{% endblock %}
 {% block header_subtitle %}{% endblock %}
@@ -20,5 +17,5 @@
     <a class="btn btn-primary" href="{% url 'home' %}" role="button">Назад</a>
   </form>
 
-  <img src="{% static 'deps/images/exit.png' %}" alt="img_exit">
+  <img src="{% static 'deps/images/exit.png' %}" alt="img_exit" class="no-border-img">
 {% endblock %}
