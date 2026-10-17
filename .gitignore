@@ -11,3 +11,4 @@ media/
 .env
 
 
+.venv_linux_work/
