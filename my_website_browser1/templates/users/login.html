@@ -3,16 +3,24 @@
 
 {% block title %}Авторизация{% endblock %}
 
+{% block js %}
+  <script src="{% static 'deps/js/login.js' %}" defer></script>
+{% endblock %}
 
 {% block header_title %}Авторизация{% endblock %}
 {% block header_subtitle %}{% endblock %}
 
 {% block content %}
-  <form method="post">
+  <form method="post" id="login-form">
     {% csrf_token %}
-    <input type="hidden" name="next" value="{{ next }}" />
-    {{ form.as_p }}
-    <p><button type="submit">Войти</button></p>
+    
+    <label for="id_username">Логин:</label>
+    <input type="text" name="username" id="id_username" placeholder="Логин" required>
+
+    <label for="id_password">Пароль:</label>
+    <input type="password" name="password" id="id_password" placeholder="Пароль" required>
+
+    <button type="button" id="loginBtn">Войти</button>
   </form>
 
   <img src="{% static 'deps/images/вход.png' %}" alt="img_login" class="no-border-img">

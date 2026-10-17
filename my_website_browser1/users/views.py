@@ -112,7 +112,7 @@ from .serializers import UserLoginSerializer
 @permission_classes([AllowAny])
 def api_login(request):
         """Логин через JSON-запрос"""
-        serializer=UserLoginSerializer(sata=request.data)
+        serializer=UserLoginSerializer(data=request.data)
         if serializer.is_valid():
             user=serializer.validated_data['user']
             login(request, user)

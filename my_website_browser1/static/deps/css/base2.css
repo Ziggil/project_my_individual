@@ -133,3 +133,13 @@ button:hover {
 .no-border-img {
     border: none;
 }
+
+/* Фронт для ошибка входа */
+.error {
+    display: block;
+    text-align: center;
+    color: #ff5555;
+    margin: 10px auto;
+    font-size: 18px;
+    font-weight: bold;
+}
