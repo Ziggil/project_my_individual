@@ -32,3 +32,18 @@ class UserRegisterSerializer(serializers.ModelSerializer):
         # Создаем юзера через специальный метод create_user. 
         # Он автоматически хэширует пароль (set_password), превращая '12345' в безопасную абракадабру
         return User.objects.create_user(**validated_data)
+
+
+from django.contrib.auth import authenticate
+
+class UserLoginSerializer(serializers.Serializer):
+    username = serializers.CharField()
+    password = serializers.CharField(write_only=True)
+
+    def validate(self, attrs):
+            user=authenticate(username=attrs['username'], password=attrs['password'])
+            if not user:
+                raise serializers.ValidationError("Неверный логин или пароль")
+            attrs ['user']=user
+            return attrs
+            

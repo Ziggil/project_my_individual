@@ -1,4 +1,5 @@
 from django.contrib.auth import authenticate, login, logout
+from django.core.serializers import serialize
 from django.core.signals import request_finished
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
@@ -104,3 +105,20 @@ def get_jwt_from_session(request):
         'access': str(refresh.access_token),
         'refresh': str(refresh),
     })
+    
+    
+from .serializers import UserLoginSerializer
+@api_view(['POST'])
+@permission_classes([AllowAny])
+def api_login(request):
+        """Логин через JSON-запрос"""
+        serializer=UserLoginSerializer(sata=request.data)
+        if serializer.is_valid():
+            user=serializer.validated_data['user']
+            login(request, user)
+            refresh=RefreshToken.for_user(user)
+            return Response({
+                'access':str(refresh.access_token),
+                'refresh': str(refresh)
+            })
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
