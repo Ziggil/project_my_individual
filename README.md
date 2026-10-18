@@ -12,7 +12,7 @@
 
 ## 📸 Как выглядит
 
-![Главная страница](docs/assets/screenshots/v8.3.5_postgresql_drf/home_v8.png)
+![Главная страница](docs/assets/screenshots/v8.5.5/home_v8.5.png)
 
 ---
 
