@@ -20,7 +20,7 @@ aside {
     width: 13.5%;
     height: 100vh;
     background-color: #232222;
-    color: #fff;
+    color: #1d8314;
     padding: 2.5%;
     text-align: center;
     border: 5px solid rgb(0, 0, 0);
@@ -29,7 +29,7 @@ aside {
 }
 
 aside:hover {
-    border: 5px solid rgb(153, 209, 229);
+    border: 5px solid rgb(13, 48, 143);
 }
 
 aside ul {
@@ -95,7 +95,7 @@ h3 {
 
 .h3_home_2 {
     display: inline;
-    color: rgb(9, 139, 9);
+    color: rgb(16, 36, 223);
 }
 
 .h3_home_3 {
@@ -338,6 +338,14 @@ form {
     border-radius: 20px;
     margin: 30px auto 20px;
 }
+
+
+#quizStartModal ul {
+  list-style-type: none; 
+  padding-left: 0;      
+}
+
+
 
 /* ----- ПРОЧЕЕ ----- */
 .p_zag {
