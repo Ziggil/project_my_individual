@@ -184,7 +184,7 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    const token = localStorage.getItem('accessToken');
+    const token = window.getValidToken();
 
     $.ajax({
       type: 'GET',
