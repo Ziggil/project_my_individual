@@ -142,6 +142,18 @@
     }
 },
 {
+    "model": "quizes.quiz",
+    "pk": 11,
+    "fields": {
+        "name": "CSS Flexbox",
+        "topic": "CSS, frontend",
+        "number_of_questions": 10,
+        "time": 1,
+        "required_score_pass": 75,
+        "difficluty": "средний"
+    }
+},
+{
     "model": "questions.question",
     "pk": 6,
     "fields": {
@@ -598,6 +610,96 @@
         "text": "Как работает механизм обработки запроса пользователя в браузере?",
         "quiz": 10,
         "created": "2026-04-17T23:15:42.260Z"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 59,
+    "fields": {
+        "text": "Что делает свойство display: flex?",
+        "quiz": 11,
+        "created": "2026-10-20T15:52:31.543Z"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 60,
+    "fields": {
+        "text": "Какое свойство задаёт направление главной оси во flex-контейнере?",
+        "quiz": 11,
+        "created": "2026-10-20T15:53:35.980Z"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 61,
+    "fields": {
+        "text": "Что делает justify-content: space-between?",
+        "quiz": 11,
+        "created": "2026-10-20T15:56:11.884Z"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 62,
+    "fields": {
+        "text": "Какое свойство управляет выравниванием flex-элементов по поперечной оси?",
+        "quiz": 11,
+        "created": "2026-10-20T15:57:03.164Z"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 63,
+    "fields": {
+        "text": "Что делает flex-wrap: wrap?",
+        "quiz": 11,
+        "created": "2026-10-20T15:58:16.574Z"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 64,
+    "fields": {
+        "text": "Что означает flex: 1 у flex-элемента?",
+        "quiz": 11,
+        "created": "2026-10-20T15:59:21.254Z"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 65,
+    "fields": {
+        "text": "Какое свойство позволяет изменить порядок отображения flex-элементов без изменения HTML-разметки?",
+        "quiz": 11,
+        "created": "2026-10-20T16:01:17.432Z"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 66,
+    "fields": {
+        "text": "Чем отличается align-items: center от align-content: center?",
+        "quiz": 11,
+        "created": "2026-10-20T16:02:16.917Z"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 67,
+    "fields": {
+        "text": "Как сделать, чтобы один flex-элемент занимал всё оставшееся пространство, а остальные сохраняли свой размер?",
+        "quiz": 11,
+        "created": "2026-10-20T16:04:14.697Z"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 68,
+    "fields": {
+        "text": "Почему Flexbox называют «одномерной» моделью раскладки?",
+        "quiz": 11,
+        "created": "2026-10-20T16:05:29.305Z"
     }
 },
 {
@@ -2818,6 +2920,406 @@
         "correct": true,
         "question": 58,
         "created": "2026-04-17T23:15:42.269Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 245,
+    "fields": {
+        "text": "Скрывает элемент и его потомков",
+        "correct": false,
+        "question": 59,
+        "created": "2026-10-20T15:52:31.544Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 246,
+    "fields": {
+        "text": "Включает сеточную раскладку (grid)",
+        "correct": false,
+        "question": 59,
+        "created": "2026-10-20T15:52:31.545Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 247,
+    "fields": {
+        "text": "Превращает элемент во flex-контейнер, а его прямых потомков — во flex-элементы",
+        "correct": true,
+        "question": 59,
+        "created": "2026-10-20T15:52:31.546Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 248,
+    "fields": {
+        "text": "Делает элемент блочным и выравнивает текст по центру",
+        "correct": false,
+        "question": 59,
+        "created": "2026-10-20T15:52:31.547Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 249,
+    "fields": {
+        "text": "align-items",
+        "correct": false,
+        "question": 60,
+        "created": "2026-10-20T15:53:35.981Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 250,
+    "fields": {
+        "text": "justify-content",
+        "correct": false,
+        "question": 60,
+        "created": "2026-10-20T15:53:35.982Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 251,
+    "fields": {
+        "text": "flex-direction",
+        "correct": true,
+        "question": 60,
+        "created": "2026-10-20T15:53:35.983Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 252,
+    "fields": {
+        "text": "flex-wrap",
+        "correct": false,
+        "question": 60,
+        "created": "2026-10-20T15:53:35.984Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 253,
+    "fields": {
+        "text": "Прижимает первый элемент к началу, последний — к концу, а промежутки между ними распределяет равномерно",
+        "correct": true,
+        "question": 61,
+        "created": "2026-10-20T15:56:11.885Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 254,
+    "fields": {
+        "text": "Равномерно распределяет элементы с равными промежутками, включая края",
+        "correct": false,
+        "question": 61,
+        "created": "2026-10-20T15:56:11.886Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 255,
+    "fields": {
+        "text": "Центрирует все элементы",
+        "correct": false,
+        "question": 61,
+        "created": "2026-10-20T15:56:11.887Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 256,
+    "fields": {
+        "text": "Выстраивает элементы в колонку",
+        "correct": false,
+        "question": 61,
+        "created": "2026-10-20T15:56:11.887Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 257,
+    "fields": {
+        "text": "justify-content",
+        "correct": false,
+        "question": 62,
+        "created": "2026-10-20T15:57:03.164Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 258,
+    "fields": {
+        "text": "align-items",
+        "correct": true,
+        "question": 62,
+        "created": "2026-10-20T15:57:03.165Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 259,
+    "fields": {
+        "text": "flex-grow",
+        "correct": false,
+        "question": 62,
+        "created": "2026-10-20T15:57:03.165Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 260,
+    "fields": {
+        "text": "order",
+        "correct": false,
+        "question": 62,
+        "created": "2026-10-20T15:57:03.165Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 261,
+    "fields": {
+        "text": "Меняет направление главной оси на противоположное",
+        "correct": false,
+        "question": 63,
+        "created": "2026-10-20T15:58:16.575Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 262,
+    "fields": {
+        "text": "Разрешает перенос flex-элементов на новую строку/колонку, если они не помещаются",
+        "correct": false,
+        "question": 63,
+        "created": "2026-10-20T15:58:16.576Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 263,
+    "fields": {
+        "text": "Растягивает элементы на всю ширину контейнера",
+        "correct": false,
+        "question": 63,
+        "created": "2026-10-20T15:58:16.576Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 264,
+    "fields": {
+        "text": "Разрешает перенос flex-элементов на новую строку/колонку, если они не помещаются",
+        "correct": true,
+        "question": 63,
+        "created": "2026-10-20T15:58:16.577Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 265,
+    "fields": {
+        "text": "Элемент занимает ровно 1 пиксель",
+        "correct": false,
+        "question": 64,
+        "created": "2026-10-20T15:59:21.254Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 266,
+    "fields": {
+        "text": "Элемент становится flex-контейнером",
+        "correct": false,
+        "question": 64,
+        "created": "2026-10-20T15:59:21.255Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 267,
+    "fields": {
+        "text": "Элемент получает flex-grow: 1, flex-shrink: 1, flex-basis: 0% — то есть делит свободное пространство поровну с другими такими же элементами",
+        "correct": true,
+        "question": 64,
+        "created": "2026-10-20T15:59:21.256Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 268,
+    "fields": {
+        "text": "Элемент скрывается",
+        "correct": false,
+        "question": 64,
+        "created": "2026-10-20T15:59:21.256Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 269,
+    "fields": {
+        "text": "order",
+        "correct": true,
+        "question": 65,
+        "created": "2026-10-20T16:01:17.433Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 270,
+    "fields": {
+        "text": "position",
+        "correct": false,
+        "question": 65,
+        "created": "2026-10-20T16:01:17.434Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 271,
+    "fields": {
+        "text": "float",
+        "correct": false,
+        "question": 65,
+        "created": "2026-10-20T16:01:17.434Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 272,
+    "fields": {
+        "text": "z-index",
+        "correct": false,
+        "question": 65,
+        "created": "2026-10-20T16:01:17.435Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 273,
+    "fields": {
+        "text": "align-items работает только для колонок, align-content — только для строк",
+        "correct": false,
+        "question": 66,
+        "created": "2026-10-20T16:02:16.918Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 274,
+    "fields": {
+        "text": "align-content работает только с justify-content",
+        "correct": false,
+        "question": 66,
+        "created": "2026-10-20T16:02:16.918Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 275,
+    "fields": {
+        "text": "Ничем, это синонимы",
+        "correct": false,
+        "question": 66,
+        "created": "2026-10-20T16:02:16.919Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 276,
+    "fields": {
+        "text": "align-items выравнивает элементы внутри одной линии, а align-content — сами линии (работает только при flex-wrap: wrap и нескольких линиях)",
+        "correct": true,
+        "question": 66,
+        "created": "2026-10-20T16:02:16.920Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 277,
+    "fields": {
+        "text": "Задать ему position: absolute",
+        "correct": false,
+        "question": 67,
+        "created": "2026-10-20T16:04:14.698Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 278,
+    "fields": {
+        "text": "Задать ему flex: 1",
+        "correct": true,
+        "question": 67,
+        "created": "2026-10-20T16:04:14.699Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 279,
+    "fields": {
+        "text": "Задать ему flex: none",
+        "correct": false,
+        "question": 67,
+        "created": "2026-10-20T16:04:14.699Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 280,
+    "fields": {
+        "text": "Задать контейнеру justify-content: space-between",
+        "correct": false,
+        "question": 67,
+        "created": "2026-10-20T16:04:14.700Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 281,
+    "fields": {
+        "text": "Потому что он работает только с одним элементом",
+        "correct": false,
+        "question": 68,
+        "created": "2026-10-20T16:05:29.305Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 282,
+    "fields": {
+        "text": "Потому что он управляет расположением элементов вдоль одной оси (главной), а поперечная ось служит для выравнивания",
+        "correct": true,
+        "question": 68,
+        "created": "2026-10-20T16:05:29.306Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 283,
+    "fields": {
+        "text": "Потому что он не поддерживает вложенность",
+        "correct": false,
+        "question": 68,
+        "created": "2026-10-20T16:05:29.306Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 284,
+    "fields": {
+        "text": "Потому что он поддерживает только строки, но не колонки",
+        "correct": false,
+        "question": 68,
+        "created": "2026-10-20T16:05:29.306Z"
     }
 },
 {
