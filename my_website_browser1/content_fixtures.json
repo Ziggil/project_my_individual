@@ -60,6 +60,16 @@
     }
 },
 {
+    "model": "news.articles",
+    "pk": 9,
+    "fields": {
+        "title": "CSS Flexbox",
+        "anons": "Что такое Flexbox и как им пользоваться",
+        "full_text": "Flexbox (Flexible Box Layout) — это модуль CSS, предназначенный для выравнивания и распределения пространства между элементами внутри контейнера, даже если их размеры неизвестны или динамически меняются.\r\n\r\n1. Основы\r\n\r\nЧтобы включить Flexbox, родительскому элементу задаётся свойство display: flex (или display: inline-flex для строчного контейнера).\r\n\r\n.container {\r\ndisplay: flex;\r\n}\r\n\r\nЧто происходит:\r\n\r\n    Все прямые потомки контейнера становятся flex-элементами (flex items).\r\n\r\n    Контейнер получает две оси: главную (main axis) и поперечную (cross axis).\r\n\r\n    По умолчанию главная ось направлена горизонтально (слева направо), поперечная — вертикально (сверху вниз).\r\n\r\nВажно: Flexbox влияет только на прямых потомков. Элементы внутри flex-элементов (внуки) не являются частью этого flex-контекста.\r\n\r\n2. Главная и поперечная оси\r\n\r\nНаправление главной оси задаётся свойством flex-direction:\r\n\r\n    row (по умолчанию) — слева направо.\r\n\r\n    row-reverse — справа налево.\r\n\r\n    column — сверху вниз.\r\n\r\n    column-reverse — снизу вверх.\r\n\r\nОт направления главной оси зависит работа свойств выравнивания (justify-content, align-items).\r\n\r\n3. Свойства контейнера\r\n\r\njustify-content — выравнивание по главной оси\r\nУправляет распределением свободного пространства вдоль главной оси.\r\n\r\n    flex-start (по умолчанию) — элементы прижаты к началу оси.\r\n\r\n    flex-end — к концу.\r\n\r\n    center — по центру.\r\n\r\n    space-between — первый элемент в начале, последний в конце, между ними равные промежутки.\r\n\r\n    space-around — равные отступы вокруг каждого элемента.\r\n\r\n    space-evenly — равные отступы между элементами и по краям.\r\n\r\nalign-items — выравнивание по поперечной оси\r\nУправляет выравниванием элементов вдоль поперечной оси внутри одной линии.\r\n\r\n    stretch (по умолчанию) — элементы растягиваются на всю высоту контейнера.\r\n\r\n    flex-start — прижаты к началу поперечной оси.\r\n\r\n    flex-end — к концу.\r\n\r\n    center — по центру.\r\n\r\n    baseline — по базовой линии текста.\r\n\r\nflex-wrap — перенос элементов\r\nПо умолчанию все элементы выстраиваются в одну линию, сжимаясь при нехватке места. flex-wrap позволяет переносить их на новые строки.\r\n\r\n    nowrap (по умолчанию) — одна линия.\r\n\r\n    wrap — перенос на новые строки.\r\n\r\n    wrap-reverse — перенос, но в обратном порядке.\r\n\r\nalign-content — выравнивание многострочных контейнеров\r\nРаботает только при flex-wrap: wrap (или wrap-reverse). Управляет распределением пространства между строками по поперечной оси. Значения аналогичны justify-content, но применяются к строкам, а не к элементам.\r\n\r\n4. Свойства элементов\r\n\r\nflex-grow — коэффициент роста\r\nОпределяет, как элемент будет расти при наличии свободного пространства.\r\n\r\n    0 (по умолчанию) — не растёт.\r\n\r\n    1 — растёт пропорционально.\r\n\r\n    2 — растёт в два раза быстрее, чем элемент с flex-grow: 1.\r\n\r\nflex-shrink — коэффициент сжатия\r\nОпределяет, как элемент будет сжиматься при нехватке места.\r\n\r\n    1 (по умолчанию) — сжимается.\r\n\r\n    0 — не сжимается (сохраняет размер).\r\n\r\nflex-basis — базовый размер\r\nЗадаёт начальный размер элемента до распределения свободного пространства. Может быть в px, %, auto (по умолчанию — размер контента).\r\n\r\nСокращение flex\r\nСвойство flex объединяет три предыдущих:\r\n.element {\r\nflex: 1 1 200px; /* grow shrink basis */\r\n}\r\nЧастые сокращения:\r\n\r\n    flex: 1 — 1 1 0% (элемент растягивается и занимает равную долю).\r\n\r\n    flex: auto — 1 1 auto (размер по контенту, но может расти/сжиматься).\r\n\r\n    flex: none — 0 0 auto (фиксированный размер).\r\n\r\nalign-self — индивидуальное выравнивание\r\nПереопределяет align-items для конкретного элемента. Принимает те же значения.\r\n.special-item {\r\nalign-self: flex-end;\r\n}\r\n\r\norder — порядок\r\nМеняет порядок отображения элементов. По умолчанию 0. Элементы с меньшим значением идут раньше.\r\n.first {\r\norder: -1; /* станет первым, даже если в HTML он второй */\r\n}\r\n\r\n5. Практические примеры\r\n\r\nПример 1: Горизонтальное и вертикальное центрирование\r\n.container {\r\ndisplay: flex;\r\njustify-content: center;\r\nalign-items: center;\r\nheight: 100vh;\r\n}\r\n\r\nПример 2: Навигационная панель (лого слева, меню справа)\r\n.nav {\r\ndisplay: flex;\r\njustify-content: space-between;\r\nalign-items: center;\r\n}\r\n\r\nПример 3: Равные колонки\r\n.columns {\r\ndisplay: flex;\r\n}\r\n.column {\r\nflex: 1; /* все колонки займут равную долю */\r\n}\r\n\r\nПример 4: Карточки с переносом\r\n.cards {\r\ndisplay: flex;\r\nflex-wrap: wrap;\r\ngap: 20px; /* расстояние между карточками /\r\n}\r\n.card {\r\nflex: 1 1 250px; / минимум 250px, может расти */\r\n}\r\n\r\n6. Ограничения Flexbox\r\n\r\n    Flexbox предназначен для выравнивания элементов в одном измерении (строка или колонка). Для сложных двумерных сеток лучше использовать CSS Grid.\r\n\r\n    flex-basis игнорируется, если элемент имеет flex-shrink: 0 и размеры меньше контейнера.\r\n\r\n    align-content не работает без flex-wrap.\r\n\r\n    gap поддерживается в Flexbox начиная с 2021 года (современные браузеры).\r\n\r\nЗаключение\r\n\r\nFlexbox решает задачи выравнивания и распределения пространства в одном измерении. Основные свойства: display: flex, flex-direction, justify-content, align-items, flex-wrap. Для управления размерами элементов — flex-grow, flex-shrink, flex-basis. Для сложных сеток — CSS Grid.",
+        "date": "2026-10-20T15:16:47Z"
+    }
+},
+{
     "model": "quizes.quiz",
     "pk": 4,
     "fields": {
@@ -2808,6 +2818,357 @@
         "correct": true,
         "question": 58,
         "created": "2026-04-17T23:15:42.269Z"
+    }
+},
+{
+    "model": "results.result",
+    "pk": 91,
+    "fields": {
+        "quiz": 4,
+        "user": 4,
+        "score": 90.0
+    }
+},
+{
+    "model": "results.result",
+    "pk": 92,
+    "fields": {
+        "quiz": 5,
+        "user": 4,
+        "score": 50.0
+    }
+},
+{
+    "model": "results.result",
+    "pk": 93,
+    "fields": {
+        "quiz": 4,
+        "user": 4,
+        "score": 20.0
+    }
+},
+{
+    "model": "results.result",
+    "pk": 101,
+    "fields": {
+        "quiz": 4,
+        "user": 4,
+        "score": 30.0
+    }
+},
+{
+    "model": "results.result",
+    "pk": 102,
+    "fields": {
+        "quiz": 4,
+        "user": 4,
+        "score": 30.0
+    }
+},
+{
+    "model": "results.result",
+    "pk": 103,
+    "fields": {
+        "quiz": 4,
+        "user": 4,
+        "score": 30.0
+    }
+},
+{
+    "model": "results.result",
+    "pk": 104,
+    "fields": {
+        "quiz": 4,
+        "user": 4,
+        "score": 30.0
+    }
+},
+{
+    "model": "results.result",
+    "pk": 111,
+    "fields": {
+        "quiz": 5,
+        "user": 10,
+        "score": 40.0
+    }
+},
+{
+    "model": "results.result",
+    "pk": 112,
+    "fields": {
+        "quiz": 7,
+        "user": 4,
+        "score": 66.66666666666667
+    }
+},
+{
+    "model": "results.result",
+    "pk": 113,
+    "fields": {
+        "quiz": 4,
+        "user": 4,
+        "score": 30.0
+    }
+},
+{
+    "model": "results.result",
+    "pk": 114,
+    "fields": {
+        "quiz": 8,
+        "user": 4,
+        "score": 0.0
+    }
+},
+{
+    "model": "results.result",
+    "pk": 115,
+    "fields": {
+        "quiz": 7,
+        "user": 11,
+        "score": 0.0
+    }
+},
+{
+    "model": "results.result",
+    "pk": 116,
+    "fields": {
+        "quiz": 7,
+        "user": 11,
+        "score": 16.666666666666668
+    }
+},
+{
+    "model": "results.result",
+    "pk": 117,
+    "fields": {
+        "quiz": 9,
+        "user": 13,
+        "score": 50.0
+    }
+},
+{
+    "model": "results.result",
+    "pk": 118,
+    "fields": {
+        "quiz": 9,
+        "user": 14,
+        "score": 66.66666666666667
+    }
+},
+{
+    "model": "results.result",
+    "pk": 119,
+    "fields": {
+        "quiz": 7,
+        "user": 15,
+        "score": 16.666666666666668
+    }
+},
+{
+    "model": "results.result",
+    "pk": 120,
+    "fields": {
+        "quiz": 9,
+        "user": 16,
+        "score": 50.0
+    }
+},
+{
+    "model": "results.result",
+    "pk": 121,
+    "fields": {
+        "quiz": 9,
+        "user": 18,
+        "score": 33.333333333333336
+    }
+},
+{
+    "model": "results.result",
+    "pk": 122,
+    "fields": {
+        "quiz": 9,
+        "user": 19,
+        "score": 16.666666666666668
+    }
+},
+{
+    "model": "results.result",
+    "pk": 123,
+    "fields": {
+        "quiz": 9,
+        "user": 4,
+        "score": 16.666666666666668
+    }
+},
+{
+    "model": "results.result",
+    "pk": 124,
+    "fields": {
+        "quiz": 7,
+        "user": 4,
+        "score": 0.0
+    }
+},
+{
+    "model": "results.result",
+    "pk": 125,
+    "fields": {
+        "quiz": 9,
+        "user": 4,
+        "score": 0.0
+    }
+},
+{
+    "model": "results.result",
+    "pk": 126,
+    "fields": {
+        "quiz": 10,
+        "user": 4,
+        "score": 10.0
+    }
+},
+{
+    "model": "results.result",
+    "pk": 127,
+    "fields": {
+        "quiz": 7,
+        "user": 20,
+        "score": 0.0
+    }
+},
+{
+    "model": "results.result",
+    "pk": 128,
+    "fields": {
+        "quiz": 7,
+        "user": 20,
+        "score": 0.0
+    }
+},
+{
+    "model": "results.result",
+    "pk": 129,
+    "fields": {
+        "quiz": 7,
+        "user": 20,
+        "score": 0.0
+    }
+},
+{
+    "model": "results.result",
+    "pk": 130,
+    "fields": {
+        "quiz": 5,
+        "user": 20,
+        "score": 30.0
+    }
+},
+{
+    "model": "results.result",
+    "pk": 131,
+    "fields": {
+        "quiz": 7,
+        "user": 4,
+        "score": 16.666666666666668
+    }
+},
+{
+    "model": "results.result",
+    "pk": 132,
+    "fields": {
+        "quiz": 7,
+        "user": 4,
+        "score": 0.0
+    }
+},
+{
+    "model": "results.result",
+    "pk": 133,
+    "fields": {
+        "quiz": 7,
+        "user": 4,
+        "score": 100.0
+    }
+},
+{
+    "model": "results.result",
+    "pk": 134,
+    "fields": {
+        "quiz": 4,
+        "user": 4,
+        "score": 30.0
+    }
+},
+{
+    "model": "results.result",
+    "pk": 135,
+    "fields": {
+        "quiz": 7,
+        "user": 4,
+        "score": 83.33333333333334
+    }
+},
+{
+    "model": "results.result",
+    "pk": 136,
+    "fields": {
+        "quiz": 9,
+        "user": 4,
+        "score": 66.66666666666667
+    }
+},
+{
+    "model": "results.result",
+    "pk": 137,
+    "fields": {
+        "quiz": 8,
+        "user": 4,
+        "score": 70.0
+    }
+},
+{
+    "model": "results.result",
+    "pk": 138,
+    "fields": {
+        "quiz": 7,
+        "user": 4,
+        "score": 0.0
+    }
+},
+{
+    "model": "results.result",
+    "pk": 139,
+    "fields": {
+        "quiz": 7,
+        "user": 4,
+        "score": 16.666666666666668
+    }
+},
+{
+    "model": "results.result",
+    "pk": 140,
+    "fields": {
+        "quiz": 7,
+        "user": 4,
+        "score": 83.33333333333333
+    }
+},
+{
+    "model": "results.result",
+    "pk": 141,
+    "fields": {
+        "quiz": 10,
+        "user": 4,
+        "score": 30.0
+    }
+},
+{
+    "model": "results.result",
+    "pk": 142,
+    "fields": {
+        "quiz": 5,
+        "user": 4,
+        "score": 20.0
     }
 }
 ]
