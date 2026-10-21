@@ -1,0 +1,144 @@
+Основы JavaScript: DOM-манипуляции и обработка событий
+
+Когда вы открываете сайт, браузер превращает HTML-код в дерево объектов — DOM (Document Object Model). JavaScript получает доступ к этому дереву и может менять страницу «на лету»: добавлять элементы, менять текст, реагировать на клики. В этой статье разберём, как это работает, на примерах, которые можно сразу проверить в консоли браузера.
+1. Что такое DOM
+
+DOM — это представление HTML-документа в виде дерева узлов. Каждый тег становится элементом (element node), текст внутри тега — текстовым узлом (text node), атрибуты — атрибутами.
+
+Упрощённо страница:
+
+body
+h1 — Привет
+p — Это абзац.
+
+превращается в дерево:
+
+document
+html
+body
+h1
+«Привет»
+p
+«Это абзац.»
+
+Точка входа — глобальный объект document. Через него JavaScript находит элементы и управляет ими.
+
+Проверьте сами: откройте любой сайт, нажмите F12, перейдите во вкладку Console, введите document.body и нажмите Enter. Вы увидите HTML-элемент body — это и есть DOM-узел.
+2. Как выбирать элементы
+
+Основные методы поиска:
+
+    document.getElementById('id') — возвращает один элемент или null. Пример: document.getElementById('box').
+
+    document.querySelector('css') — возвращает первый подходящий элемент или null. Пример: document.querySelector('.card').
+
+    document.querySelectorAll('css') — возвращает список всех подходящих элементов (NodeList). Пример: document.querySelectorAll('li').
+
+Пример кода:
+
+const box = document.getElementById('box');
+const firstCard = document.querySelector('.card');
+const allItems = document.querySelectorAll('li');
+
+Разница между querySelector и querySelectorAll — ключевой вопрос на собеседовании. querySelector возвращает первый найденный элемент (или null). querySelectorAll возвращает статический список всех совпадений (NodeList). Он не обновляется автоматически, если DOM изменился после вызова.
+
+Пример перебора:
+
+const items = document.querySelectorAll('li');
+items.forEach(item => console.log(item.textContent));
+
+Важно: querySelectorAll возвращает NodeList, а не массив. У него есть forEach, но нет map и filter. Если нужны методы массива — преобразуйте: Array.from(items).
+3. Изменение содержимого и стилей
+3.1. Текст и HTML
+
+const title = document.querySelector('h1');
+title.textContent = 'Новый заголовок';
+title.innerHTML = 'Новый заголовок';
+
+textContent вставляет текст как есть, теги не интерпретируются. Это безопасно для пользовательских данных. innerHTML парсит строку как HTML. Это опасно, если строка пришла от пользователя — это путь к XSS-атаке. Правило: пользовательский ввод — только через textContent.
+3.2. Классы и стили
+
+const box = document.getElementById('box');
+box.classList.add('active');
+box.classList.remove('active');
+box.classList.toggle('active');
+box.classList.contains('active');
+box.style.color = 'red';
+box.style.display = 'none';
+
+classList предпочтительнее style, потому что стили остаются в CSS, а JavaScript только переключает классы. Это чище и проще поддерживать.
+4. События: addEventListener
+
+Событие — это действие пользователя или браузера: клик, ввод текста, загрузка страницы. Чтобы реагировать на событие, нужен обработчик.
+
+const btn = document.getElementById('toggle');
+btn.addEventListener('click', function (event) {
+console.log('Кнопка нажата!');
+});
+
+addEventListener принимает три аргумента. Первый — имя события, строка: 'click', 'submit', 'input', 'keydown' и т.д. Второй — обработчик, функция, которая вызовется при событии. Третий — опции (необязательно), объект или boolean: { once: true }, { capture: true }, { passive: true }.
+4.1. Объект event
+
+В обработчик первым аргументом приходит объект события. Из него можно узнать подробности:
+
+btn.addEventListener('click', (event) => {
+console.log(event.target);
+console.log(event.type);
+console.log(event.clientX);
+});
+
+event.target — тот элемент, на котором реально произошло событие (может быть вложенным). event.currentTarget — элемент, к которому привязан обработчик (обычно совпадает с this в обычной функции).
+4.2. preventDefault
+
+Многие элементы имеют поведение по умолчанию: ссылка переходит по URL, форма отправляется на сервер, чекбокс переключается. preventDefault() отменяет это поведение:
+
+const link = document.querySelector('a');
+link.addEventListener('click', (event) => {
+event.preventDefault();
+console.log('Переход отменён');
+});
+
+Классический пример — валидация формы перед отправкой: если поля пустые, вызвать preventDefault() и показать ошибку, не отправляя данные на сервер.
+5. Мини-пример: кнопка, которая скрывает блок
+
+Соберём всё вместе. HTML:
+
+button id="toggle" — Показать / скрыть
+div id="box" — Этот блок можно спрятать.
+
+JavaScript:
+
+const btn = document.getElementById('toggle');
+const box = document.getElementById('box');
+btn.addEventListener('click', () => {
+box.classList.toggle('hidden');
+});
+
+CSS:
+
+.hidden {
+display: none;
+}
+
+Что происходит. Первое: находим кнопку и блок по id. Второе: вешаем на кнопку обработчик click. Третье: по клику classList.toggle('hidden') добавляет класс, если его нет, и убирает, если есть. Четвёртое: класс .hidden скрывает блок через display: none.
+
+Пять строк JavaScript — а поведение полноценное. Именно так устроены многие «аккордеоны» и выпадающие меню.
+6. Частые ошибки новичков
+
+    onclick="..." в HTML — смешивает разметку и логику, сложно поддерживать. Правильно: addEventListener в JavaScript.
+
+    innerHTML для пользовательских данных — XSS-уязвимость. Правильно: textContent.
+
+    querySelectorAll(...).map(...) — у NodeList нет map. Правильно: Array.from(...).map(...).
+
+    Обработчик до загрузки DOM — элемент ещё не существует, querySelector вернёт null. Правильно: скрипт в конце body или DOMContentLoaded.
+
+    Забыли preventDefault() в форме — страница перезагружается, AJAX-логика ломается. Правильно: вызвать event.preventDefault().
+
+Пример безопасного запуска после загрузки DOM:
+
+document.addEventListener('DOMContentLoaded', () => {
+const btn = document.getElementById('toggle');
+});
+
+Такой подход гарантирует, что DOM уже построен, а элементы доступны.
