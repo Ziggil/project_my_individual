@@ -21,6 +21,17 @@ document.addEventListener('DOMContentLoaded', () => {
   let questionData = null;
   let responses = null;
 
+
+  // Используется для перемешивания порядка ответов внутри вопроса.
+  const shuffleArray = (array) => {
+    const result = array.slice(); // копия, чтобы не менять оригинал
+    for (let i = result.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [result[i], result[j]] = [result[j], result[i]]; // swap
+    }
+    return result;
+  };
+
   // Загрузка вопросов для страницы теста
   const loadQuestions = () => {
     // Если нет quiz-box на странице — выходим
@@ -45,7 +56,9 @@ document.addEventListener('DOMContentLoaded', () => {
         // Проходим по каждому вопросу
         data.forEach(el => {
           const question = el.text;
-          const answers = el.answers;
+          // [ДОБАВЛЕНО] Перемешиваем ответы внутри вопроса.
+          // Вопросы остаются в исходном порядке, ответы — в случайном.
+          const answers = shuffleArray(el.answers);
 
           // Рисуем вопрос
           quizBox.innerHTML += `
