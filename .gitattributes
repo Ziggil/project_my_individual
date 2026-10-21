@@ -2,26 +2,27 @@
 *.py linguist-detectable=true
 *.py linguist-language=Python
 
-# HTML
+# HTML — принудительно включить все HTML
 *.html linguist-detectable=true
 *.html linguist-language=HTML
+*.html -linguist-documentation
 
-# CSS
-static/css/*.css linguist-detectable=true
-static/css/*.css linguist-language=CSS
-static/style.css linguist-detectable=true
-static/style.css linguist-language=CSS
+# CSS — используется ** для рекурсивного сопоставления всех поддиректорий
+**/static/css/*.css linguist-detectable=true
+**/static/css/*.css linguist-language=CSS
+**/static/style.css linguist-detectable=true
+**/static/style.css linguist-language=CSS
 
-# JavaScript
-static/js/*.js linguist-detectable=true
-static/js/*.js linguist-language=JavaScript
+# JavaScript — аналогично используйте **
+**/static/js/*.js linguist-detectable=true
+**/static/js/*.js linguist-language=JavaScript
 
-# Vendored libraries
-static/vendor/** linguist-vendored
-static/libs/** linguist-vendored
+# Сторонние библиотеки — исключить
+**/vendor/** linguist-vendored
+**/libs/** linguist-vendored
 **/bootstrap*.css linguist-vendored
 **/bootstrap*.js linguist-vendored
 **/jquery*.js linguist-vendored
 
-# Generated files
-# */migrations/*.py linguist-generated=true
+# Миграции — исключить
+**/migrations/*.py linguist-generated
