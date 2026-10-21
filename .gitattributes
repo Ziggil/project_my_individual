@@ -1,0 +1,27 @@
+# Python
+*.py linguist-detectable=true
+*.py linguist-language=Python
+
+# HTML
+*.html linguist-detectable=true
+*.html linguist-language=HTML
+
+# CSS
+static/css/*.css linguist-detectable=true
+static/css/*.css linguist-language=CSS
+static/style.css linguist-detectable=true
+static/style.css linguist-language=CSS
+
+# JavaScript
+static/js/*.js linguist-detectable=true
+static/js/*.js linguist-language=JavaScript
+
+# Vendored libraries
+static/vendor/** linguist-vendored
+static/libs/** linguist-vendored
+**/bootstrap*.css linguist-vendored
+**/bootstrap*.js linguist-vendored
+**/jquery*.js linguist-vendored
+
+# Generated files
+# */migrations/*.py linguist-generated=true
