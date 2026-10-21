@@ -164,6 +164,18 @@
     }
 },
 {
+    "model": "quizes.quiz",
+    "pk": 12,
+    "fields": {
+        "name": "Основы JavaScript: DOM и обработка событий",
+        "topic": "Тест по теме «DOM и события»",
+        "number_of_questions": 12,
+        "time": 5,
+        "required_score_pass": 85,
+        "difficluty": "легкий"
+    }
+},
+{
     "model": "questions.question",
     "pk": 6,
     "fields": {
@@ -710,6 +722,123 @@
         "text": "Почему Flexbox называют «одномерной» моделью раскладки?",
         "quiz": 11,
         "created": "2026-10-20T16:05:29.305Z"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 69,
+    "fields": {
+        "text": "Что такое DOM?",
+        "quiz": 12,
+        "created": "2026-10-21T17:25:58.446Z"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 70,
+    "fields": {
+        "text": "Чем отличается querySelector от querySelectorAll?",
+        "quiz": 12,
+        "created": "2026-10-21T17:26:59.138Z"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 71,
+    "fields": {
+        "text": "Что возвращает querySelector, если элемент не найден?",
+        "quiz": 12,
+        "created": "2026-10-21T17:46:32.288Z"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 72,
+    "fields": {
+        "text": "Что делает textContent?",
+        "quiz": 12,
+        "created": "2026-10-21T17:49:27.524Z"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 73,
+    "fields": {
+        "text": "Что делает textContent?",
+        "quiz": 12,
+        "created": "2026-10-21T18:01:54.744Z"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 74,
+    "fields": {
+        "text": "Почему innerHTML опасно использовать с данными от пользователя?",
+        "quiz": 12,
+        "created": "2026-10-21T18:06:39.473Z"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 75,
+    "fields": {
+        "text": "Какие методы есть у classList?",
+        "quiz": 12,
+        "created": "2026-10-21T18:07:53.329Z"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 76,
+    "fields": {
+        "text": "Сколько аргументов принимает addEventListener?",
+        "quiz": 12,
+        "created": "2026-10-21T18:10:08.608Z"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 77,
+    "fields": {
+        "text": "Что содержит event.target в обработчике события?",
+        "quiz": 12,
+        "created": "2026-10-21T18:10:45.144Z"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 78,
+    "fields": {
+        "text": "Что делает event.preventDefault()?",
+        "quiz": 12,
+        "created": "2026-10-21T18:11:28.990Z"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 79,
+    "fields": {
+        "text": "Почему обработчик нужно вешать после DOMContentLoaded?",
+        "quiz": 12,
+        "created": "2026-10-21T18:12:16.153Z"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 80,
+    "fields": {
+        "text": "Что вернёт querySelectorAll('li')?",
+        "quiz": 12,
+        "created": "2026-10-21T18:14:26.953Z"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 81,
+    "fields": {
+        "text": "Какое правило безопасности рекомендуется соблюдать при работе с DOM?",
+        "quiz": 12,
+        "created": "2026-10-21T18:15:43.249Z"
     }
 },
 {
@@ -3330,6 +3459,526 @@
         "correct": false,
         "question": 68,
         "created": "2026-10-20T16:05:29.306Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 285,
+    "fields": {
+        "text": "Язык программирования для работы с базами данных",
+        "correct": false,
+        "question": 69,
+        "created": "2026-10-21T17:25:58.448Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 286,
+    "fields": {
+        "text": "Библиотека для создания CSS-анимаций",
+        "correct": false,
+        "question": 69,
+        "created": "2026-10-21T17:25:58.449Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 287,
+    "fields": {
+        "text": "Представление HTML-документа в виде дерева узлов, с которым работает JavaScript",
+        "correct": true,
+        "question": 69,
+        "created": "2026-10-21T17:25:58.450Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 288,
+    "fields": {
+        "text": "Формат хранения изображений на сайте",
+        "correct": false,
+        "question": 69,
+        "created": "2026-10-21T17:25:58.450Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 289,
+    "fields": {
+        "text": "querySelector возвращает первый подходящий элемент, а querySelectorAll — список всех подходящих",
+        "correct": true,
+        "question": 70,
+        "created": "2026-10-21T17:26:59.139Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 290,
+    "fields": {
+        "text": "querySelector работает только с id, а querySelectorAll — только с классами",
+        "correct": false,
+        "question": 70,
+        "created": "2026-10-21T17:26:59.170Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 291,
+    "fields": {
+        "text": "querySelector возвращает массив, а querySelectorAll — строку",
+        "correct": false,
+        "question": 70,
+        "created": "2026-10-21T17:26:59.172Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 292,
+    "fields": {
+        "text": "Между ними нет никакой разницы",
+        "correct": false,
+        "question": 70,
+        "created": "2026-10-21T17:26:59.173Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 293,
+    "fields": {
+        "text": "Пустую строку",
+        "correct": false,
+        "question": 71,
+        "created": "2026-10-21T17:46:32.289Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 294,
+    "fields": {
+        "text": "undefined",
+        "correct": false,
+        "question": 71,
+        "created": "2026-10-21T17:46:32.289Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 295,
+    "fields": {
+        "text": "null",
+        "correct": true,
+        "question": 71,
+        "created": "2026-10-21T17:46:32.290Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 296,
+    "fields": {
+        "text": "undefined",
+        "correct": false,
+        "question": 71,
+        "created": "2026-10-21T17:46:32.291Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 297,
+    "fields": {
+        "text": "Вставляет HTML-код и интерпретирует теги",
+        "correct": false,
+        "question": 72,
+        "created": "2026-10-21T17:49:27.524Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 298,
+    "fields": {
+        "text": "Меняет CSS-стили элемента",
+        "correct": false,
+        "question": 72,
+        "created": "2026-10-21T17:49:27.525Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 299,
+    "fields": {
+        "text": "Удаляет элемент со страницы",
+        "correct": false,
+        "question": 72,
+        "created": "2026-10-21T17:49:27.525Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 300,
+    "fields": {
+        "text": "Устанавливает текст элемента как есть, без интерпретации тегов",
+        "correct": true,
+        "question": 72,
+        "created": "2026-10-21T17:49:27.525Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 301,
+    "fields": {
+        "text": "Вставляет HTML-код и интерпретирует теги",
+        "correct": false,
+        "question": 73,
+        "created": "2026-10-21T18:01:54.745Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 302,
+    "fields": {
+        "text": "B) Устанавливает текст элемента как есть, без интерпретации тегов",
+        "correct": true,
+        "question": 73,
+        "created": "2026-10-21T18:01:54.746Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 303,
+    "fields": {
+        "text": "Удаляет элемент со страницы",
+        "correct": false,
+        "question": 73,
+        "created": "2026-10-21T18:01:54.746Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 304,
+    "fields": {
+        "text": "няет CSS-стили элемента",
+        "correct": false,
+        "question": 73,
+        "created": "2026-10-21T18:01:54.747Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 305,
+    "fields": {
+        "text": "Оно интерпретирует строку как HTML, что открывает путь к XSS-атаке",
+        "correct": true,
+        "question": 74,
+        "created": "2026-10-21T18:06:39.474Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 306,
+    "fields": {
+        "text": "Оно не поддерживается в современных браузерах",
+        "correct": false,
+        "question": 74,
+        "created": "2026-10-21T18:06:39.475Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 307,
+    "fields": {
+        "text": "Оно удаляет все обработчики событий",
+        "correct": false,
+        "question": 74,
+        "created": "2026-10-21T18:06:39.476Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 308,
+    "fields": {
+        "text": "Оно работает медленнее, чем textContent",
+        "correct": false,
+        "question": 74,
+        "created": "2026-10-21T18:06:39.477Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 309,
+    "fields": {
+        "text": "add, remove, toggle, contains",
+        "correct": true,
+        "question": 75,
+        "created": "2026-10-21T18:07:53.331Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 310,
+    "fields": {
+        "text": "push, pop, shift, unshift",
+        "correct": false,
+        "question": 75,
+        "created": "2026-10-21T18:07:53.332Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 311,
+    "fields": {
+        "text": "get, set, delete, clear",
+        "correct": false,
+        "question": 75,
+        "created": "2026-10-21T18:07:53.334Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 312,
+    "fields": {
+        "text": "open, close, read, write",
+        "correct": false,
+        "question": 75,
+        "created": "2026-10-21T18:07:53.335Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 313,
+    "fields": {
+        "text": "Один",
+        "correct": false,
+        "question": 76,
+        "created": "2026-10-21T18:10:08.609Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 314,
+    "fields": {
+        "text": "Два",
+        "correct": false,
+        "question": 76,
+        "created": "2026-10-21T18:10:08.610Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 315,
+    "fields": {
+        "text": "Три",
+        "correct": true,
+        "question": 76,
+        "created": "2026-10-21T18:10:08.611Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 316,
+    "fields": {
+        "text": "Четыре",
+        "correct": false,
+        "question": 76,
+        "created": "2026-10-21T18:10:08.612Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 317,
+    "fields": {
+        "text": "Элемент, к которому привязан обработчик",
+        "correct": false,
+        "question": 77,
+        "created": "2026-10-21T18:10:45.144Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 318,
+    "fields": {
+        "text": "Строку с именем события",
+        "correct": false,
+        "question": 77,
+        "created": "2026-10-21T18:10:45.145Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 319,
+    "fields": {
+        "text": "Элемент, на котором реально произошло событие",
+        "correct": true,
+        "question": 77,
+        "created": "2026-10-21T18:10:45.145Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 320,
+    "fields": {
+        "text": "Всегда document.body",
+        "correct": false,
+        "question": 77,
+        "created": "2026-10-21T18:10:45.145Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 321,
+    "fields": {
+        "text": "Перезагружает страницу",
+        "correct": false,
+        "question": 78,
+        "created": "2026-10-21T18:11:28.991Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 322,
+    "fields": {
+        "text": "Останавливает всплытие события",
+        "correct": false,
+        "question": 78,
+        "created": "2026-10-21T18:11:28.992Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 323,
+    "fields": {
+        "text": "Отменяет поведение элемента по умолчанию",
+        "correct": true,
+        "question": 78,
+        "created": "2026-10-21T18:11:28.992Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 324,
+    "fields": {
+        "text": "Удаляет обработчик события",
+        "correct": false,
+        "question": 78,
+        "created": "2026-10-21T18:11:28.992Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 325,
+    "fields": {
+        "text": "Потому что элементы ещё не построены, и querySelector вернёт null",
+        "correct": true,
+        "question": 79,
+        "created": "2026-10-21T18:12:16.153Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 326,
+    "fields": {
+        "text": "Потому что до этого события JavaScript не работает",
+        "correct": false,
+        "question": 79,
+        "created": "2026-10-21T18:12:16.154Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 327,
+    "fields": {
+        "text": "Потому что addEventListener не работает в начале страницы",
+        "correct": false,
+        "question": 79,
+        "created": "2026-10-21T18:12:16.155Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 328,
+    "fields": {
+        "text": "Потому что браузер блокирует скрипты до загрузки CSS",
+        "correct": false,
+        "question": 79,
+        "created": "2026-10-21T18:12:16.155Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 329,
+    "fields": {
+        "text": "Массив с методами map и filter",
+        "correct": false,
+        "question": 80,
+        "created": "2026-10-21T18:14:26.954Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 330,
+    "fields": {
+        "text": "NodeList — статический список элементов, у которого есть forEach",
+        "correct": true,
+        "question": 80,
+        "created": "2026-10-21T18:14:26.954Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 331,
+    "fields": {
+        "text": "Первый элемент li",
+        "correct": false,
+        "question": 80,
+        "created": "2026-10-21T18:14:26.955Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 332,
+    "fields": {
+        "text": "Строку со всеми li",
+        "correct": false,
+        "question": 80,
+        "created": "2026-10-21T18:14:26.956Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 333,
+    "fields": {
+        "text": "Всегда использовать innerHTML для скорости",
+        "correct": false,
+        "question": 81,
+        "created": "2026-10-21T18:15:43.250Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 334,
+    "fields": {
+        "text": "Пользовательский ввод вставлять только через textContent",
+        "correct": true,
+        "question": 81,
+        "created": "2026-10-21T18:15:43.250Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 335,
+    "fields": {
+        "text": "Не использовать classList",
+        "correct": false,
+        "question": 81,
+        "created": "2026-10-21T18:15:43.251Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 336,
+    "fields": {
+        "text": "Вешать обработчики только через onclick в HTML",
+        "correct": false,
+        "question": 81,
+        "created": "2026-10-21T18:15:43.251Z"
     }
 },
 {
