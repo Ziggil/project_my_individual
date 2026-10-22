@@ -75,8 +75,18 @@
     "fields": {
         "title": "Основы JavaScript: DOM и события",
         "anons": "JS, DOM-манипуляции и обработчики событий",
-        "full_text": "Основы JavaScript: DOM-манипуляции и обработка событий\r\n\r\nКогда вы открываете сайт, браузер превращает HTML-код в дерево объектов — DOM (Document Object Model). JavaScript получает доступ к этому дереву и может менять страницу «на лету»: добавлять элементы, менять текст, реагировать на клики. В этой статье разберём, как это работает, на примерах, которые можно сразу проверить в консоли браузера.\r\n1. Что такое DOM\r\n\r\nDOM — это представление HTML-документа в виде дерева узлов. Каждый тег становится элементом (element node), текст внутри тега — текстовым узлом (text node), атрибуты — атрибутами.\r\n\r\nУпрощённо страница:\r\n\r\nbody\r\nh1 — Привет\r\np — Это абзац.\r\n\r\nпревращается в дерево:\r\n\r\ndocument\r\nhtml\r\nbody\r\nh1\r\n«Привет»\r\np\r\n«Это абзац.»\r\n\r\nТочка входа — глобальный объект document. Через него JavaScript находит элементы и управляет ими.\r\n\r\nПроверьте сами: откройте любой сайт, нажмите F12, перейдите во вкладку Console, введите document.body и нажмите Enter. Вы увидите HTML-элемент body — это и есть DOM-узел.\r\n2. Как выбирать элементы\r\n\r\nОсновные методы поиска:\r\n\r\n    document.getElementById('id') — возвращает один элемент или null. Пример: document.getElementById('box').\r\n\r\n    document.querySelector('css') — возвращает первый подходящий элемент или null. Пример: document.querySelector('.card').\r\n\r\n    document.querySelectorAll('css') — возвращает список всех подходящих элементов (NodeList). Пример: document.querySelectorAll('li').\r\n\r\nПример кода:\r\n\r\nconst box = document.getElementById('box');\r\nconst firstCard = document.querySelector('.card');\r\nconst allItems = document.querySelectorAll('li');\r\n\r\nРазница между querySelector и querySelectorAll — ключевой вопрос на собеседовании. querySelector возвращает первый найденный элемент (или null). querySelectorAll возвращает статический список всех совпадений (NodeList). Он не обновляется автоматически, если DOM изменился после вызова.\r\n\r\nПример перебора:\r\n\r\nconst items = document.querySelectorAll('li');\r\nitems.forEach(item => console.log(item.textContent));\r\n\r\nВажно: querySelectorAll возвращает NodeList, а не массив. У него есть forEach, но нет map и filter. Если нужны методы массива — преобразуйте: Array.from(items).\r\n3. Изменение содержимого и стилей\r\n3.1. Текст и HTML\r\n\r\nconst title = document.querySelector('h1');\r\ntitle.textContent = 'Новый заголовок';\r\ntitle.innerHTML = 'Новый заголовок';\r\n\r\ntextContent вставляет текст как есть, теги не интерпретируются. Это безопасно для пользовательских данных. innerHTML парсит строку как HTML. Это опасно, если строка пришла от пользователя — это путь к XSS-атаке. Правило: пользовательский ввод — только через textContent.\r\n3.2. Классы и стили\r\n\r\nconst box = document.getElementById('box');\r\nbox.classList.add('active');\r\nbox.classList.remove('active');\r\nbox.classList.toggle('active');\r\nbox.classList.contains('active');\r\nbox.style.color = 'red';\r\nbox.style.display = 'none';\r\n\r\nclassList предпочтительнее style, потому что стили остаются в CSS, а JavaScript только переключает классы. Это чище и проще поддерживать.\r\n4. События: addEventListener\r\n\r\nСобытие — это действие пользователя или браузера: клик, ввод текста, загрузка страницы. Чтобы реагировать на событие, нужен обработчик.\r\n\r\nconst btn = document.getElementById('toggle');\r\nbtn.addEventListener('click', function (event) {\r\nconsole.log('Кнопка нажата!');\r\n});\r\n\r\naddEventListener принимает три аргумента. Первый — имя события, строка: 'click', 'submit', 'input', 'keydown' и т.д. Второй — обработчик, функция, которая вызовется при событии. Третий — опции (необязательно), объект или boolean: { once: true }, { capture: true }, { passive: true }.\r\n4.1. Объект event\r\n\r\nВ обработчик первым аргументом приходит объект события. Из него можно узнать подробности:\r\n\r\nbtn.addEventListener('click', (event) => {\r\nconsole.log(event.target);\r\nconsole.log(event.type);\r\nconsole.log(event.clientX);\r\n});\r\n\r\nevent.target — тот элемент, на котором реально произошло событие (может быть вложенным). event.currentTarget — элемент, к которому привязан обработчик (обычно совпадает с this в обычной функции).\r\n4.2. preventDefault\r\n\r\nМногие элементы имеют поведение по умолчанию: ссылка переходит по URL, форма отправляется на сервер, чекбокс переключается. preventDefault() отменяет это поведение:\r\n\r\nconst link = document.querySelector('a');\r\nlink.addEventListener('click', (event) => {\r\nevent.preventDefault();\r\nconsole.log('Переход отменён');\r\n});\r\n\r\nКлассический пример — валидация формы перед отправкой: если поля пустые, вызвать preventDefault() и показать ошибку, не отправляя данные на сервер.\r\n5. Мини-пример: кнопка, которая скрывает блок\r\n\r\nСоберём всё вместе. HTML:\r\n\r\nbutton id=\"toggle\" — Показать / скрыть\r\ndiv id=\"box\" — Этот блок можно спрятать.\r\n\r\nJavaScript:\r\n\r\nconst btn = document.getElementById('toggle');\r\nconst box = document.getElementById('box');\r\nbtn.addEventListener('click', () => {\r\nbox.classList.toggle('hidden');\r\n});\r\n\r\nCSS:\r\n\r\n.hidden {\r\ndisplay: none;\r\n}\r\n\r\nЧто происходит. Первое: находим кнопку и блок по id. Второе: вешаем на кнопку обработчик click. Третье: по клику classList.toggle('hidden') добавляет класс, если его нет, и убирает, если есть. Четвёртое: класс .hidden скрывает блок через display: none.\r\n\r\nПять строк JavaScript — а поведение полноценное. Именно так устроены многие «аккордеоны» и выпадающие меню.\r\n6. Частые ошибки новичков\r\n\r\n    onclick=\"...\" в HTML — смешивает разметку и логику, сложно поддерживать. Правильно: addEventListener в JavaScript.\r\n\r\n    innerHTML для пользовательских данных — XSS-уязвимость. Правильно: textContent.\r\n\r\n    querySelectorAll(...).map(...) — у NodeList нет map. Правильно: Array.from(...).map(...).\r\n\r\n    Обработчик до загрузки DOM — элемент ещё не существует, querySelector вернёт null. Правильно: скрипт в конце body или DOMContentLoaded.\r\n\r\n    Забыли preventDefault() в форме — страница перезагружается, AJAX-логика ломается. Правильно: вызвать event.preventDefault().\r\n\r\nПример безопасного запуска после загрузки DOM:\r\n\r\ndocument.addEventListener('DOMContentLoaded', () => {\r\nconst btn = document.getElementById('toggle');\r\n});\r\n\r\nТакой подход гарантирует, что DOM уже построен, а элементы доступны.",
+        "full_text": "Когда вы открываете сайт, браузер превращает HTML-код в дерево объектов — DOM (Document Object Model). JavaScript получает доступ к этому дереву и может менять страницу «на лету»: добавлять элементы, менять текст, реагировать на клики. В этой статье разберём, как это работает, на примерах, которые можно сразу проверить в консоли браузера.\r\n1. Что такое DOM\r\n\r\nDOM — это представление HTML-документа в виде дерева узлов. Каждый тег становится элементом (element node), текст внутри тега — текстовым узлом (text node), атрибуты — атрибутами.\r\n\r\nУпрощённо страница:\r\n\r\nbody\r\nh1 — Привет\r\np — Это абзац.\r\n\r\nпревращается в дерево:\r\n\r\ndocument\r\nhtml\r\nbody\r\nh1\r\n«Привет»\r\np\r\n«Это абзац.»\r\n\r\nТочка входа — глобальный объект document. Через него JavaScript находит элементы и управляет ими.\r\n\r\nПроверьте сами: откройте любой сайт, нажмите F12, перейдите во вкладку Console, введите document.body и нажмите Enter. Вы увидите HTML-элемент body — это и есть DOM-узел.\r\n2. Как выбирать элементы\r\n\r\nОсновные методы поиска:\r\n\r\n    document.getElementById('id') — возвращает один элемент или null. Пример: document.getElementById('box').\r\n\r\n    document.querySelector('css') — возвращает первый подходящий элемент или null. Пример: document.querySelector('.card').\r\n\r\n    document.querySelectorAll('css') — возвращает список всех подходящих элементов (NodeList). Пример: document.querySelectorAll('li').\r\n\r\nПример кода:\r\n\r\nconst box = document.getElementById('box');\r\nconst firstCard = document.querySelector('.card');\r\nconst allItems = document.querySelectorAll('li');\r\n\r\nРазница между querySelector и querySelectorAll — ключевой вопрос на собеседовании. querySelector возвращает первый найденный элемент (или null). querySelectorAll возвращает статический список всех совпадений (NodeList). Он не обновляется автоматически, если DOM изменился после вызова.\r\n\r\nПример перебора:\r\n\r\nconst items = document.querySelectorAll('li');\r\nitems.forEach(item => console.log(item.textContent));\r\n\r\nВажно: querySelectorAll возвращает NodeList, а не массив. У него есть forEach, но нет map и filter. Если нужны методы массива — преобразуйте: Array.from(items).\r\n3. Изменение содержимого и стилей\r\n3.1. Текст и HTML\r\n\r\nconst title = document.querySelector('h1');\r\ntitle.textContent = 'Новый заголовок';\r\ntitle.innerHTML = 'Новый заголовок';\r\n\r\ntextContent вставляет текст как есть, теги не интерпретируются. Это безопасно для пользовательских данных. innerHTML парсит строку как HTML. Это опасно, если строка пришла от пользователя — это путь к XSS-атаке. Правило: пользовательский ввод — только через textContent.\r\n3.2. Классы и стили\r\n\r\nconst box = document.getElementById('box');\r\nbox.classList.add('active');\r\nbox.classList.remove('active');\r\nbox.classList.toggle('active');\r\nbox.classList.contains('active');\r\nbox.style.color = 'red';\r\nbox.style.display = 'none';\r\n\r\nclassList предпочтительнее style, потому что стили остаются в CSS, а JavaScript только переключает классы. Это чище и проще поддерживать.\r\n4. События: addEventListener\r\n\r\nСобытие — это действие пользователя или браузера: клик, ввод текста, загрузка страницы. Чтобы реагировать на событие, нужен обработчик.\r\n\r\nconst btn = document.getElementById('toggle');\r\nbtn.addEventListener('click', function (event) {\r\nconsole.log('Кнопка нажата!');\r\n});\r\n\r\naddEventListener принимает три аргумента. Первый — имя события, строка: 'click', 'submit', 'input', 'keydown' и т.д. Второй — обработчик, функция, которая вызовется при событии. Третий — опции (необязательно), объект или boolean: { once: true }, { capture: true }, { passive: true }.\r\n4.1. Объект event\r\n\r\nВ обработчик первым аргументом приходит объект события. Из него можно узнать подробности:\r\n\r\nbtn.addEventListener('click', (event) => {\r\nconsole.log(event.target);\r\nconsole.log(event.type);\r\nconsole.log(event.clientX);\r\n});\r\n\r\nevent.target — тот элемент, на котором реально произошло событие (может быть вложенным). event.currentTarget — элемент, к которому привязан обработчик (обычно совпадает с this в обычной функции).\r\n4.2. preventDefault\r\n\r\nМногие элементы имеют поведение по умолчанию: ссылка переходит по URL, форма отправляется на сервер, чекбокс переключается. preventDefault() отменяет это поведение:\r\n\r\nconst link = document.querySelector('a');\r\nlink.addEventListener('click', (event) => {\r\nevent.preventDefault();\r\nconsole.log('Переход отменён');\r\n});\r\n\r\nКлассический пример — валидация формы перед отправкой: если поля пустые, вызвать preventDefault() и показать ошибку, не отправляя данные на сервер.\r\n5. Мини-пример: кнопка, которая скрывает блок\r\n\r\nСоберём всё вместе. HTML:\r\n\r\nbutton id=\"toggle\" — Показать / скрыть\r\ndiv id=\"box\" — Этот блок можно спрятать.\r\n\r\nJavaScript:\r\n\r\nconst btn = document.getElementById('toggle');\r\nconst box = document.getElementById('box');\r\nbtn.addEventListener('click', () => {\r\nbox.classList.toggle('hidden');\r\n});\r\n\r\nCSS:\r\n\r\n.hidden {\r\ndisplay: none;\r\n}\r\n\r\nЧто происходит. Первое: находим кнопку и блок по id. Второе: вешаем на кнопку обработчик click. Третье: по клику classList.toggle('hidden') добавляет класс, если его нет, и убирает, если есть. Четвёртое: класс .hidden скрывает блок через display: none.\r\n\r\nПять строк JavaScript — а поведение полноценное. Именно так устроены многие «аккордеоны» и выпадающие меню.\r\n6. Частые ошибки новичков\r\n\r\n    onclick=\"...\" в HTML — смешивает разметку и логику, сложно поддерживать. Правильно: addEventListener в JavaScript.\r\n\r\n    innerHTML для пользовательских данных — XSS-уязвимость. Правильно: textContent.\r\n\r\n    querySelectorAll(...).map(...) — у NodeList нет map. Правильно: Array.from(...).map(...).\r\n\r\n    Обработчик до загрузки DOM — элемент ещё не существует, querySelector вернёт null. Правильно: скрипт в конце body или DOMContentLoaded.\r\n\r\n    Забыли preventDefault() в форме — страница перезагружается, AJAX-логика ломается. Правильно: вызвать event.preventDefault().\r\n\r\nПример безопасного запуска после загрузки DOM:\r\n\r\ndocument.addEventListener('DOMContentLoaded', () => {\r\nconst btn = document.getElementById('toggle');\r\n});\r\n\r\nТакой подход гарантирует, что DOM уже построен, а элементы доступны.",
         "date": "2026-10-21T16:59:10Z"
+    }
+},
+{
+    "model": "news.articles",
+    "pk": 11,
+    "fields": {
+        "title": "PostgreSQL",
+        "anons": "Введение в PostgreSQL и базовые SQL-команды",
+        "full_text": "Введение\r\n\r\nКогда мы говорим о сайтах и приложениях, мы часто думаем о красивом интерфейсе или кнопках. Но за кулисами любого серьёзного проекта находится база данных — место, где хранится вся информация: пользователи, статьи, результаты тестов, настройки. Если база данных упадёт или данные потеряются, сайт превратится в бесполезную картинку.\r\n\r\nВ этой статье мы разберём, что такое PostgreSQL (одна из самых популярных баз данных в мире) и как с ней общаться с помощью языка SQL. Это те знания, которые спрашивают на любом собеседовании на позицию бэкенд-разработчика.\r\n\r\n    Что такое база данных\r\n\r\nБаза данных (БД) — это структурированное хранилище информации. Представьте себе огромную таблицу Excel, где каждая строка — это запись, а каждый столбец — это характеристика этой записи. Только в отличие от Excel, база данных может хранить миллионы строк и обрабатывать тысячи запросов в секунду.\r\n\r\nСуществует два основных типа баз данных:\r\n\r\n    Реляционные (SQL) — данные хранятся в виде таблиц, связанных между собой. Примеры: PostgreSQL, MySQL, SQLite.\r\n\r\n    Нереляционные (NoSQL) — данные хранятся в виде документов, ключей-значений или графов. Примеры: MongoDB, Redis.\r\n\r\nPostgreSQL — это мощная реляционная база данных с открытым исходным кодом. Она считается одной из самых надёжных и функциональных. Именно её мы используем в проекте CodnitoWeb.\r\n\r\n    Основные понятия PostgreSQL\r\n\r\nПрежде чем писать команды, нужно понять, из чего состоит база данных.\r\n\r\n    Таблица (Table) — основная единица хранения. Например, таблица users для пользователей, таблица news для статей.\r\n\r\n    Строка (Row) — одна конкретная запись в таблице (например, один пользователь).\r\n\r\n    Столбец (Column) — характеристика записи (например, id, name, email).\r\n\r\n    Первичный ключ (Primary Key) — уникальный идентификатор строки (обычно id). Он не может повторяться.\r\n\r\n    Внешний ключ (Foreign Key) — ссылка на первичный ключ в другой таблице. Например, у статьи есть author_id, который ссылается на id пользователя.\r\n\r\n    Что такое SQL\r\n\r\nSQL (Structured Query Language) — это язык структурированных запросов. Это не язык программирования (как Python или JavaScript), а язык общения с базой данных.\r\n\r\nС помощью SQL вы говорите базе: «Дай мне все статьи, которые написал пользователь с id=5» или «Удали пользователя с email=test@test.com».\r\n\r\nSQL-команды делятся на несколько групп, но новичку важно знать три:\r\n\r\n    DDL (Data Definition Language) — создание и изменение структуры таблиц (CREATE, ALTER, DROP).\r\n\r\n    DML (Data Manipulation Language) — работа с данными (SELECT, INSERT, UPDATE, DELETE).\r\n\r\n    DCL (Data Control Language) — управление правами доступа (GRANT, REVOKE).\r\n\r\nНа собеседованиях чаще всего спрашивают DML (особенно SELECT) и JOIN.\r\n\r\n    Базовые SQL-команды (DML)\r\n\r\nДавайте посмотрим на самые важные команды на примере простой таблицы users с полями id, name, email.\r\n\r\n    SELECT — получить данные\r\n\r\n-- Получить все строки и все столбцы\r\nSELECT * FROM users;\r\n\r\n-- Получить только имена и email\r\nSELECT name, email FROM users;\r\n\r\n-- Получить пользователей с id больше 10\r\nSELECT * FROM users WHERE id > 10;\r\n\r\n-- Отсортировать по имени (A-Z)\r\nSELECT * FROM users ORDER BY name ASC;\r\n\r\n-- Ограничить вывод 5 строками\r\nSELECT * FROM users LIMIT 5;\r\n\r\n    INSERT — добавить данные\r\n\r\nINSERT INTO users (name, email)\r\nVALUES ('Иван', 'ivan@example.com');\r\n\r\n    UPDATE — обновить данные\r\n\r\nUPDATE users\r\nSET email = 'new_email@example.com'\r\nWHERE id = 1;\r\n\r\nВажно: всегда указывайте WHERE, иначе обновятся все строки в таблице.\r\n\r\n    DELETE — удалить данные\r\n\r\nDELETE FROM users\r\nWHERE id = 1;\r\n\r\nТак же, как и с UPDATE, без WHERE удалятся все данные.\r\n\r\n    Агрегация и группировка\r\n\r\nЧасто нужно не просто получить данные, а посчитать статистику.\r\n\r\n-- Посчитать общее количество пользователей\r\nSELECT COUNT(*) FROM users;\r\n\r\n-- Найти средний возраст (если есть поле age)\r\nSELECT AVG(age) FROM users;\r\n\r\n-- Сгруппировать по городу и посчитать количество людей в каждом\r\nSELECT city, COUNT(*) AS user_count\r\nFROM users\r\nGROUP BY city;\r\n\r\nОператор GROUP BY — это мощный инструмент. Он позволяет разбить данные на группы и применить к каждой группе агрегатную функцию (COUNT, SUM, AVG, MIN, MAX).\r\n\r\n    JOIN — объединение таблиц\r\n\r\nЭто, пожалуй, самая важная тема для собеседований. Представьте, что у вас есть таблица users и таблица news (статьи). У каждой статьи есть author_id, который ссылается на id пользователя. Вам нужно вывести названия статей и имена их авторов. Для этого нужен JOIN.\r\n\r\nINNER JOIN\r\nВозвращает только те строки, где есть совпадения в обеих таблицах.\r\n\r\nSELECT news.title, users.name\r\nFROM news\r\nINNER JOIN users ON news.author_id = users.id;\r\n\r\nРезультат: только те статьи, у которых есть автор.\r\n\r\nLEFT JOIN\r\nВозвращает все строки из левой таблицы (news) и совпадающие строки из правой (users). Если совпадения нет, вместо данных пользователя будет NULL.\r\n\r\nSELECT news.title, users.name\r\nFROM news\r\nLEFT JOIN users ON news.author_id = users.id;\r\n\r\nРезультат: все статьи, даже если автор удалён (имя будет NULL).\r\n\r\n    Как это связано с Django\r\n\r\nВ Django ты не пишешь SQL-запросы вручную (хотя можешь). Вместо этого используется ORM (Object-Relational Mapping). Django ORM переводит твои Python-команды в SQL-запросы.\r\n\r\nНапример, этот SQL-запрос:\r\nSELECT * FROM news WHERE title LIKE '%Django%';\r\n\r\nВ Django выглядит так:\r\nNews.objects.filter(title__icontains='Django')\r\n\r\nПонимание SQL помогает лучше понимать, что происходит «под капотом» Django, и писать более эффективные запросы.\r\n\r\nЗаключение\r\n\r\nSQL — это фундамент работы с базами данных. Даже если вы используете Django ORM, знание SQL позволяет вам понимать, как данные извлекаются, и оптимизировать сложные запросы. Начните с простых SELECT, INSERT, UPDATE, DELETE, а затем переходите к JOIN и агрегатным функциям. Эти знания пригодятся и на собеседовании, и в реальной работе.",
+        "date": "2026-10-22T18:30:59Z"
     }
 },
 {
@@ -173,6 +183,18 @@
         "time": 5,
         "required_score_pass": 85,
         "difficluty": "легкий"
+    }
+},
+{
+    "model": "quizes.quiz",
+    "pk": 13,
+    "fields": {
+        "name": "Базы данных: PostgreSQL и SQL",
+        "topic": "Проверьте, как вы усвоили основы работы с реляционными базами данных на примере PostgreSQL.",
+        "number_of_questions": 15,
+        "time": 5,
+        "required_score_pass": 56,
+        "difficluty": "средний"
     }
 },
 {
@@ -839,6 +861,141 @@
         "text": "Какое правило безопасности рекомендуется соблюдать при работе с DOM?",
         "quiz": 12,
         "created": "2026-10-21T18:15:43.249Z"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 82,
+    "fields": {
+        "text": "Что такое база данных?",
+        "quiz": 13,
+        "created": "2026-10-22T18:45:01.328Z"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 83,
+    "fields": {
+        "text": "Какой тип базы данных используется в PostgreSQL?",
+        "quiz": 13,
+        "created": "2026-10-22T18:45:42.262Z"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 84,
+    "fields": {
+        "text": "Что такое первичный ключ (Primary Key)?",
+        "quiz": 13,
+        "created": "2026-10-22T18:46:41.210Z"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 85,
+    "fields": {
+        "text": "Что такое внешний ключ (Foreign Key)?",
+        "quiz": 13,
+        "created": "2026-10-22T18:47:24.377Z"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 86,
+    "fields": {
+        "text": "Что означает аббревиатура SQL?",
+        "quiz": 13,
+        "created": "2026-10-22T18:48:08.440Z"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 87,
+    "fields": {
+        "text": "Какая команда используется для получения данных из таблицы?",
+        "quiz": 13,
+        "created": "2026-10-22T18:48:55.715Z"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 88,
+    "fields": {
+        "text": "Какая команда добавляет новые данные в таблицу?",
+        "quiz": 13,
+        "created": "2026-10-22T18:49:38.558Z"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 89,
+    "fields": {
+        "text": "Что произойдёт, если выполнить DELETE FROM users; без условия WHERE?",
+        "quiz": 13,
+        "created": "2026-10-22T18:50:21.737Z"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 90,
+    "fields": {
+        "text": "Какая команда обновляет существующие данные?",
+        "quiz": 13,
+        "created": "2026-10-22T18:53:17.445Z"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 91,
+    "fields": {
+        "text": "Что делает оператор GROUP BY?",
+        "quiz": 13,
+        "created": "2026-10-22T18:54:50.833Z"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 92,
+    "fields": {
+        "text": "Какая функция считает количество строк?",
+        "quiz": 13,
+        "created": "2026-10-22T18:55:29.821Z"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 93,
+    "fields": {
+        "text": "Какой JOIN возвращает только те строки, где есть совпадения в обеих таблицах?",
+        "quiz": 13,
+        "created": "2026-10-22T18:58:11.795Z"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 94,
+    "fields": {
+        "text": "Какой JOIN вернёт все строки из левой таблицы, даже если в правой нет совпадений?",
+        "quiz": 13,
+        "created": "2026-10-22T18:58:45.418Z"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 95,
+    "fields": {
+        "text": "Что такое Django ORM?",
+        "quiz": 13,
+        "created": "2026-10-22T18:59:28.137Z"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 96,
+    "fields": {
+        "text": "Какой SQL-запрос соответствует Django-коду News.objects.filter(title__icontains='Django')?",
+        "quiz": 13,
+        "created": "2026-10-22T19:00:10.533Z"
     }
 },
 {
@@ -3979,6 +4136,606 @@
         "correct": false,
         "question": 81,
         "created": "2026-10-21T18:15:43.251Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 337,
+    "fields": {
+        "text": "Программа для создания сайтов",
+        "correct": false,
+        "question": 82,
+        "created": "2026-10-22T18:45:01.330Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 338,
+    "fields": {
+        "text": "Структурированное хранилище информации",
+        "correct": true,
+        "question": 82,
+        "created": "2026-10-22T18:45:01.331Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 339,
+    "fields": {
+        "text": "Язык программирования для работы с текстом",
+        "correct": false,
+        "question": 82,
+        "created": "2026-10-22T18:45:01.332Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 340,
+    "fields": {
+        "text": "Формат хранения изображений",
+        "correct": false,
+        "question": 82,
+        "created": "2026-10-22T18:45:01.332Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 341,
+    "fields": {
+        "text": "Нереляционная (NoSQL)",
+        "correct": false,
+        "question": 83,
+        "created": "2026-10-22T18:45:42.263Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 342,
+    "fields": {
+        "text": "Документо-ориентированная",
+        "correct": false,
+        "question": 83,
+        "created": "2026-10-22T18:45:42.263Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 343,
+    "fields": {
+        "text": "Реляционная (SQL)",
+        "correct": true,
+        "question": 83,
+        "created": "2026-10-22T18:45:42.264Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 344,
+    "fields": {
+        "text": "Реляционная (SQL)",
+        "correct": false,
+        "question": 83,
+        "created": "2026-10-22T18:45:42.264Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 345,
+    "fields": {
+        "text": "Пароль для входа в базу данных",
+        "correct": false,
+        "question": 84,
+        "created": "2026-10-22T18:46:41.211Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 346,
+    "fields": {
+        "text": "Уникальный идентификатор строки в таблице",
+        "correct": true,
+        "question": 84,
+        "created": "2026-10-22T18:46:41.212Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 347,
+    "fields": {
+        "text": "Название таблицы",
+        "correct": false,
+        "question": 84,
+        "created": "2026-10-22T18:46:41.213Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 348,
+    "fields": {
+        "text": "Первая строка в таблице",
+        "correct": false,
+        "question": 84,
+        "created": "2026-10-22T18:46:41.213Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 349,
+    "fields": {
+        "text": "Ключ для шифрования данных",
+        "correct": false,
+        "question": 85,
+        "created": "2026-10-22T18:47:24.378Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 350,
+    "fields": {
+        "text": "Ссылка на первичный ключ в другой таблице",
+        "correct": true,
+        "question": 85,
+        "created": "2026-10-22T18:47:24.380Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 351,
+    "fields": {
+        "text": "Пароль администратора базы данных",
+        "correct": false,
+        "question": 85,
+        "created": "2026-10-22T18:47:24.380Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 352,
+    "fields": {
+        "text": "Уникальный номер базы данных",
+        "correct": false,
+        "question": 85,
+        "created": "2026-10-22T18:47:24.381Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 353,
+    "fields": {
+        "text": "Simple Query Language",
+        "correct": false,
+        "question": 86,
+        "created": "2026-10-22T18:48:08.441Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 354,
+    "fields": {
+        "text": "Structured Query Language",
+        "correct": true,
+        "question": 86,
+        "created": "2026-10-22T18:48:08.442Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 355,
+    "fields": {
+        "text": "System Quality Language",
+        "correct": false,
+        "question": 86,
+        "created": "2026-10-22T18:48:08.443Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 356,
+    "fields": {
+        "text": "Standard Question Language",
+        "correct": false,
+        "question": 86,
+        "created": "2026-10-22T18:48:08.443Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 357,
+    "fields": {
+        "text": "INSERT",
+        "correct": false,
+        "question": 87,
+        "created": "2026-10-22T18:48:55.716Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 358,
+    "fields": {
+        "text": "UPDATE",
+        "correct": false,
+        "question": 87,
+        "created": "2026-10-22T18:48:55.717Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 359,
+    "fields": {
+        "text": "SELECT",
+        "correct": true,
+        "question": 87,
+        "created": "2026-10-22T18:48:55.718Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 360,
+    "fields": {
+        "text": "DELETE",
+        "correct": false,
+        "question": 87,
+        "created": "2026-10-22T18:48:55.718Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 361,
+    "fields": {
+        "text": "INSERT",
+        "correct": true,
+        "question": 88,
+        "created": "2026-10-22T18:49:38.560Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 362,
+    "fields": {
+        "text": "SELECT",
+        "correct": false,
+        "question": 88,
+        "created": "2026-10-22T18:49:38.562Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 363,
+    "fields": {
+        "text": "UPDATE",
+        "correct": false,
+        "question": 88,
+        "created": "2026-10-22T18:49:38.563Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 364,
+    "fields": {
+        "text": "DELETE",
+        "correct": false,
+        "question": 88,
+        "created": "2026-10-22T18:49:38.564Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 365,
+    "fields": {
+        "text": "Удалится только первая строка",
+        "correct": false,
+        "question": 89,
+        "created": "2026-10-22T18:50:21.738Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 366,
+    "fields": {
+        "text": "Удалится последняя строка",
+        "correct": false,
+        "question": 89,
+        "created": "2026-10-22T18:50:21.739Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 367,
+    "fields": {
+        "text": "Удалятся все строки в таблице",
+        "correct": true,
+        "question": 89,
+        "created": "2026-10-22T18:50:21.740Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 368,
+    "fields": {
+        "text": "Ничего не произойдёт",
+        "correct": false,
+        "question": 89,
+        "created": "2026-10-22T18:50:21.741Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 369,
+    "fields": {
+        "text": "INSERT",
+        "correct": false,
+        "question": 90,
+        "created": "2026-10-22T18:53:17.446Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 370,
+    "fields": {
+        "text": "UPDATE",
+        "correct": true,
+        "question": 90,
+        "created": "2026-10-22T18:53:17.446Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 371,
+    "fields": {
+        "text": "SELECT",
+        "correct": false,
+        "question": 90,
+        "created": "2026-10-22T18:53:17.447Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 372,
+    "fields": {
+        "text": "ALTER",
+        "correct": false,
+        "question": 90,
+        "created": "2026-10-22T18:53:17.447Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 373,
+    "fields": {
+        "text": "Сортирует данные по алфавиту",
+        "correct": false,
+        "question": 91,
+        "created": "2026-10-22T18:54:50.833Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 374,
+    "fields": {
+        "text": "Группирует строки для применения агрегатных функций",
+        "correct": true,
+        "question": 91,
+        "created": "2026-10-22T18:54:50.833Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 375,
+    "fields": {
+        "text": "Удаляет дубликаты",
+        "correct": false,
+        "question": 91,
+        "created": "2026-10-22T18:54:50.833Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 376,
+    "fields": {
+        "text": "Объединяет таблицы",
+        "correct": false,
+        "question": 91,
+        "created": "2026-10-22T18:54:50.834Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 377,
+    "fields": {
+        "text": "SUM()",
+        "correct": false,
+        "question": 92,
+        "created": "2026-10-22T18:55:29.822Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 378,
+    "fields": {
+        "text": "AVG()",
+        "correct": false,
+        "question": 92,
+        "created": "2026-10-22T18:55:29.823Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 379,
+    "fields": {
+        "text": "COUNT()",
+        "correct": true,
+        "question": 92,
+        "created": "2026-10-22T18:55:29.824Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 380,
+    "fields": {
+        "text": "MAX()",
+        "correct": false,
+        "question": 92,
+        "created": "2026-10-22T18:55:29.824Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 381,
+    "fields": {
+        "text": "LEFT JOIN",
+        "correct": false,
+        "question": 93,
+        "created": "2026-10-22T18:58:11.796Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 382,
+    "fields": {
+        "text": "RIGHT JOIN",
+        "correct": false,
+        "question": 93,
+        "created": "2026-10-22T18:58:11.797Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 383,
+    "fields": {
+        "text": "INNER JOIN",
+        "correct": true,
+        "question": 93,
+        "created": "2026-10-22T18:58:11.798Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 384,
+    "fields": {
+        "text": "FULL JOIN",
+        "correct": false,
+        "question": 93,
+        "created": "2026-10-22T18:58:11.799Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 385,
+    "fields": {
+        "text": "INNER JOIN",
+        "correct": false,
+        "question": 94,
+        "created": "2026-10-22T18:58:45.419Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 386,
+    "fields": {
+        "text": "LEFT JOIN",
+        "correct": true,
+        "question": 94,
+        "created": "2026-10-22T18:58:45.419Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 387,
+    "fields": {
+        "text": "CROSS JOIN",
+        "correct": false,
+        "question": 94,
+        "created": "2026-10-22T18:58:45.419Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 388,
+    "fields": {
+        "text": "RIGHT JOIN",
+        "correct": false,
+        "question": 94,
+        "created": "2026-10-22T18:58:45.420Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 389,
+    "fields": {
+        "text": "Язык программирования для работы с базами данных",
+        "correct": false,
+        "question": 95,
+        "created": "2026-10-22T18:59:28.138Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 390,
+    "fields": {
+        "text": "Инструмент, который переводит Python-код в SQL-запросы",
+        "correct": true,
+        "question": 95,
+        "created": "2026-10-22T18:59:28.139Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 391,
+    "fields": {
+        "text": "Встроенная база данных Django",
+        "correct": false,
+        "question": 95,
+        "created": "2026-10-22T18:59:28.140Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 392,
+    "fields": {
+        "text": "Библиотека для создания HTML-страниц",
+        "correct": false,
+        "question": 95,
+        "created": "2026-10-22T18:59:28.140Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 393,
+    "fields": {
+        "text": "SELECT * FROM news WHERE title = 'Django';",
+        "correct": false,
+        "question": 96,
+        "created": "2026-10-22T19:00:10.534Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 394,
+    "fields": {
+        "text": "SELECT * FROM news WHERE title LIKE '%Django%';",
+        "correct": true,
+        "question": 96,
+        "created": "2026-10-22T19:00:10.535Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 395,
+    "fields": {
+        "text": "SELECT * FROM news WHERE title > 'Django';",
+        "correct": false,
+        "question": 96,
+        "created": "2026-10-22T19:00:10.536Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 396,
+    "fields": {
+        "text": "SELECT * FROM news ORDER BY title;",
+        "correct": false,
+        "question": 96,
+        "created": "2026-10-22T19:00:10.536Z"
     }
 },
 {
