@@ -53,30 +53,43 @@ document.addEventListener('DOMContentLoaded', () => {
           return;
         }
 
+        // [ИСПРАВИЛ 1] Собираю весь HTML в одну переменную, чтобы избежать багов с innerHTML +=
+        let htmlContent = '';
+
         // Проходим по каждому вопросу
         data.forEach(el => {
           const question = el.text;
-          // [ДОБАВЛЕНО] Перемешиваем ответы внутри вопроса.
-          // Вопросы остаются в исходном порядке, ответы — в случайном.
+          // Перемешиваем ответы внутри вопроса.
           const answers = shuffleArray(el.answers);
 
+          // [ИСПРАВИЛ 2] Убрал класс "statia", чтобы не применялись лишние стили (max-width: 700px)
           // Рисуем вопрос
-          quizBox.innerHTML += `
-            <div class="statia quizes_center quiz-question-card">
+          htmlContent += `
+            <div class="quizes_center quiz-question-card">
               <p class="p_zag question">Вопрос: ${question}</p>
             </div>
           `;
 
+          // [ИСПРАВИЛ 3] Оборачиваю ответы в общий контейнер для правильного отображения
+          htmlContent += `<div class="answers-container">`;
+
           // Рисуем каждый ответ
           answers.forEach(answer => {
-            quizBox.innerHTML += `
-              <div class="statia quizes_center quiz-answer-card">
+            // [ИСПРАВИЛ 4] Убрал класс "statia"
+            htmlContent += `
+              <div class="quizes_center quiz-answer-card">
                 <input type="radio" class="ans" id="${question}-${answer.text}" name="${question}" value="${answer.text}">
                 <label for="${question}-${answer.text}">${answer.text}</label>
               </div>
             `;
           });
+
+          // Закрываем контейнер ответов
+          htmlContent += `</div>`;
         });
+
+        // [ИСПРАВИЛ 5] Вставляю весь собранный HTML один раз
+        quizBox.innerHTML = htmlContent;
       },
 
       error: function(error) {
