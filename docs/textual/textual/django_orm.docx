@@ -1,0 +1,133 @@
+Введение
+
+В предыдущей статье мы разобрали, как работают базы данных и что такое SQL-запросы. Но писать SQL-код вручную в Django-проекте — это как ездить на машине с механической коробкой передач, когда есть отличный автомат. Этим «автоматом» является Django ORM (Object-Relational Mapping). В этой статье разберём, что это такое, зачем он нужен и как с ним работать.
+
+    Проблема, которую решает ORM
+
+Представьте, что у вас есть база данных PostgreSQL. В ней есть таблица users. Чтобы получить всех пользователей, вы пишете SQL-запрос:
+SELECT * FROM users;
+
+В Python-коде это выглядит как обычная строка. Проблема в том, что Python не проверяет эту строку на ошибки. Если вы опечатаетесь (напишете SELECT * FRM users), вы узнаете об этом только тогда, когда приложение упадёт.
+
+Кроме того, результаты из базы данных приходят в виде сырых кортежей (tuples), и вам нужно вручную сопоставлять их с объектами Python.
+
+ORM решает эти проблемы. Он позволяет вам работать с базой данных так, будто это обычные объекты Python.
+
+    Что такое ORM
+
+ORM (Object-Relational Mapping) — это технология, которая связывает объекты в коде (классы Python) с таблицами в базе данных.
+
+В Django ORM:
+
+    Класс модели соответствует таблице в базе данных.
+
+    Экземпляр класса (объект) соответствует одной строке в таблице.
+
+    Атрибуты класса соответствуют столбцам в таблице.
+
+Вместо того чтобы писать SQL, вы пишете Python-код, а ORM переводит его в SQL-запрос под капотом.
+
+    Модели в Django
+
+Всё начинается с моделей. Модель — это описание таблицы на языке Python.
+
+from django.db import models
+
+class User(models.Model):
+name = models.CharField(max_length=100)
+email = models.EmailField(unique=True)
+age = models.IntegerField(null=True, blank=True)
+
+def str(self):
+return self.name
+
+Когда вы пишете этот код и выполняете миграции (python manage.py makemigrations и migrate), Django создаёт в базе данных таблицу appname_user с нужными столбцами.
+
+    Как делать запросы через ORM
+
+Главное преимущество ORM — интуитивно понятные запросы. Вместо SQL вы используете методы менеджера objects.
+
+Получение всех записей:
+users = User.objects.all()
+SQL: SELECT * FROM users;
+
+Фильтрация:
+adults = User.objects.filter(age__gte=18)
+SQL: SELECT * FROM users WHERE age >= 18;
+
+Получение одной записи:
+user = User.objects.get(id=1)
+SQL: SELECT * FROM users WHERE id = 1 LIMIT 1;
+
+Создание новой записи:
+User.objects.create(name='Иван', email='ivan@test.com')
+SQL: INSERT INTO users (name, email) VALUES ('Иван', 'ivan@test.com');
+
+Обновление:
+user = User.objects.get(id=1)
+user.name = 'Пётр'
+user.save()
+SQL: UPDATE users SET name = 'Пётр' WHERE id = 1;
+
+Удаление:
+user = User.objects.get(id=1)
+user.delete()
+SQL: DELETE FROM users WHERE id = 1;
+
+    Связи между таблицами
+
+В реальных проектах таблицы связаны. В Django есть три типа связей:
+
+    ForeignKey (один-ко-многим). Например, у статьи есть один автор.
+
+    OneToOneField (один-к-одному). Например, у пользователя один профиль.
+
+    ManyToManyField (многие-ко-многим). Например, у статьи много тегов, и у тега много статей.
+
+Пример ForeignKey:
+class Article(models.Model):
+title = models.CharField(max_length=200)
+author = models.ForeignKey(User, on_delete=models.CASCADE)
+
+Теперь, чтобы получить все статьи автора, вы можете написать:
+user = User.objects.get(id=1)
+user.article_set.all()
+
+    Ленивая загрузка (Lazy Loading)
+
+Важно понимать: QuerySet в Django ленивый. Это значит, что запрос к базе данных не выполняется, пока вы не начнёте итерироваться по результатам.
+
+users = User.objects.filter(age__gte=18) # Запрос ещё не выполнен
+for user in users: # Вот здесь выполняется SQL-запрос
+print(user.name)
+
+Это позволяет оптимизировать код: вы можете строить цепочки фильтров, и в базу уйдёт только один финальный запрос.
+
+    N+1 проблема
+
+Одна из самых частых ошибок новичков. Представьте, что у вас есть 100 статей, и вы хотите вывести имя автора для каждой.
+articles = Article.objects.all()
+for article in articles:
+print(article.author.name) # Здесь выполняется 100 запросов к БД!
+
+Это называется N+1 проблема: 1 запрос на получение статей + N запросов на получение авторов.
+
+Решение — использовать select_related (для ForeignKey):
+articles = Article.objects.select_related('author').all()
+for article in articles:
+print(article.author.name) # Выполняется всего 1 запрос
+
+Знание этой проблемы — большой плюс на собеседовании.
+
+    ORM vs SQL: что лучше
+
+ORM не заменяет SQL полностью. Он удобен для 90% задач, но иногда нужно писать сырой SQL (например, для сложных аналитических запросов).
+
+В Django можно выполнять сырые SQL-запросы через raw():
+users = User.objects.raw('SELECT * FROM users WHERE age > %s', [18])
+
+Но в большинстве случаев ORM быстрее, безопаснее (защита от SQL-инъекций) и читаемее.
+
+Заключение
+
+Django ORM — это мощный инструмент, который позволяет работать с базой данных, не написав ни строчки SQL. Он берёт на себя перевод Python-кода в запросы, защиту от инъекций и управление связями. Начните с простых запросов (all, filter, get), затем изучите связи (ForeignKey) и оптимизацию (select_related). Это то, что нужно знать наизусть для собеседования.
