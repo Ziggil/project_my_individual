@@ -90,6 +90,16 @@
     }
 },
 {
+    "model": "news.articles",
+    "pk": 12,
+    "fields": {
+        "title": "Django ORM",
+        "anons": "Что такое Django ORM и как он работает",
+        "full_text": "Введение\r\n\r\nВ предыдущей статье мы разобрали, как работают базы данных и что такое SQL-запросы. Но писать SQL-код вручную в Django-проекте — это как ездить на машине с механической коробкой передач, когда есть отличный автомат. Этим «автоматом» является Django ORM (Object-Relational Mapping). В этой статье разберём, что это такое, зачем он нужен и как с ним работать.\r\n\r\n    Проблема, которую решает ORM\r\n\r\nПредставьте, что у вас есть база данных PostgreSQL. В ней есть таблица users. Чтобы получить всех пользователей, вы пишете SQL-запрос:\r\nSELECT * FROM users;\r\n\r\nВ Python-коде это выглядит как обычная строка. Проблема в том, что Python не проверяет эту строку на ошибки. Если вы опечатаетесь (напишете SELECT * FRM users), вы узнаете об этом только тогда, когда приложение упадёт.\r\n\r\nКроме того, результаты из базы данных приходят в виде сырых кортежей (tuples), и вам нужно вручную сопоставлять их с объектами Python.\r\n\r\nORM решает эти проблемы. Он позволяет вам работать с базой данных так, будто это обычные объекты Python.\r\n\r\n    Что такое ORM\r\n\r\nORM (Object-Relational Mapping) — это технология, которая связывает объекты в коде (классы Python) с таблицами в базе данных.\r\n\r\nВ Django ORM:\r\n\r\n    Класс модели соответствует таблице в базе данных.\r\n\r\n    Экземпляр класса (объект) соответствует одной строке в таблице.\r\n\r\n    Атрибуты класса соответствуют столбцам в таблице.\r\n\r\nВместо того чтобы писать SQL, вы пишете Python-код, а ORM переводит его в SQL-запрос под капотом.\r\n\r\n    Модели в Django\r\n\r\nВсё начинается с моделей. Модель — это описание таблицы на языке Python.\r\n\r\nfrom django.db import models\r\n\r\nclass User(models.Model):\r\nname = models.CharField(max_length=100)\r\nemail = models.EmailField(unique=True)\r\nage = models.IntegerField(null=True, blank=True)\r\n\r\ndef str(self):\r\nreturn self.name\r\n\r\nКогда вы пишете этот код и выполняете миграции (python manage.py makemigrations и migrate), Django создаёт в базе данных таблицу appname_user с нужными столбцами.\r\n\r\n    Как делать запросы через ORM\r\n\r\nГлавное преимущество ORM — интуитивно понятные запросы. Вместо SQL вы используете методы менеджера objects.\r\n\r\nПолучение всех записей:\r\nusers = User.objects.all()\r\nSQL: SELECT * FROM users;\r\n\r\nФильтрация:\r\nadults = User.objects.filter(age__gte=18)\r\nSQL: SELECT * FROM users WHERE age >= 18;\r\n\r\nПолучение одной записи:\r\nuser = User.objects.get(id=1)\r\nSQL: SELECT * FROM users WHERE id = 1 LIMIT 1;\r\n\r\nСоздание новой записи:\r\nUser.objects.create(name='Иван', email='ivan@test.com')\r\nSQL: INSERT INTO users (name, email) VALUES ('Иван', 'ivan@test.com');\r\n\r\nОбновление:\r\nuser = User.objects.get(id=1)\r\nuser.name = 'Пётр'\r\nuser.save()\r\nSQL: UPDATE users SET name = 'Пётр' WHERE id = 1;\r\n\r\nУдаление:\r\nuser = User.objects.get(id=1)\r\nuser.delete()\r\nSQL: DELETE FROM users WHERE id = 1;\r\n\r\n    Связи между таблицами\r\n\r\nВ реальных проектах таблицы связаны. В Django есть три типа связей:\r\n\r\n    ForeignKey (один-ко-многим). Например, у статьи есть один автор.\r\n\r\n    OneToOneField (один-к-одному). Например, у пользователя один профиль.\r\n\r\n    ManyToManyField (многие-ко-многим). Например, у статьи много тегов, и у тега много статей.\r\n\r\nПример ForeignKey:\r\nclass Article(models.Model):\r\ntitle = models.CharField(max_length=200)\r\nauthor = models.ForeignKey(User, on_delete=models.CASCADE)\r\n\r\nТеперь, чтобы получить все статьи автора, вы можете написать:\r\nuser = User.objects.get(id=1)\r\nuser.article_set.all()\r\n\r\n    Ленивая загрузка (Lazy Loading)\r\n\r\nВажно понимать: QuerySet в Django ленивый. Это значит, что запрос к базе данных не выполняется, пока вы не начнёте итерироваться по результатам.\r\n\r\nusers = User.objects.filter(age__gte=18) # Запрос ещё не выполнен\r\nfor user in users: # Вот здесь выполняется SQL-запрос\r\nprint(user.name)\r\n\r\nЭто позволяет оптимизировать код: вы можете строить цепочки фильтров, и в базу уйдёт только один финальный запрос.\r\n\r\n    N+1 проблема\r\n\r\nОдна из самых частых ошибок новичков. Представьте, что у вас есть 100 статей, и вы хотите вывести имя автора для каждой.\r\narticles = Article.objects.all()\r\nfor article in articles:\r\nprint(article.author.name) # Здесь выполняется 100 запросов к БД!\r\n\r\nЭто называется N+1 проблема: 1 запрос на получение статей + N запросов на получение авторов.\r\n\r\nРешение — использовать select_related (для ForeignKey):\r\narticles = Article.objects.select_related('author').all()\r\nfor article in articles:\r\nprint(article.author.name) # Выполняется всего 1 запрос\r\n\r\nЗнание этой проблемы — большой плюс на собеседовании.\r\n\r\n    ORM vs SQL: что лучше\r\n\r\nORM не заменяет SQL полностью. Он удобен для 90% задач, но иногда нужно писать сырой SQL (например, для сложных аналитических запросов).\r\n\r\nВ Django можно выполнять сырые SQL-запросы через raw():\r\nusers = User.objects.raw('SELECT * FROM users WHERE age > %s', [18])\r\n\r\nНо в большинстве случаев ORM быстрее, безопаснее (защита от SQL-инъекций) и читаемее.\r\n\r\nЗаключение\r\n\r\nDjango ORM — это мощный инструмент, который позволяет работать с базой данных, не написав ни строчки SQL. Он берёт на себя перевод Python-кода в запросы, защиту от инъекций и управление связями. Начните с простых запросов (all, filter, get), затем изучите связи (ForeignKey) и оптимизацию (select_related). Это то, что нужно знать наизусть для собеседования.",
+        "date": "2026-10-23T14:58:48Z"
+    }
+},
+{
     "model": "quizes.quiz",
     "pk": 4,
     "fields": {
@@ -194,6 +204,18 @@
         "number_of_questions": 15,
         "time": 5,
         "required_score_pass": 56,
+        "difficluty": "средний"
+    }
+},
+{
+    "model": "quizes.quiz",
+    "pk": 14,
+    "fields": {
+        "name": "Django ORM",
+        "topic": "Проверьте, как вы усвоили основы работы с Django ORM",
+        "number_of_questions": 10,
+        "time": 5,
+        "required_score_pass": 75,
         "difficluty": "средний"
     }
 },
@@ -996,6 +1018,96 @@
         "text": "Какой SQL-запрос соответствует Django-коду News.objects.filter(title__icontains='Django')?",
         "quiz": 13,
         "created": "2026-10-22T19:00:10.533Z"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 97,
+    "fields": {
+        "text": "Что такое Django ORM?",
+        "quiz": 14,
+        "created": "2026-10-23T15:06:03.600Z"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 98,
+    "fields": {
+        "text": "Что делает метод User.objects.all()?",
+        "quiz": 14,
+        "created": "2026-10-23T15:07:39.741Z"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 99,
+    "fields": {
+        "text": "Какой метод возвращает ровно одну запись и вызывает ошибку, если записей нет или их больше одной?",
+        "quiz": 14,
+        "created": "2026-10-23T15:11:29.287Z"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 100,
+    "fields": {
+        "text": "Что означает age__gte=18 в фильтре User.objects.filter(age__gte=18)?",
+        "quiz": 14,
+        "created": "2026-10-23T15:12:13.209Z"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 101,
+    "fields": {
+        "text": "Какой метод используется для создания новой записи в базе данных?",
+        "quiz": 14,
+        "created": "2026-10-23T15:12:53.391Z"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 102,
+    "fields": {
+        "text": "Что такое ForeignKey в Django?",
+        "quiz": 14,
+        "created": "2026-10-23T15:13:42.073Z"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 103,
+    "fields": {
+        "text": "В чем особенность ленивой загрузки (Lazy Loading) в Django ORM?",
+        "quiz": 14,
+        "created": "2026-10-23T15:14:23.023Z"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 104,
+    "fields": {
+        "text": "Что такое проблема N+1 в Django ORM?",
+        "quiz": 14,
+        "created": "2026-10-23T15:15:03.991Z"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 105,
+    "fields": {
+        "text": "Какой метод помогает решить проблему N+1 для ForeignKey?",
+        "quiz": 14,
+        "created": "2026-10-23T15:15:39.878Z"
+    }
+},
+{
+    "model": "questions.question",
+    "pk": 106,
+    "fields": {
+        "text": "Как выполнить сырой SQL-запрос в Django ORM?",
+        "quiz": 14,
+        "created": "2026-10-23T15:16:20.490Z"
     }
 },
 {
@@ -4739,6 +4851,406 @@
     }
 },
 {
+    "model": "questions.answer",
+    "pk": 397,
+    "fields": {
+        "text": "Библиотека для создания HTML-страниц",
+        "correct": false,
+        "question": 97,
+        "created": "2026-10-23T15:06:03.602Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 398,
+    "fields": {
+        "text": "Встроенная база данных Django",
+        "correct": false,
+        "question": 97,
+        "created": "2026-10-23T15:06:03.603Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 399,
+    "fields": {
+        "text": "Язык программирования для работы с базами данных",
+        "correct": false,
+        "question": 97,
+        "created": "2026-10-23T15:06:03.604Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 400,
+    "fields": {
+        "text": "Инструмент, который переводит Python-код в SQL-запросы",
+        "correct": true,
+        "question": 97,
+        "created": "2026-10-23T15:06:03.605Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 401,
+    "fields": {
+        "text": "Удаляет всех пользователей",
+        "correct": false,
+        "question": 98,
+        "created": "2026-10-23T15:07:39.742Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 402,
+    "fields": {
+        "text": "Возвращает QuerySet со всеми записями пользователей",
+        "correct": true,
+        "question": 98,
+        "created": "2026-10-23T15:07:39.742Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 403,
+    "fields": {
+        "text": "Создает нового пользователя",
+        "correct": false,
+        "question": 98,
+        "created": "2026-10-23T15:07:39.743Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 404,
+    "fields": {
+        "text": "Возвращает только одного пользователя",
+        "correct": false,
+        "question": 98,
+        "created": "2026-10-23T15:07:39.743Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 405,
+    "fields": {
+        "text": "filter()",
+        "correct": false,
+        "question": 99,
+        "created": "2026-10-23T15:11:29.288Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 406,
+    "fields": {
+        "text": "get()",
+        "correct": true,
+        "question": 99,
+        "created": "2026-10-23T15:11:29.288Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 407,
+    "fields": {
+        "text": "first()",
+        "correct": false,
+        "question": 99,
+        "created": "2026-10-23T15:11:29.289Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 408,
+    "fields": {
+        "text": "all()",
+        "correct": false,
+        "question": 99,
+        "created": "2026-10-23T15:11:29.289Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 409,
+    "fields": {
+        "text": "Возраст меньше 18",
+        "correct": false,
+        "question": 100,
+        "created": "2026-10-23T15:12:13.209Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 410,
+    "fields": {
+        "text": "Возраст равен 18",
+        "correct": false,
+        "question": 100,
+        "created": "2026-10-23T15:12:13.210Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 411,
+    "fields": {
+        "text": "Возраст больше или равен 18",
+        "correct": true,
+        "question": 100,
+        "created": "2026-10-23T15:12:13.210Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 412,
+    "fields": {
+        "text": "Возраст не равен 18",
+        "correct": false,
+        "question": 100,
+        "created": "2026-10-23T15:12:13.210Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 413,
+    "fields": {
+        "text": "save()",
+        "correct": false,
+        "question": 101,
+        "created": "2026-10-23T15:12:53.392Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 414,
+    "fields": {
+        "text": "create()",
+        "correct": true,
+        "question": 101,
+        "created": "2026-10-23T15:12:53.393Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 415,
+    "fields": {
+        "text": "new()",
+        "correct": false,
+        "question": 101,
+        "created": "2026-10-23T15:12:53.394Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 416,
+    "fields": {
+        "text": "insert()",
+        "correct": false,
+        "question": 101,
+        "created": "2026-10-23T15:12:53.394Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 417,
+    "fields": {
+        "text": "Связь «многие-ко-многим»",
+        "correct": false,
+        "question": 102,
+        "created": "2026-10-23T15:13:42.074Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 418,
+    "fields": {
+        "text": "Связь «один-к-одному»",
+        "correct": false,
+        "question": 102,
+        "created": "2026-10-23T15:13:42.075Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 419,
+    "fields": {
+        "text": "Связь «один-ко-многим»",
+        "correct": true,
+        "question": 102,
+        "created": "2026-10-23T15:13:42.076Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 420,
+    "fields": {
+        "text": "Связь «многие-ко-многим» с дополнительными полями",
+        "correct": false,
+        "question": 102,
+        "created": "2026-10-23T15:13:42.076Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 421,
+    "fields": {
+        "text": "Запрос к базе данных выполняется только при обращении к результатам (итерации)",
+        "correct": true,
+        "question": 103,
+        "created": "2026-10-23T15:14:23.024Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 422,
+    "fields": {
+        "text": "Запрос выполняется сразу при вызове filter()",
+        "correct": false,
+        "question": 103,
+        "created": "2026-10-23T15:14:23.024Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 423,
+    "fields": {
+        "text": "Данные загружаются в фоновом режиме",
+        "correct": false,
+        "question": 103,
+        "created": "2026-10-23T15:14:23.025Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 424,
+    "fields": {
+        "text": "Ленивая загрузка отключает кэширование",
+        "correct": false,
+        "question": 103,
+        "created": "2026-10-23T15:14:23.025Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 425,
+    "fields": {
+        "text": "Ошибка синтаксиса SQL",
+        "correct": false,
+        "question": 104,
+        "created": "2026-10-23T15:15:03.992Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 426,
+    "fields": {
+        "text": "Ситуация, когда для получения связанных данных выполняется 1 запрос + N дополнительных запросов",
+        "correct": true,
+        "question": 104,
+        "created": "2026-10-23T15:15:03.993Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 427,
+    "fields": {
+        "text": "Проблема с кодировкой символов",
+        "correct": false,
+        "question": 104,
+        "created": "2026-10-23T15:15:03.993Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 428,
+    "fields": {
+        "text": "Ограничение на количество записей в базе",
+        "correct": false,
+        "question": 104,
+        "created": "2026-10-23T15:15:03.994Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 429,
+    "fields": {
+        "text": "prefetch_related()",
+        "correct": false,
+        "question": 105,
+        "created": "2026-10-23T15:15:39.879Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 430,
+    "fields": {
+        "text": "select_related()",
+        "correct": true,
+        "question": 105,
+        "created": "2026-10-23T15:15:39.879Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 431,
+    "fields": {
+        "text": "filter()",
+        "correct": false,
+        "question": 105,
+        "created": "2026-10-23T15:15:39.880Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 432,
+    "fields": {
+        "text": "annotate()",
+        "correct": false,
+        "question": 105,
+        "created": "2026-10-23T15:15:39.880Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 433,
+    "fields": {
+        "text": "User.objects.sql('...')",
+        "correct": false,
+        "question": 106,
+        "created": "2026-10-23T15:16:20.490Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 434,
+    "fields": {
+        "text": "User.objects.raw('...')",
+        "correct": true,
+        "question": 106,
+        "created": "2026-10-23T15:16:20.491Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 435,
+    "fields": {
+        "text": "User.objects.query('...')",
+        "correct": false,
+        "question": 106,
+        "created": "2026-10-23T15:16:20.491Z"
+    }
+},
+{
+    "model": "questions.answer",
+    "pk": 436,
+    "fields": {
+        "text": "User.objects.execute('...')",
+        "correct": false,
+        "question": 106,
+        "created": "2026-10-23T15:16:20.491Z"
+    }
+},
+{
     "model": "results.result",
     "pk": 91,
     "fields": {
@@ -5087,6 +5599,15 @@
         "quiz": 5,
         "user": 4,
         "score": 20.0
+    }
+},
+{
+    "model": "results.result",
+    "pk": 143,
+    "fields": {
+        "quiz": 14,
+        "user": 4,
+        "score": 50.0
     }
 }
 ]
