@@ -59,7 +59,7 @@ INSTALLED_APPS = [
 
     'users',
     'main',
-    'news',
+    'articles',
     'questions',
     'quizes',
     'results',

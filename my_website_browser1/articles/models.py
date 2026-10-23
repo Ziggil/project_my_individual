@@ -30,13 +30,13 @@ class Articles(models.Model):
 
     #Без этого будет выводиться номерация объекта(статьи)
     def __str__(self):
-        return f"Новость: {self.title}"
+        return f"Статья: {self.title}"
 
     def get_absolute_url(self):
-        return f'/news/{self.id}'
+        return f'/articles/{self.id}'
 
 
     #Чтобы поменять название наше таблицы
     class Meta:
-        verbose_name="Новость"
-        verbose_name_plural="Новости"
+        verbose_name="Статья"
+        verbose_name_plural="Статьи"

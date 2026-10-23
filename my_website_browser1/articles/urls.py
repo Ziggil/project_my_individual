@@ -5,14 +5,14 @@ from .import views
 #означает что у нас переход будет просиходить по адресу .../news а если мы здесь укажем вместо '' 'news',
 #то это будет означать то что переход будет происходить по адресу .../news/news
 
-app_name = 'news'
+app_name = 'articles'
 urlpatterns=[
-    path('',views.news_home,name='news_home'),
+    path('',views.articles_home,name='articles_home'),
     path('create',views.create,name="create"),
 
 
     #<int:pk>-отслеживаем динамический параметр, никаких пробелов ненужно ставить,а иначе будут ошибки
-    path('<int:pk>',views.NewsDetailView.as_view(),name='news-detail'),
-    path('<int:pk>/update',views.NewsUpdateView.as_view(),name='news-update'),
-    path('<int:pk>/delete',views.NewsDeleteView.as_view(),name='news-delete')
+    path('<int:pk>',views.ArticlesDetailView.as_view(),name='articles-detail'),
+    path('<int:pk>/update',views.ArticlesUpdateView.as_view(),name='articles-update'),
+    path('<int:pk>/delete',views.ArticlesDeleteView.as_view(),name='articles-delete')
 ]

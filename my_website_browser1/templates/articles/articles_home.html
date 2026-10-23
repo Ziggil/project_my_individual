@@ -6,8 +6,8 @@
     <div class="zag_div">
         <h2 class="zag">Статьи</h2>
     </div>    
-        {% if news %}
-            {% for el in news|dictsort:"date" %}
+        {% if articles %}
+            {% for el in articles|dictsort:"date" %}
              
                      
                 <div class='statia'>
@@ -16,7 +16,7 @@
 
                     <p>{{ el.anons }}</p>
                     <!-- кнопка которая перенаправляет на страницу со всем текстов статьи -->
-                    <a href="{% url 'news:news-detail' el.id %}" class="then" >Читать далее</a>
+                    <a href="{% url 'articles:articles-detail' el.id %}" class="then" >Читать далее</a>
                 </div>
 
             {% endfor %}

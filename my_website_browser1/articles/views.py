@@ -16,33 +16,33 @@ from django.contrib.auth.decorators import login_required
 @login_required
 
 #страница со всеми статьями
-def news_home(request):
+def articles_home(request):
     #Порядок сортировки(без сортировки просто news=Articles.objects.all()-тоесть мы просто выводим все записи)
     #А тут сортируем либо по title от большего к меньшему -названию либо по дате date от строго к новогоу(в обратном порядке '-title' или '-date'
     #Если хотим получить какото опрделнное кол-во записей то после скобок срез: [:1]
-    news=Articles.objects.order_by('-date')
-    return render(request,'news/news_home.html',{'news':news})
+    articles=Articles.objects.order_by('-date')
+    return render(request,'articles/articles_home.html',{'articles':articles})
 
 #переходит на конкретную статью
-class NewsDetailView(DetailView):
+class ArticlesDetailView(DetailView):
     model=Articles
-    template_name='news/details_view.html'
+    template_name='articles/details_view.html'
     #Это как бы ключ по которому мы передаем определенный объект внутрь шаблонаю
     context_object_name = 'article'
 
 #отображение страницы обновления статьи
-class NewsUpdateView(UpdateView):
+class ArticlesUpdateView(UpdateView):
     model=Articles
-    template_name = "news/create.html"
+    template_name = "articles/create.html"
 
     form_class=ArticlesFrom
 
 #страница удаления статьи
-class NewsDeleteView(DeleteView):
+class ArticlesDeleteView(DeleteView):
     model=Articles
     #В этом поле указываем куда нужно будет переодресовывать пользователя после того как выполниться удаление статьи
-    success_url='/news/'
-    template_name = "news/news-delete.html"
+    success_url='/articles/'
+    template_name = "articles/articles-delete.html"
 
 #редактированеи статьи
 @login_required
@@ -65,4 +65,4 @@ def create(request):
         'error':error
     }
 
-    return render(request,"news:create.html",data)
+    return render(request,"articles/create.html",data)
