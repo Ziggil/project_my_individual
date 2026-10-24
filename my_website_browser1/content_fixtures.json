@@ -106,7 +106,7 @@
         "name": "Теги и устройство HTML",
         "topic": "HTML",
         "number_of_questions": 10,
-        "time": 1,
+        "time": 10,
         "required_score_pass": 50,
         "difficluty": "средний"
     }
@@ -118,7 +118,7 @@
         "name": "Проверка на знание CSS",
         "topic": "CSS",
         "number_of_questions": 10,
-        "time": 1,
+        "time": 10,
         "required_score_pass": 50,
         "difficluty": "средний"
     }
@@ -130,7 +130,7 @@
         "name": "Docker",
         "topic": "Docker and docker-compose",
         "number_of_questions": 6,
-        "time": 1,
+        "time": 6,
         "required_score_pass": 75,
         "difficluty": "легкий"
     }
@@ -142,7 +142,7 @@
         "name": "Проверка на знание Git и Github",
         "topic": "Git and Github",
         "number_of_questions": 10,
-        "time": 1,
+        "time": 10,
         "required_score_pass": 70,
         "difficluty": "легкий"
     }
@@ -166,7 +166,7 @@
         "name": "Введение в веб: сайты, браузеры, сервера",
         "topic": "Введение в веб",
         "number_of_questions": 10,
-        "time": 1,
+        "time": 10,
         "required_score_pass": 40,
         "difficluty": "сложный"
     }
@@ -178,7 +178,7 @@
         "name": "CSS Flexbox",
         "topic": "CSS, frontend",
         "number_of_questions": 10,
-        "time": 1,
+        "time": 10,
         "required_score_pass": 75,
         "difficluty": "средний"
     }
@@ -190,7 +190,7 @@
         "name": "Основы JavaScript: DOM и обработка событий",
         "topic": "Тест по теме «DOM и события»",
         "number_of_questions": 12,
-        "time": 5,
+        "time": 12,
         "required_score_pass": 85,
         "difficluty": "легкий"
     }
@@ -202,7 +202,7 @@
         "name": "Базы данных: PostgreSQL и SQL",
         "topic": "Проверьте, как вы усвоили основы работы с реляционными базами данных на примере PostgreSQL.",
         "number_of_questions": 15,
-        "time": 5,
+        "time": 15,
         "required_score_pass": 56,
         "difficluty": "средний"
     }
@@ -214,7 +214,7 @@
         "name": "Django ORM",
         "topic": "Проверьте, как вы усвоили основы работы с Django ORM",
         "number_of_questions": 10,
-        "time": 5,
+        "time": 10,
         "required_score_pass": 75,
         "difficluty": "средний"
     }
