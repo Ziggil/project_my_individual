@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
           return;
         }
 
-        // [ИСПРАВИЛ 1] Собираю весь HTML в одну переменную, чтобы избежать багов с innerHTML +=
+        // Собираю весь HTML в одну переменную, чтобы избежать багов с innerHTML +=
         let htmlContent = '';
 
         // Проходим по каждому вопросу
@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
           // Перемешиваем ответы внутри вопроса.
           const answers = shuffleArray(el.answers);
 
-          // [ИСПРАВИЛ 2] Убрал класс "statia", чтобы не применялись лишние стили (max-width: 700px)
+          // Убрал класс "statia", чтобы не применялись лишние стили (max-width: 700px)
           // Рисуем вопрос
           htmlContent += `
             <div class="quizes_center quiz-question-card">
@@ -70,12 +70,12 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
           `;
 
-          // [ИСПРАВИЛ 3] Оборачиваю ответы в общий контейнер для правильного отображения
+          // Оборачиваю ответы в общий контейнер для правильного отображения
           htmlContent += `<div class="answers-container">`;
 
           // Рисуем каждый ответ
           answers.forEach(answer => {
-            // [ИСПРАВИЛ 4] Убрал класс "statia"
+            // Убрал класс "statia"
             htmlContent += `
               <div class="quizes_center quiz-answer-card">
                 <input type="radio" class="ans" id="${question}-${answer.text}" name="${question}" value="${answer.text}">
@@ -88,7 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
           htmlContent += `</div>`;
         });
 
-        // [ИСПРАВИЛ 5] Вставляю весь собранный HTML один раз
+        // Вставляю весь собранный HTML один раз
         quizBox.innerHTML = htmlContent;
       },
 
@@ -224,9 +224,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (!response.results || response.results.length === 0) {
           container.innerHTML = '<p>У вас пока нет результатов тестов.</p>';
+          // Если тестов нет, кнопку тоже прячем
+          const toggleTestsBtn = document.getElementById('toggle-tests-btn');
+          if (toggleTestsBtn) toggleTestsBtn.style.display = 'none';
           return;
         }
-        response.results.forEach(res => {
+
+        response.results.forEach((res, index) => { 
           const existingResults = document.querySelectorAll(
             `.result-item[data-quiz-name="${res.quiz_name}"]`
           );
@@ -234,6 +238,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
           const resultDiv = document.createElement('div');
           resultDiv.className = 'result-item';
+
+          // Если результат по счету больше 3-го, скрываем его по умолчанию
+          if (index >= 3) {
+            resultDiv.classList.add('hidden-result');
+            resultDiv.style.display = 'none';
+          }
 
           if (res.passed) {
             resultDiv.classList.add('passed');
@@ -249,6 +259,30 @@ document.addEventListener('DOMContentLoaded', () => {
           `;
           container.appendChild(resultDiv);
         });
+
+        // Логика для кнопки "Показать все тесты"
+        const toggleTestsBtn = document.getElementById('toggle-tests-btn');
+        if (toggleTestsBtn) {
+          if (response.results.length > 3) {
+            toggleTestsBtn.style.display = 'inline-block';
+            
+            // Убираем старый обработчик, чтобы не было двойных кликов
+            const newBtn = toggleTestsBtn.cloneNode(true);
+            toggleTestsBtn.parentNode.replaceChild(newBtn, toggleTestsBtn);
+            
+            let testsExpanded = false;
+            newBtn.addEventListener('click', () => {
+              testsExpanded = !testsExpanded;
+              const hiddenItems = container.querySelectorAll('.hidden-result');
+              hiddenItems.forEach(item => {
+                item.style.display = testsExpanded ? 'block' : 'none';
+              });
+              newBtn.textContent = testsExpanded ? 'Скрыть лишние тесты' : 'Показать все тесты';
+            });
+          } else {
+            toggleTestsBtn.style.display = 'none';
+          }
+        }
       },
       error: function(error) {
         console.error('Ошибка загрузки результатов. Возможно, токен отсутствует:', error);
