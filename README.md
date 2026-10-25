@@ -12,7 +12,7 @@
 
 ## 📸 Как выглядит
 
-![Главная страница](docs/assets/screenshots/v8.5.5/home_v8.5.png)
+![Главная страница](docs/assets/screenshots/current/v8.8.0/home_v8.8.png)
 
 ---
 
