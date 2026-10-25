@@ -15,5 +15,62 @@
         <p class="p_article">{{ article.full_text|linebreaksbr }}</p>
     </div>
 
-{% endblock %}
+    <!-- Скрытый элемент, чтобы JS знал ID статьи -->
+    <div id="article-data" data-article-id="{{ article.id }}" style="display: none;"></div>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const articleData = document.getElementById('article-data');
+            if (!articleData) return;
+
+            const articleId = articleData.dataset.articleId;
+            const userIsAuthenticated = {{ request.user.is_authenticated|yesno:"true,false" }};
+
+            // Если пользователь не авторизован, таймер не запускаем
+            if (!userIsAuthenticated) {
+                console.log("Пользователь не авторизован, прогресс не сохраняется.");
+                return;
+            }
+
+            // Таймер на 80 000 миллисекунд (1 минута 20 секунд)
+            const READING_TIME_MS = 80 * 1000; 
+
+            console.log(`Таймер запущен для статьи ${articleId} на ${READING_TIME_MS / 1000} сек.`);
+
+            const timerId = setTimeout(() => {
+                // Отправляем POST-запрос на наш API
+                fetch(`/articles/${articleId}/mark-read`, {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRFToken': getCookie('csrftoken'), // Функция для получения CSRF-токена
+                        'Content-Type': 'application/json'
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log("Ответ сервера:", data);
+                    if (data.status === 'ok') {
+                        console.log("✅ Статья отмечена как прочитанная!");
+                    }
+                })
+                .catch(error => console.error("Ошибка при отправке:", error));
+            }, READING_TIME_MS);
+
+            // Функция для получения CSRF-токена из куки (нужна для POST-запроса)
+            function getCookie(name) {
+                let cookieValue = null;
+                if (document.cookie && document.cookie !== '') {
+                    const cookies = document.cookie.split(';');
+                    for (let i = 0; i < cookies.length; i++) {
+                        const cookie = cookies[i].trim();
+                        if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                            break;
+                        }
+                    }
+                }
+                return cookieValue;
+            }
+        });
+    </script>
+{% endblock %}

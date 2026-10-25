@@ -76,9 +76,17 @@ def user_results_summary(request):
     return Response({'results': serializer.data})
 
 
+from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
+from articles.models import ArticleReadProgress 
 
 
-
-
+@login_required
+def home(request):
+    # Получаем все прочитанные статьи текущего пользователя
+    read_articles = ArticleReadProgress.objects.filter(user=request.user).select_related('article')
+    
+    # Передаем в контекст шаблона
+    return render(request, 'main/home.html', {'read_articles': read_articles})
 
 
