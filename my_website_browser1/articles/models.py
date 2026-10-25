@@ -40,3 +40,32 @@ class Articles(models.Model):
     class Meta:
         verbose_name="Статья"
         verbose_name_plural="Статьи"
+        
+# отслеживать прочтение пользователем статьи
+class ArticleReadProgress(models.Model):
+    # Связь с пользователем (кто прочитал)
+    user = models.ForeignKey(
+        'auth.User', 
+        on_delete=models.CASCADE,
+        verbose_name='Пользователь'
+    )
+    # Связь со статьей (какую прочитал)
+    article = models.ForeignKey(
+        Articles, 
+        on_delete=models.CASCADE,
+        verbose_name='Статья'
+    )
+    # Когда прочитал
+    read_at = models.DateTimeField(
+        auto_now_add=True, 
+        verbose_name='Дата прочтения'
+    )
+
+    class Meta:
+        verbose_name = 'Прогресс чтения'
+        verbose_name_plural = 'Прогресс чтения'
+        # Запрещаем дублировать записи (один юзер - одна статья)
+        unique_together = ('user', 'article')
+
+    def __str__(self):
+        return f"{self.user.username} прочитал {self.article.title}"

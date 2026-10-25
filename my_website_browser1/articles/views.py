@@ -66,3 +66,29 @@ def create(request):
     }
 
     return render(request,"articles/create.html",data)
+
+
+
+from .models import Articles, ArticleReadProgress
+
+from django.http import JsonResponse
+from django.shortcuts import get_object_or_404
+
+# функция для помтки прочитал пользователь статью или нет
+def mark_article_read(request, pk):
+    """API для отметки статьи как прочитанной (вызывается из JS)"""
+    if request.method == 'POST' and request.user.is_authenticated:
+        article = get_object_or_404(Articles, pk=pk)
+        
+        # Создаем запись, если ее еще нет
+        obj, created = ArticleReadProgress.objects.get_or_create(
+            user=request.user,
+            article=article
+        )
+        
+        if created:
+            return JsonResponse({'status': 'ok', 'message': 'Статья отмечена как прочитанная'})
+        else:
+            return JsonResponse({'status': 'ok', 'message': 'Уже прочитано'})
+            
+    return JsonResponse({'status': 'error', 'message': 'Не авторизован или не POST'}, status=400)

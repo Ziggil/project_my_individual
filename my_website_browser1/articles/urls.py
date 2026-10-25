@@ -14,5 +14,7 @@ urlpatterns=[
     #<int:pk>-отслеживаем динамический параметр, никаких пробелов ненужно ставить,а иначе будут ошибки
     path('<int:pk>',views.ArticlesDetailView.as_view(),name='articles-detail'),
     path('<int:pk>/update',views.ArticlesUpdateView.as_view(),name='articles-update'),
-    path('<int:pk>/delete',views.ArticlesDeleteView.as_view(),name='articles-delete')
+    path('<int:pk>/delete',views.ArticlesDeleteView.as_view(),name='articles-delete'),
+    
+    path('<int:pk>/mark-read', views.mark_article_read, name='mark-read'),
 ]
