@@ -13,7 +13,7 @@
   <form action="{% url 'users:logout' %}" method="post">
     {% csrf_token %}
     <h2>Вы точно хотите выйти?</h2>
-    <button type="submit">Выход</button>
+    <button type="submit" class="btn-exit">Выход</button>
     <a class="btn btn-primary" href="{% url 'home' %}" role="button">Назад</a>
   </form>
 

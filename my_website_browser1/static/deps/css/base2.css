@@ -144,3 +144,21 @@ button:hover {
     font-size: 18px;
     font-weight: bold;
 }
+
+
+.btn-exit {
+    background-color: #000;
+    color: #1a5e1a;
+    border: 2px solid #000000;
+    padding: 10px 25px;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s ease; 
+}
+
+.btn-exit:hover {
+    color: #10b910;
+
+}
