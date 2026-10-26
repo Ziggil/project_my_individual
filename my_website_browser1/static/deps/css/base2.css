@@ -74,6 +74,27 @@ a:hover {
     transform: scale(1.05);
 }
 
+.a_footer{
+    background-color: #2f2f2f;;
+    color: hsla(229, 100%, 50%, 0.6);
+    border: 2px solid #2f2f2f;
+    text-decoration: none;
+    margin: 20px auto 0 auto;
+    display: block;
+    text-align: center;
+    width: 50%;
+    max-width: 500px;
+    font-size: 20px;
+    padding: 6px 0;
+    transition: 1s;
+}
+
+.a_footer:hover{
+    color: rgb(14, 173, 54);
+    background-color: #2f2f2f;
+}
+
+
 /* Общие стили для картинок (маленькие) */
 img {
     display: block;
