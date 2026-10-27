@@ -6,6 +6,12 @@
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-blue)
 ![License](https://img.shields.io/badge/License-MIT-yellow)
 
+
+### 🚀 В планах на изучение
+![C#](https://img.shields.io/badge/C%23-239120?style=flat&logo=c-sharp&logoColor=white)
+![.NET](https://img.shields.io/badge/.NET-512BD4?style=flat&logo=dotnet&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=flat&logo=fastapi&logoColor=white)
+
 Веб-приложение для обучения веб-разработке. Содержит теоретические статьи, интерактивные тесты для проверки знаний и личный кабинет пользователя.
 
 ---
