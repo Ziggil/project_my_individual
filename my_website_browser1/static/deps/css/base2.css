@@ -33,16 +33,13 @@ article {
 
 footer {
     background-color: #2f2f2f;
-    color: hsla(34, 100%, 50%, 0.7);
     text-align: center;
     padding: 20px;
     width: 100%;
-    transition: 0.3s;
+    
 }
 
-footer:hover {
-    color: hsla(34, 100%, 50%, 1.2);
-}
+
 
 h1, h2 {
     text-align: center;
@@ -54,9 +51,10 @@ h3 {
 }
 
 a {
-    background-color: rgb(100, 107, 102);
-    color: hsla(195, 100%, 50%, 0.6);
+    background-color: rgb(67, 71, 68);
+    color: hsla(221, 92%, 60%, 0.945);
     border: 2px solid black;
+    border-radius: 20px;
     text-decoration: none;
     margin: 20px auto 0 auto;
     display: block;
@@ -69,8 +67,8 @@ a {
 }
 
 a:hover {
-    background-color: rgb(141, 142, 144);
-    color: rgb(64, 50, 193);
+    background-color: rgb(67, 71, 68);
+    color:hsla(106, 71%, 46%, 0.993);
     transform: scale(1.05);
 }
 
@@ -92,6 +90,15 @@ a:hover {
 .a_footer:hover{
     color: rgb(14, 173, 54);
     background-color: #2f2f2f;
+}
+
+.p_footer{
+    color: hsla(34, 100%, 50%, 0.7);
+    transition: 0.6s;
+}
+
+.p_footer:hover{
+     color: hsla(34, 100%, 50%, 1.2)
 }
 
 
@@ -123,26 +130,42 @@ input {
     width: 250px;
     max-width: 80%;
     border: 3px solid rgb(0, 0, 0);
+    background-color: #bebebe;
     border-radius: 4px;
     text-align: center;
     transition: 0.5s;
+    outline: none;
+    
 }
 
 input:hover {
     border-color: rgb(10, 49, 220);
 }
 
+
+input:not(:placeholder-shown):focus {
+    border-color: #173588;
+    background-color: #858d7f;
+          
+}
+
+
+
 button {
     margin-top: 15px;
     padding: 6px 16px;
     transition: 0.6s;
     cursor: pointer;
+    background-color: #000;
+    color:rgb(12, 141, 45);
 }
 
 button:hover {
-    color: white;
+    color: rgb(15, 196, 60);
     background-color: black;
 }
+
+
 
 /* --- ИСКЛЮЧЕНИЕ ДЛЯ СТРАНИЦЫ ABOUT --- */
 
