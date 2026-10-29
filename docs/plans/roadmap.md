@@ -154,19 +154,23 @@
 
 ```
 templates/
-├── base2.html              # Общий шаблон для всех страниц
+├── base_dirs/              # Папка для общих шаблонов (каркасов)
+│   ├── base.html           # Общий шаблон для АВТОРИЗОВАННЫХ страниц (с навигацией)
+│   └── base2.html          # Общий шаблон для НЕАВТОРИЗОВАННЫХ страниц (логин, регистрация)
 ├── main/
-│   ├── index.html          # Главная страница
-│   └── about.html          # Страница «Про нас»
+│   ├── index.html          # Главная страница (лендинг) — наследует base_dirs/base2.html
+│   ├── about.html          # Страница «Про нас» — наследует base_dirs/base2.html
+│   ├── home.html           # Профиль (данные пользователя, тесты, статьи) — наследует base_dirs/base.html
+│   └── links.html          # Полезные ссылки — наследует base_dirs/base.html
 ├── users/
-│   ├── register.html       # Регистрация
-│   ├── login.html          # Вход
-│   └── logout.html         # Выход
-├── news/                   # Страницы новостей/статей
-└── quizes/                 # Страницы тестов
+│   ├── register.html       # Регистрация — наследует base_dirs/base2.html
+│   ├── login.html          # Вход — наследует base_dirs/base2.html
+│   └── logout.html         # Выход — наследует base_dirs/base2.html
+├── articles/               # Страницы статей — наследуют base_dirs/base.html
+└── quizes/                 # Страницы тестов — наследуют base_dirs/base.html                # Страницы тестов — наследуют main/base.html
 ```
 
-**Принцип:** все дочерние шаблоны наследуются от `base2.html` через `{% extends 'base2.html' %}`. Общий CSS — `base2.css`.
+**Принцип:** все дочерние шаблоны наследуются от `base.html` или `base2.html` через `{% extends 'base.html' %}`  или `{% extends 'base2.html' %}`. Общий CSS — `base.css`и `base2.css` .
 
 ### Документация
 
