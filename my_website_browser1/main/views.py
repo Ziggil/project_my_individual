@@ -1,20 +1,24 @@
-
-
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse
+from results.models import Result
+from quizes.models import Quiz
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
+from results.serializers import UserResultSummarySerializer
+from django.db.models import Max
+from articles.models import ArticleReadProgress
+
 
 def index(request):
-   #можно добавить список или кортеж, словарь
-
+    # Главная страница (лендинг)
     return render(request, 'main/index.html')
 
 
 def about(request):
     return render(request, 'main/about.html')
 
-@login_required
-def home(request):
-    return render(request, 'main/home.html')
 
 @login_required
 def base(request):
@@ -26,35 +30,17 @@ def links(request):
     return render(request, 'main/links.html')
 
 
-from django.contrib.auth.decorators import login_required
-from django.http import JsonResponse
-from results.models import Result  # замените на рею модели результатов
-from quizes.models import Quiz   # если нужна информация о тесте
+@login_required
+def home(request):
+    # Получаем все прочитанные статьи текущего пользователя и сортируем (новые сверху)
+    read_articles = ArticleReadProgress.objects.filter(user=request.user).select_related('article').order_by('-read_at')
 
-# @login_required
-# def user_results_summary(request):
-#     user = request.user
-#     results = Result.objects.filter(user=user).select_related('quiz')
-
-#     data = []
-#     for res in results:
-#         data.append({
-#             'quiz_name': res.quiz.name,
-#             'score_percent': res.score,  # предполагается, что это процент
-#             'pass_score': res.quiz.required_score_pass,
-#             'passed': res.score >= res.quiz.required_score_pass,
-#         })
-
-#     return JsonResponse({'results': data})
+    
+    # Передаем в контекст шаблона
+    return render(request, 'main/home.html', {'read_articles': read_articles})
 
 
-from rest_framework.decorators import api_view, permission_classes
-from rest_framework.permissions import IsAuthenticated
-from rest_framework.response import Response
-from results.models import Result
-from results.serializers import UserResultSummarySerializer
 
-from django.db.models import Max
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
@@ -70,23 +56,7 @@ def user_results_summary(request):
         .values_list('latest_id', flat=True)
     )
     
-    # Оставляем только эти записи
-    results = Result.objects.filter(id__in=latest_ids).select_related('quiz')
+    # Оставляем только эти записи и сортируем по убыванию ID (новые сверху)
+    results = Result.objects.filter(id__in=latest_ids).select_related('quiz').order_by('-id')
     serializer = UserResultSummarySerializer(results, many=True)
     return Response({'results': serializer.data})
-
-
-from django.shortcuts import render
-from django.contrib.auth.decorators import login_required
-from articles.models import ArticleReadProgress 
-
-
-@login_required
-def home(request):
-    # Получаем все прочитанные статьи текущего пользователя
-    read_articles = ArticleReadProgress.objects.filter(user=request.user).select_related('article')
-    
-    # Передаем в контекст шаблона
-    return render(request, 'main/home.html', {'read_articles': read_articles})
-
-
