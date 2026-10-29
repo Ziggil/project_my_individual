@@ -167,7 +167,7 @@ templates/
 │   ├── login.html          # Вход — наследует base_dirs/base2.html
 │   └── logout.html         # Выход — наследует base_dirs/base2.html
 ├── articles/               # Страницы статей — наследуют base_dirs/base.html
-└── quizes/                 # Страницы тестов — наследуют base_dirs/base.html                # Страницы тестов — наследуют main/base.html
+└── quizes/                 # Страницы тестов — наследуют base_dirs/base.html              
 ```
 
 **Принцип:** все дочерние шаблоны наследуются от `base.html` или `base2.html` через `{% extends 'base.html' %}`  или `{% extends 'base2.html' %}`. Общий CSS — `base.css`и `base2.css` .
