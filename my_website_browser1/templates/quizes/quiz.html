@@ -22,6 +22,10 @@
     <div id="quizContainer">
         <form id="quiz-form">
             {% csrf_token %}
+            
+            <!-- Блок для отображения таймера -->
+            <div id="timer-display" style="text-align: center; font-size: 24px; font-weight: bold; color: #ff0000; margin-bottom: 20px;"></div>
+
             <div id="quiz-box"></div>
             <!-- Кнопка "Сохранить" -->
             <button class="button quiz_save_button quiz-save-button" type="submit" id="saveBtn">Сохранить</button>

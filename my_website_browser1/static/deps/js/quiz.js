@@ -17,9 +17,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const quizBox = document.getElementById('quiz-box');
   const scoreBox = document.getElementById('score-box');
   const resultBox = document.getElementById('result-box');
+  const timerDisplay = document.getElementById('timer-display'); // Контейнер для таймера
 
   let questionData = null;
   let responses = null;
+  let timerInterval = null; // Для хранения ID интервала
+  let isTimeOut = false;    // [ДОБАВЛЕНО] Флаг, что время вышло
 
 
   // Используется для перемешивания порядка ответов внутри вопроса.
@@ -30,6 +33,40 @@ document.addEventListener('DOMContentLoaded', () => {
       [result[i], result[j]] = [result[j], result[i]]; // swap
     }
     return result;
+  };
+
+  // --- ФУНКЦИЯ ТАЙМЕРА ---
+  const startQuizTimer = (totalQuestions) => {
+    console.log("Функция таймера работает")
+    if (!timerDisplay) return;
+
+    // 1 минута на 1 вопрос
+    let timeLeft = totalQuestions * 60; 
+
+    // Очищаем старый таймер, если он был (на случай перезапуска)
+    if (timerInterval) clearInterval(timerInterval);
+
+    timerInterval = setInterval(() => {
+        timeLeft--;
+        
+        const minutes = Math.floor(timeLeft / 60);
+        const seconds = timeLeft % 60;
+        timerDisplay.textContent = `Осталось времени: ${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+
+        // Если время вышло
+        if (timeLeft <= 0) {
+            clearInterval(timerInterval);
+            timerDisplay.textContent = "Время вышло!";
+            isTimeOut = true; // [ДОБАВЛЕНО] Устанавливаем флаг
+            alert("Время вышло! Тест будет отправлен автоматически.");
+            
+            // Вызываем функцию сохранения (эмуляция клика по кнопке)
+            const saveBtn = document.getElementById('saveBtn');
+            if (saveBtn) {
+                saveBtn.click(); 
+            }
+        }
+    }, 1000);
   };
 
   // Загрузка вопросов для страницы теста
@@ -62,7 +99,6 @@ document.addEventListener('DOMContentLoaded', () => {
           // Перемешиваем ответы внутри вопроса.
           const answers = shuffleArray(el.answers);
 
-          // Убрал класс "statia", чтобы не применялись лишние стили (max-width: 700px)
           // Рисуем вопрос
           htmlContent += `
             <div class="quizes_center quiz-question-card">
@@ -75,7 +111,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
           // Рисуем каждый ответ
           answers.forEach(answer => {
-            // Убрал класс "statia"
             htmlContent += `
               <div class="quizes_center quiz-answer-card">
                 <input type="radio" class="ans" id="${question}-${answer.text}" name="${question}" value="${answer.text}">
@@ -90,6 +125,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Вставляю весь собранный HTML один раз
         quizBox.innerHTML = htmlContent;
+
+        // Запускаем таймер после отрисовки вопросов
+        startQuizTimer(data.length);
       },
 
       error: function(error) {
@@ -106,6 +144,9 @@ document.addEventListener('DOMContentLoaded', () => {
     saveBtn.addEventListener('click', e => {
       e.preventDefault();
 
+      // Останавливаем таймер при отправке
+      if (timerInterval) clearInterval(timerInterval);
+
       const answersEls = document.querySelectorAll('.ans');
       const data = {};
       const form = document.getElementById('quiz-form');
@@ -119,7 +160,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
 
-      if (!allAnswered) {
+      //  Если время вышло, мы пропускаем проверку на все ответы
+      if (!allAnswered && !isTimeOut) {
         alert('Пожалуйста, ответьте на все вопросы!');
         return;
       }
@@ -224,7 +266,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (!response.results || response.results.length === 0) {
           container.innerHTML = '<p>У вас пока нет результатов тестов.</p>';
-          // Если тестов нет, кнопку тоже прячем
           const toggleTestsBtn = document.getElementById('toggle-tests-btn');
           if (toggleTestsBtn) toggleTestsBtn.style.display = 'none';
           return;
@@ -239,7 +280,6 @@ document.addEventListener('DOMContentLoaded', () => {
           const resultDiv = document.createElement('div');
           resultDiv.className = 'result-item';
 
-          // Если результат по счету больше 3-го, скрываем его по умолчанию
           if (index >= 3) {
             resultDiv.classList.add('hidden-result');
             resultDiv.style.display = 'none';
@@ -260,13 +300,11 @@ document.addEventListener('DOMContentLoaded', () => {
           container.appendChild(resultDiv);
         });
 
-        // Логика для кнопки "Показать все тесты"
         const toggleTestsBtn = document.getElementById('toggle-tests-btn');
         if (toggleTestsBtn) {
           if (response.results.length > 3) {
             toggleTestsBtn.style.display = 'inline-block';
             
-            // Убираем старый обработчик, чтобы не было двойных кликов
             const newBtn = toggleTestsBtn.cloneNode(true);
             toggleTestsBtn.parentNode.replaceChild(newBtn, toggleTestsBtn);
             
