@@ -1,16 +1,27 @@
-# Используем официальный образ Python
-FROM python:3.10.0rc1
+# Используем стабильный slim-образ
+FROM python:3.13-slim
 
+# Отключаем создание .pyc и включаем вывод логов
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
 
-# Указываем рабочую директорию внутрь контейнера
+# Устанавливаем рабочую директорию
 WORKDIR /app
 
-# Копируем файлы проекта
-COPY my_website_browser1/ /app/
+# Копируем только requirements для кэширования
+COPY requirements.txt .
 
 # Устанавливаем зависимости
-COPY requirements.txt /app/
-RUN pip install -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
-# Команда запуска
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+# Копируем весь проект
+COPY . .
+
+
+# Переходим в папку, где лежит manage.py
+WORKDIR /app/my_website_browser1
+
+EXPOSE 8000
+
+# Теперь Gunicorn видит my_website_browser/wsgi.py
+CMD ["gunicorn", "my_website_browser.wsgi:application", "--bind", "0.0.0.0:8000"]

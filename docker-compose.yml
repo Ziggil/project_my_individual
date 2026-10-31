@@ -1,13 +1,37 @@
+version: "3.9"
+
 services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${DB_NAME:-web_learning_db}
+      POSTGRES_USER: ${DB_USER:-dev_learning_user}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-12345}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-dev_learning_user} -d ${DB_NAME:-web_learning_db}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
   web:
     build: .
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
     ports:
-      - "8001:8000"
+      - "8000:8000"
+    environment:
+      DB_NAME: ${DB_NAME:-web_learning_db}
+      DB_USER: ${DB_USER:-dev_learning_user}
+      DB_PASSWORD: ${DB_PASSWORD:-12345}
+      DB_HOST: db
+      DB_PORT: 5432
     volumes:
-      - ./my_website_browser1:/app
-    networks:
-      - mynetwork
+      - .:/app
 
-networks:
-  mynetwork:
-    driver: bridge
+volumes:
+  postgres_data:
