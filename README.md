@@ -4,6 +4,7 @@
 ![Django](https://img.shields.io/badge/Django-6.1.1-green)
 ![DRF](https://img.shields.io/badge/DRF-latest-red)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-blue)
+![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat&logo=docker&logoColor=white)
 ![License](https://img.shields.io/badge/License-MIT-yellow)
 
 
@@ -237,6 +238,28 @@ python manage.py runserver
 
 ---
 
+## 🐳 Инструкция по запуску через Docker
+
+<details>
+<summary>Нажмите, чтобы развернуть инструкцию для Docker</summary>
+
+1. Убедитесь, что у вас установлен Docker и Docker Compose.
+2. В корне проекта (где лежит `docker-compose.yml`) выполните:
+   ```bash
+   docker compose up --build
+
+3. Примените миграции и загрузите фикстуру (в новом терминале):
+   ```bash
+
+    docker compose exec web python manage.py migrate
+    docker compose exec web python manage.py loaddata content_fixtures.json
+
+4. Откройте в браузере: http://localhost:8000/
+
+</details> ```
+
+---
+
 ## 🛠 Технологический стек
 
 **Backend:**
@@ -258,6 +281,7 @@ python manage.py runserver
 - Git, GitHub
 - Docker (Dockerfile, docker-compose.yml в корне репозитория)
 - VS Code
+- WhiteNoise (раздача статики)
 
 ---
 
