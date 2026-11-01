@@ -310,7 +310,6 @@ python manage.py runserver
 Внутри:
 
 - [`screenshots/v7_sqlite/`](https://github.com/Ziggil/project_my_individual/tree/h_quiz_v8_postgresql_drf/docs/assets/screenshots/v7_sqlite) — скриншоты старой версии на SQLite.
-- [`screenshots/v8.3.5_postgresql_drf/`](https://github.com/Ziggil/project_my_individual/tree/h_quiz_v8_postgresql_drf/docs/assets/screenshots/v8.3.5_postgresql_drf) — скриншоты текущей версии.
 - [`screenshots/current/`](https://github.com/Ziggil/project_my_individual/tree/h_quiz_v8_postgresql_drf/docs/assets/screenshots/current) — всегда актуальные скриншоты.
 - [`videos/`](https://github.com/Ziggil/project_my_individual/tree/h_quiz_v8_postgresql_drf/docs/assets/videos) — видео работы сайта.
 - [`presentations/`](https://github.com/Ziggil/project_my_individual/tree/h_quiz_v8_postgresql_drf/docs/assets/presentations) — презентации о проекте.
