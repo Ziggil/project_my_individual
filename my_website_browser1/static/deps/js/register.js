@@ -1,14 +1,13 @@
 // IIFE (Immediately Invoked Function Expression) — изолирует переменные,
 // чтобы не засорять глобальную область видимости (window).
 (function() {
-    console.log("login.js script working");
+    console.log("register.js script working");
 
-    // Находим форму и кнопку по id (проверь, что они есть в login.html)
-    const form = document.querySelector("#login-form");
-    const loginBtn = document.querySelector("#loginBtn");
+    // Находим форму и кнопку по id
+    const form = document.querySelector("#register-form");
+    const registerBtn = document.querySelector("#registerBtn");
 
     // Функция для получения CSRF-токена из cookie.
-    // Django кладёт csrftoken в cookie. Без него POST-запрос вернёт 403.
     const getCookie = (name) => {
         let matches = document.cookie.match(new RegExp(
             "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
@@ -17,14 +16,12 @@
     };
 
     // Удаляет старые ошибки перед новой попыткой.
-    // ВАЖНО: querySelectorAll, а не querySelector (иначе удалит только первую).
     const clearErrors = () => {
         document.querySelectorAll(".error").forEach(el => el.remove());
     };
 
-    // Показывает ошибки, пришедшие от DRF, рядом с соответствующими полями.
+    // Показывает ошибки, пришедшие от DRF.
     // DRF возвращает объект вида { "username": ["..."] }.
-    // Мы ищем input по id, добавляем span с ошибкой после него.
     const showErrors = (errors) => {
         Object.entries(errors).forEach(([field, messages]) => {
             const input = document.querySelector(`#id_${field}`);
@@ -37,10 +34,10 @@
         });
     };
 
-    // Вешаем обработчик на кнопку логина
-    if (loginBtn) {
-        loginBtn.addEventListener("click", (e) => {
-            // Останавливаем стандартную отправку формы
+    // Вешаем обработчик на кнопку
+    if (registerBtn) {
+        registerBtn.addEventListener("click", (e) => {
+            // Останавливаем стандартную отправку формы (если бы она была)
             e.preventDefault();
 
             // 1. Чистим старые ошибки
@@ -49,30 +46,32 @@
             // 2. Собираем данные формы в объект
             const formData = new FormData(form);
             const data = Object.fromEntries(formData.entries());
-            
 
-            // 3. Отправляем AJAX-запрос на DRF-эндпоинт
+            // 3. Отправляем AJAX-запрос на DRF-эндпоинт регистрации
             $.ajax({
                 type: "POST",
-                url: "/users/api/login/",
+                url: "/users/api/register/",
                 contentType: "application/json",
                 data: JSON.stringify(data),
                 headers: {
                     "X-CSRFToken": getCookie("csrftoken"),
                 },
 
-                // 4. Успех — сохраняем JWT и редирект на главную
+                // 4. Успех — редирект на страницу логина
                 success: function(response) {
-                    // Сохраняем токены в localStorage, чтобы auth.js их подхватил
-                    localStorage.setItem("access_token", response.access);
-                    localStorage.setItem("refresh_token", response.refresh);
-                    window.location.href = "/home/";
+                    console.log("Успешная регистрация:", response);
+                    // Перенаправляем на страницу входа
+                    window.location.href = "/users/login/";
                 },
 
                 // 5. Ошибка валидации — показываем рядом с полями
                 error: function(xhr) {
+                    console.log("Ошибка регистрации:", xhr.responseJSON);
                     if (xhr.responseJSON) {
                         showErrors(xhr.responseJSON);
+                    } else {
+                        // Если ошибка не от DRF (например, сеть), показываем общий alert
+                        alert("Произошла ошибка при регистрации. Попробуйте позже.");
                     }
                 },
             });
