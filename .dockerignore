@@ -1,6 +1,40 @@
+# Виртуальные окружения и кэш Python
 .venv_linux_work/
+.venv_linux/
 __pycache__/
 *.pyc
+*.pyo
+*.pyd
+
+# Git и настройки IDE
 .git/
+.gitignore
+.vscode/
+.idea/
+
+# Локальные секреты и базы данных
 .env
 db.sqlite3
+*.sqlite3
+
+# Документация, медиа и бэкапы (не нужны на сервере)
+docs/
+backups/
+*.md
+!requirements.txt
+
+# Тесты и локальные скрипты
+_tests/
+testing/
+playwright.config.js
+package.json
+package-lock.json
+
+# Медиафайлы (скриншоты, видео)
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.mp4
+*.mkv
+*.webm
