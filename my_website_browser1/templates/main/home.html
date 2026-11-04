@@ -3,27 +3,9 @@
 {% block title %}Домашняя страница{% endblock %}
 
 {% block content %}
-<!-- Стили для кнопок "Показать все" -->
-<style>
-    .btn-custom-show {
-        background-color: #000; /* Черный фон */
-        color: #6c9a6c; /* Бледно-зеленый текст */
-        border: 1px solid #000; /* Рамка в цвет текста */
-        transition: all 0.3s ease; /* Плавный переход */
-        padding: 8px 15px;
-        border-radius: 5px;
-        cursor: pointer;
-    }
-    .btn-custom-show:hover {
-        color: #00ff00; /* Яркий зеленый при наведении */
-
-    }
-</style>
-
 <h1 class="zag_home_h1">Это домашняя страница сайта!</h1>
-<h3 class="zag_home_h3">Сам сайт создан для начального обучения людей, которым интересно как работают сайты и связанные с этим процессы.</h3> 
+<h3 class="zag_home_h3">Сам сайт создан для начального обучения людей, которым интересно как работают сайты и связанные с этим процессы.</h3>
 <h3 class="zag_home_h3">То есть, для людей, которые хотят углубиться в web - backend и frontend разработчики!</h3>
-
 
 <div class="statia">
     <div>
@@ -39,41 +21,36 @@
     </div>
 
     <!-- БЛОК ТЕСТОВ -->
-    <div style="margin-top: 20px;">
-        <h3 class="h3_home">Ваши результаты тестов:</h3>
+    <div class="profile-section">
+        <h3 class="h3_read">Ваши результаты тестов:</h3>
         <div class="enter_div" id="user-results-container">
             <!-- Сюда JS вставляет результаты -->
         </div>
-        <!-- Примен css что выше -->
-        <button id="toggle-tests-btn" class="btn-custom-show" style="display: none; margin-top: 10px;">Показать все тесты</button>
+        <button id="toggle-tests-btn" class="btn-custom-show" style="display: none;">Показать все тесты</button>
     </div>
 
     <!-- БЛОК СТАТЕЙ -->
-    <div style="margin-top: 30px;">
-        <h3 class="h3_home" style="color: #000; text-align: center;">Прочитанные статьи:</h3>
-        
+    <div class="profile-section profile-section-articles">
+        <h3 class="h3_read">Прочитанные статьи:</h3>
+
         {% if read_articles %}
             <div id="articles-container">
                 {% for progress in read_articles %}
-                    <!-- Каждая статья в своей оранжевой карточке -->
-                    <div class="article-item {% if forloop.counter > 3 %}hidden-article{% endif %}" 
-                         style="margin: 10px auto; background-color: #bd6c0f; border: 2px solid #000; border-radius: 10px; padding: 15px; max-width: 700px; {% if forloop.counter > 3 %}display: none;{% endif %}">
-                        
-                        <a href="{% url 'articles:articles-detail' progress.article.id %}" class="links_a" style="color: #1e40ff; text-decoration: none; font-weight: bold; font-size: 18px;">
+                    <div class="article-item {% if forloop.counter > 3 %}hidden-article{% endif %}">
+                        <a href="{% url 'articles:articles-detail' progress.article.id %}" class="article-link">
                             {{ progress.article.title }}
                         </a>
                     </div>
                 {% endfor %}
             </div>
-            
+
             {% if read_articles|length > 3 %}
-                <div style="text-align: center;">
-                    <!-- Применил новый класс btn-custom-show -->
-                    <button id="toggle-articles-btn" class="btn-custom-show" style="margin-top: 15px;">Показать все статьи</button>
+                <div class="center-wrap">
+                    <button id="toggle-articles-btn" class="btn-custom-show">Показать все статьи</button>
                 </div>
             {% endif %}
         {% else %}
-            <p style="color: #000; text-align: center;">Вы пока не прочитали ни одной статьи.</p>
+            <p class="p_empty">Вы пока не прочитали ни одной статьи.</p>
         {% endif %}
     </div>
 </div>
@@ -82,22 +59,20 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-    // Логика для кнопки "Показать все статьи"
     const toggleArticlesBtn = document.getElementById('toggle-articles-btn');
     if (toggleArticlesBtn) {
         let articlesExpanded = false;
         toggleArticlesBtn.addEventListener('click', () => {
             articlesExpanded = !articlesExpanded;
             const hiddenArticles = document.querySelectorAll('.hidden-article');
-            
+
             hiddenArticles.forEach(item => {
                 item.style.display = articlesExpanded ? 'block' : 'none';
             });
-            
+
             toggleArticlesBtn.textContent = articlesExpanded ? 'Скрыть лишние статьи' : 'Показать все статьи';
         });
     }
 });
 </script>
-
 {% endblock %}

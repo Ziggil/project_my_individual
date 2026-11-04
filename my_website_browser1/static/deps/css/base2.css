@@ -8,22 +8,24 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    background-color: #4b4b4b;
+    background-color: #0d0d0d;
+    color: #00ff00;
+    font-family: 'Courier New', monospace;
 }
 
 header {
-    background-color: #383535;
-    color: hsla(120, 100%, 50%, 0.8);
+    background-color: #050505;
+    color: #00ff00;
     text-align: center;
-    border: 6px solid rgb(0, 0, 0);
-    border-radius: 10px;
-    text-shadow: -1px 1px rgb(0, 0, 0);
+    border: 2px solid #1a1a1a;
+    border-radius: 0;
+    text-shadow: none;
     padding: 20px;
 }
 
 main {
     flex: 1;
-    padding: 10px;
+    padding: 20px;
 }
 
 article {
@@ -32,29 +34,29 @@ article {
 }
 
 footer {
-    background-color: #2f2f2f;
+    background-color: #050505;
     text-align: center;
     padding: 20px;
     width: 100%;
-    
 }
-
-
 
 h1, h2 {
     text-align: center;
+    color: #00ff00;
+    font-family: 'Courier New', monospace;
 }
 
 h3 {
     text-align: center;
-    color: hsla(153, 100%, 50%, 0.8);
+    color: #6fdc6f;
+    font-family: 'Courier New', monospace;
 }
 
 a {
-    background-color: rgb(67, 71, 68);
-    color: hsla(221, 92%, 60%, 0.945);
-    border: 2px solid black;
-    border-radius: 20px;
+    background-color: #000;
+    color: #6fdc6f;
+    border: 2px solid #1a1a1a;
+    border-radius: 0;
     text-decoration: none;
     margin: 20px auto 0 auto;
     display: block;
@@ -62,20 +64,22 @@ a {
     width: 50%;
     max-width: 500px;
     font-size: 20px;
-    padding: 6px 0;
-    transition: 1s;
+    padding: 10px 0;
+    transition: 0.3s;
+    font-family: 'Courier New', monospace;
 }
 
 a:hover {
-    background-color: rgb(67, 71, 68);
-    color:hsla(106, 71%, 46%, 0.993);
-    transform: scale(1.05);
+    background-color: #1a1a1a;
+    color: #00ff00;
+    border-color: #6fdc6f;
+    transform: none;
 }
 
-.a_footer{
-    background-color: #2f2f2f;;
-    color: hsla(229, 100%, 50%, 0.6);
-    border: 2px solid #2f2f2f;
+.a_footer {
+    background-color: #050505;
+    color: #2cc22c;
+    border: 2px solid #050505;
     text-decoration: none;
     margin: 20px auto 0 auto;
     display: block;
@@ -83,33 +87,33 @@ a:hover {
     width: 50%;
     max-width: 500px;
     font-size: 20px;
-    padding: 6px 0;
-    transition: 1s;
+    padding: 10px 0;
+    transition: 0.3s;
 }
 
-.a_footer:hover{
-    color: rgb(14, 173, 54);
-    background-color: #2f2f2f;
+.a_footer:hover {
+    color: #1c1fe4;
+    background-color: #050505;
+    border:2px solid  #1c1fe4;
 }
 
-.p_footer{
-    color: hsla(34, 100%, 50%, 0.7);
-    transition: 0.6s;
+.p_footer {
+    color: #2cc22c;
+    transition: 0.3s;
 }
 
-.p_footer:hover{
-     color: hsla(34, 100%, 50%, 1.2)
+.p_footer:hover {
+    color: #6fdc6f;
 }
-
 
 /* Общие стили для картинок (маленькие) */
 img {
     display: block;
     margin: 40px auto 20px;
-    max-width: 25%; 
+    max-width: 25%;
     height: auto;
-    border-radius: 20px;
-    border: 2px solid black;
+    border-radius: 0;
+    border: 2px solid #1a1a1a;
 }
 
 /* Стили для форм */
@@ -126,52 +130,101 @@ form p {
 input {
     display: block;
     margin: 10px auto;
-    padding: 6px 10px;
+    padding: 10px;
     width: 250px;
     max-width: 80%;
-    border: 3px solid rgb(0, 0, 0);
-    background-color: #bebebe;
-    border-radius: 4px;
+    border: 2px solid #1a1a1a;
+    background-color: #050505;
+    border-radius: 0;
     text-align: center;
-    transition: 0.5s;
+    transition: 0.3s;
     outline: none;
-    
+    color: #00ff00;
+    font-family: 'Courier New', monospace;
 }
 
 input:hover {
-    border-color: rgb(10, 49, 220);
+    border-color: #6fdc6f;
 }
-
 
 input:not(:placeholder-shown):focus {
-    border-color: #173588;
-    background-color: #858d7f;
-          
+    border-color: #00ff00;
+    background-color: #0d0d0d;
 }
 
+/* Радио и чекбоксы — тёмный фон вместо белого */
+input[type="radio"],
+input[type="checkbox"] {
+    accent-color: #00ff00;
+    appearance: none;
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 2px solid #6fdc6f;
+    background-color: #050505;
+    cursor: pointer;
+    vertical-align: middle;
+    position: relative;
+    padding: 0;
+    transition: 0.2s;
+}
 
+input[type="radio"] {
+    border-radius: 50%;
+}
+
+input[type="radio"]:checked::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #00ff00;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 5px #00ff00;
+}
+
+input[type="checkbox"]:checked::after {
+    content: '✔';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #00ff00;
+    font-size: 12px;
+    line-height: 1;
+    text-shadow: 0 0 4px #00ff00;
+}
+
+input[type="radio"]:hover,
+input[type="checkbox"]:hover {
+    border-color: #00ff00;
+    box-shadow: 0 0 5px #6fdc6f;
+}
 
 button {
     margin-top: 15px;
-    padding: 6px 16px;
-    transition: 0.6s;
+    padding: 10px 20px;
+    transition: 0.3s;
     cursor: pointer;
     background-color: #000;
-    color:rgb(12, 141, 45);
+    color: #6fdc6f;
+    border: 1px solid #6fdc6f;
+    border-radius: 0;
+    font-family: 'Courier New', monospace;
 }
 
 button:hover {
-    color: rgb(15, 196, 60);
-    background-color: black;
+    color: #000;
+    background-color: #6fdc6f;
 }
 
-
-
 /* --- ИСКЛЮЧЕНИЕ ДЛЯ СТРАНИЦЫ ABOUT --- */
-
 .about-img {
-    max-width: 40%; 
-    margin-top: 80px; 
+    max-width: 40%;
+    margin-top: 80px;
 }
 
 /* Убираем рамку для картинок на страницах входа и выхода */
@@ -179,7 +232,7 @@ button:hover {
     border: none;
 }
 
-/* Фронт для ошибка входа */
+/* Фронт для ошибки входа */
 .error {
     display: block;
     text-align: center;
@@ -187,22 +240,23 @@ button:hover {
     margin: 10px auto;
     font-size: 18px;
     font-weight: bold;
+    font-family: 'Courier New', monospace;
 }
-
 
 .btn-exit {
     background-color: #000;
-    color: #1a5e1a;
-    border: 2px solid #000000;
+    color: #ff5555;
+    border: 1px solid #ff5555;
     padding: 10px 25px;
-    border-radius: 5px;
+    border-radius: 0;
     font-size: 18px;
     font-weight: bold;
     cursor: pointer;
-    transition: 0.3s ease; 
+    transition: 0.3s ease;
+    font-family: 'Courier New', monospace;
 }
 
 .btn-exit:hover {
-    color: #10b910;
-
+    color: #000;
+    background-color: #ff5555;
 }
