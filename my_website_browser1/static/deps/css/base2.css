@@ -112,8 +112,8 @@ img {
     margin: 40px auto 20px;
     max-width: 25%;
     height: auto;
-    border-radius: 0;
     border: 2px solid #1a1a1a;
+    border-radius: 20px;
 }
 
 /* Стили для форм */
@@ -260,3 +260,30 @@ button:hover {
     color: #000;
     background-color: #ff5555;
 }
+
+/* SVG-иконки */
+.auth-icon,
+.auth-icon-red {
+    display: block;
+     margin: 40px auto 20px;
+    width: 150px;       
+    height: 150px;    
+    color: #00ff00;
+    transition: color 0.3s, filter 0.3s;
+}
+
+.auth-icon-red {
+    color: #ff5555;
+    filter: drop-shadow(0 0 10px #ff5555);
+}
+
+.auth-icon:hover {
+    color: #6fdc6f;
+    filter: drop-shadow(0 0 15px #6fdc6f);
+}
+
+.auth-icon-red:hover {
+    color: #ff8888;
+    filter: drop-shadow(0 0 15px #ff8888);
+}
+
