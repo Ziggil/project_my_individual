@@ -19,7 +19,7 @@
 
 ## 📸 Как выглядит
 
-![Главная страница](docs/assets/screenshots/current/v8.8.0/home_v8.8.png)
+![Главная страница](docs/assets/screenshots/current/v9.0.0/home_v9.png)
 
 ---
 
@@ -29,7 +29,7 @@
 <summary>Нажмите, чтобы развернуть инструкцию для Linux</summary>
 
 ### Шаг 1. Открытие проекта и подготовка окружения
-1. Откройте скачанную папку проекта (`h_quiz_v8_postgresql`) в редакторе **VS Code**.
+1. Откройте скачанную папку проекта в редакторе **VS Code**.
 2. Откройте встроенный **терминал VS Code** (меню *Terminal -> New Terminal* или нажмите `Ctrl + ~`).
 3. В **терминале VS Code** введите команды для создания и активации изолированного окружения:
 
@@ -139,7 +139,7 @@ python manage.py runserver
 
 ### Шаг 1. Открытие проекта и подготовка окружения
 1. Установите **Python** версии 3.11+ (обязательно отметьте галочку *"Add Python to PATH"* при установке).
-2. Откройте скачанную папку проекта (`h_quiz_v8_postgresql`) в редакторе **VS Code**.
+2. Откройте скачанную папку проекта в редакторе **VS Code**.
 3. Откройте встроенный **терминал VS Code** (меню *Terminal -> New Terminal*). Убедитесь, что справа в выпадающем списке терминала выбран **Command Prompt (CMD)** или **PowerShell**.
 4. В **терминале VS Code** введите команды для создания и активации виртуального окружения:
 
@@ -293,13 +293,13 @@ python manage.py runserver
 
 Серия статей о том, как проект развивался: переезд с SQLite на PostgreSQL, переход на DRF + JWT, работа с фронтендом.
 
-🔗 [Все статьи](https://github.com/Ziggil/project_my_individual/tree/h_quiz_v8_postgresql_drf/docs/articles)
+🔗 [Все статьи](https://github.com/Ziggil/project_my_individual/tree/h_quiz_v9_postgresql_drf_docker/docs/articles)
 
 ### Roadmap
 
 План развития проекта, карта версий и текущий статус.
 
-🔗 [Roadmap](https://github.com/Ziggil/project_my_individual/blob/h_quiz_v8_postgresql_drf/docs/plans/roadmap.md)
+🔗 [Roadmap](https://github.com/Ziggil/project_my_individual/blob/h_quiz_v9_postgresql_drf_docker/docs/plans/roadmap.md)
 
 ### Медиа: как проект выглядел и как выглядит сейчас
 
@@ -309,10 +309,10 @@ python manage.py runserver
 
 Внутри:
 
-- [`screenshots/v7_sqlite/`](https://github.com/Ziggil/project_my_individual/tree/h_quiz_v8_postgresql_drf/docs/assets/screenshots/v7_sqlite) — скриншоты старой версии на SQLite.
-- [`screenshots/current/`](https://github.com/Ziggil/project_my_individual/tree/h_quiz_v8_postgresql_drf/docs/assets/screenshots/current) — всегда актуальные скриншоты.
-- [`videos/`](https://github.com/Ziggil/project_my_individual/tree/h_quiz_v8_postgresql_drf/docs/assets/videos) — видео работы сайта.
-- [`presentations/`](https://github.com/Ziggil/project_my_individual/tree/h_quiz_v8_postgresql_drf/docs/assets/presentations) — презентации о проекте.
+- [`screenshots/v7_sqlite/`](https://github.com/Ziggil/project_my_individual/tree/h_quiz_v9_postgresql_drf_docker/docs/assets/screenshots/v7_sqlite) — скриншоты старой версии на SQLite.
+- [`screenshots/current/`](https://github.com/Ziggil/project_my_individual/tree/h_quiz_v9_postgresql_drf_docker/docs/assets/screenshots/current) — всегда актуальные скриншоты.
+- [`videos/`](https://github.com/Ziggil/project_my_individual/tree/h_quiz_v9_postgresql_drf_docker/docs/assets/videos) — видео работы сайта.
+- [`presentations/`](https://github.com/Ziggil/project_my_individual/tree/h_quiz_v9_postgresql_drf_docker/docs/assets/presentations) — презентации о проекте.
 
 ---
 

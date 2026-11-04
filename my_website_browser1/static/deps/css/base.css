@@ -179,8 +179,6 @@ h3 {
 }
 
 
-
-
 .statia.quizes_center {
     color: #00ff00;
 }
@@ -339,7 +337,7 @@ h3 {
 
 /* ----- ССЫЛКИ И КНОПКИ ----- */
 .my_button {
-    color: #1a5e1a;
+    color: #1ac01a;
     text-decoration: none;
     margin-top: 25px;
     display: block;
@@ -350,8 +348,8 @@ h3 {
 }
 
 .my_button:hover {
-    color: #6fdc6f;
-    text-shadow: 0 0 8px #6fdc6f;
+    color: #1c10c5;
+    text-shadow: 0 0 8px #1c10c5;
     transform: none;
 }
 
