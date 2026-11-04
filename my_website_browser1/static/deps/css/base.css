@@ -824,3 +824,177 @@ svg {
     width: 100%;
     box-sizing: border-box;
 }
+
+
+/* ============================================
+   АДАПТИВ (мобилки) — base.css
+   ============================================ */
+
+@media (max-width: 768px) {
+    /* --- BODY --- */
+    body {
+        padding-top: 100px;       /* место под nav + aside */
+        padding-left: 0;          /* убираем отступ под сайдбар */
+        padding-bottom: 20px;
+    }
+
+    /* --- NAV (верхняя шапка) --- */
+    nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 6px 10px;
+        font-size: 14px;
+        z-index: 10;
+    }
+
+    /* --- ASIDE (навигация) --- */
+    aside {
+        display: block;           /* НЕ скрываем */
+        position: fixed;
+        top: 50px;                /* встаёт под nav */
+        left: 0;
+        width: 100%;
+        height: auto;
+        padding: 6px 4px;
+        border-right: none;
+        border-bottom: 2px solid #1a1a1a;
+        background-color: #050505;
+        z-index: 9;
+        text-align: center;
+    }
+
+    /* Скрываем заголовок "Навигация" и SVG-иконку в aside */
+    aside > p,
+    aside > svg {
+        display: none;
+    }
+
+    /* Ссылки в ряд */
+    aside ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 4px;
+        margin-top: 0;
+        padding: 0;
+    }
+
+    /* Компактные кнопки */
+    aside .my_button {
+        display: inline-block;
+        margin: 0;
+        padding: 5px 8px;
+        font-size: 13px;
+        color: #6fdc6f;
+        border: 1px solid #1a1a1a;
+        border-radius: 0;
+        transition: 0.3s;
+    }
+
+    aside .my_button:hover {
+        color: #00ff00;
+        border-color: #00ff00;
+        text-shadow: 0 0 6px #00ff00;
+    }
+
+    /* --- ЗАГОЛОВКИ --- */
+    h1, .zag_home_h1 {
+        font-size: 18px;
+        padding: 8px;
+    }
+
+    h3, .zag_home_h3 {
+        font-size: 13px;
+        padding: 6px;
+    }
+
+    /* --- КАРТОЧКИ --- */
+    .statia,
+    .article-item,
+    .quiz-question-card,
+    .quiz-answer-card {
+        max-width: 100%;
+        padding: 10px;
+        margin: 10px auto;
+        border-radius: 0;
+    }
+
+    .quiz-question-card .p_zag.question {
+        font-size: 18px;
+    }
+
+    .quiz-answer-card label {
+        font-size: 16px;
+    }
+
+    /* --- КНОПКИ --- */
+    .quiz-save-button,
+    .quiz-back-button,
+    .back,
+    .button {
+        width: 90%;
+        font-size: 15px;
+        padding: 10px 15px;
+    }
+
+    /* --- ССЫЛКИ СТАТЕЙ --- */
+    .article-link {
+        font-size: 15px;
+        padding: 2px 6px;
+    }
+
+    /* --- ИКОНКИ --- */
+    .auth-icon,
+    .auth-icon-red {
+        width: 100px;
+        height: 100px;
+        margin: 30px auto 15px;
+    }
+
+    /* --- КАРТИНКИ --- */
+    .home_img,
+    .img_links {
+        max-width: 60%;
+    }
+
+    /* --- РЕЗУЛЬТАТЫ --- */
+    .result-item {
+        padding: 8px;
+    }
+}
+
+/* Очень маленькие экраны */
+@media (max-width: 480px) {
+    body {
+        padding-top: 110px;       /* если ссылки в aside переносятся на 2 строки */
+    }
+
+    h1, .zag_home_h1 {
+        font-size: 16px;
+    }
+
+    h3, .zag_home_h3 {
+        font-size: 12px;
+    }
+
+    .quiz-save-button,
+    .quiz-back-button,
+    .back,
+    .button {
+        width: 95%;
+        font-size: 14px;
+    }
+
+    .auth-icon,
+    .auth-icon-red {
+        width: 80px;
+        height: 80px;
+    }
+
+    aside .my_button {
+        font-size: 12px;
+        padding: 4px 6px;
+    }
+}
