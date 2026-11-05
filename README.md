@@ -19,7 +19,7 @@
 
 ## 📸 Как выглядит
 
-![Главная страница](docs/assets/screenshots/current/v9.0.0/home_v9.png)
+![Главная страница](docs/assets/screenshots/current/v9.1.0/home_v9.png)
 
 ---
 
