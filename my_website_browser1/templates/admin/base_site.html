@@ -5,7 +5,9 @@
 
 {% block branding %}
 <h1 id="site-name">
-    <a href="{% url 'admin:index' %}">CodnitoWeb</a>
+    <a href="{% url 'admin:index' %}" style="color: #00ff00; font-family: 'Courier New', monospace; text-transform: uppercase;">
+        CodnitoWeb
+    </a>
 </h1>
 {% endblock %}
 
@@ -13,4 +15,72 @@
     {{ block.super }}
     <!--иконка для вкладки админки -->
     <link rel="shortcut icon" href="{% static 'deps/images/admin_img.png' %}">
+
+    <!-- Твои кастомные стили для админки -->
+    <style>
+        /* Основной фон и текст */
+        body {
+            background-color: #0d0d0d !important;
+            color: #00ff00 !important;
+            font-family: 'Courier New', monospace !important;
+        }
+        
+        /* Шапка */
+        #header {
+            background-color: #050505 !important;
+            border-bottom: 2px solid #00ff00 !important;
+        }
+        
+        /* Ссылки */
+        a:link, a:visited {
+            color: #6fdc6f !important;
+        }
+        a:hover {
+            color: #00ff00 !important;
+            text-shadow: 0 0 5px #00ff00;
+        }
+
+        /* Таблицы (списки моделей) */
+        .module {
+            background-color: #050505 !important;
+            border: 1px solid #1a1a1a !important;
+        }
+        .module h2, .module caption {
+            background-color: #1a1a1a !important;
+            color: #00ff00 !important;
+        }
+        
+        /* Кнопки */
+        .button, input[type=submit], input[type=button] {
+            background-color: #000 !important;
+            color: #00ff00 !important;
+            border: 1px solid #00ff00 !important;
+            border-radius: 0 !important;
+            font-family: 'Courier New', monospace !important;
+        }
+        .button:hover, input[type=submit]:hover {
+            background-color: #00ff00 !important;
+            color: #000 !important;
+        }
+
+        /* Поля ввода */
+        input, textarea, select {
+            background-color: #050505 !important;
+            color: #00ff00 !important;
+            border: 1px solid #1a1a1a !important;
+            font-family: 'Courier New', monospace !important;
+        }
+
+        /* Меню слева (сайдбар) */
+        #nav-sidebar {
+            background-color: #050505 !important;
+            border-right: 1px solid #1a1a1a !important;
+        }
+        
+        /* Подсветка активного элемента */
+        .current-app .section:link, .current-app .section:visited {
+            color: #00ff00 !important;
+            font-weight: bold;
+        }
+    </style>
 {% endblock %}
