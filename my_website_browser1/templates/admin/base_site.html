@@ -16,7 +16,7 @@
     <!--иконка для вкладки админки -->
     <link rel="shortcut icon" href="{% static 'deps/images/admin_img.png' %}">
 
-    <!-- Твои кастомные стили для админки -->
+    <!-- Мои кастомные стили для админки -->
     <style>
         /* Основной фон и текст */
         body {
@@ -75,12 +75,40 @@
         #nav-sidebar {
             background-color: #050505 !important;
             border-right: 1px solid #1a1a1a !important;
+            width: 250px !important; /* Фиксированная ширина */
         }
         
         /* Подсветка активного элемента */
         .current-app .section:link, .current-app .section:visited {
             color: #00ff00 !important;
             font-weight: bold;
+        }
+
+        .results, .module {
+            width: 100% !important;
+        }
+
+        /* Кнопка "Выйти" (делаем неон при наведении) */
+        #logout-form button:hover, 
+        #logout-form a:hover,
+        .user-tools a:hover {
+            color: #00ff00 !important;
+            text-shadow: 0 0 5px #00ff00 !important;
+        }
+
+
+        div.breadcrumbs a {
+            color: #6fdc6f !important;
+        }
+        div.breadcrumbs a:hover {
+            color: #00ff00 !important;
+        }
+
+        /* Убираем иконку солнца (переключатель темы) */
+        .theme-toggle, 
+        button[aria-label="Toggle theme"],
+        .sun-icon {
+            display: none !important;
         }
     </style>
 {% endblock %}
