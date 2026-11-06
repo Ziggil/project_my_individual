@@ -1,8 +1,8 @@
 // Лог 1. Если видишь его — файл загрузился
-console.log("auth.js START");
+debugLog("auth.js");
 
 (function() {
-  console.log("Модуль авторизации auth.js запущен");
+  debugLog("Модуль авторизации auth.js", "ЗАПУЩЕН");
 
   // Функция: достаёт куку по имени
   const getCookie = (name) => {
@@ -40,11 +40,11 @@ console.log("auth.js START");
         localStorage.setItem('accessToken', response.access);
         localStorage.setItem('refreshToken', response.refresh);
         localStorage.setItem('jwt_ready', 'true');
-        console.log("JWT токены получены и сохранены!");
+        debugLog("JWT токены", "ПОЛУЧЕНО; СОХРАНЕНО");
         document.dispatchEvent(new Event('jwt_ready'));
       },
       error: function(xhr) {
-        console.log("ОШИБКА получения токенов. Статус:", xhr.status);
+        console.error("ОШИБКА получения токенов. Статус:", xhr.status);
       }
     });
   };
@@ -55,7 +55,7 @@ console.log("auth.js START");
 
     // Токен есть и рабочий — используем
     if (existingToken && !isTokenExpired(existingToken)) {
-      console.log("Токен валидный, используем его");
+      debugLog("Токен", "УСПЕШНО/ВАЛИДНЫЙ");
       localStorage.setItem('jwt_ready', 'true');
       document.dispatchEvent(new Event('jwt_ready'));
       return;
@@ -63,7 +63,7 @@ console.log("auth.js START");
 
     // Токен есть, но просрочен — удаляем и просим новый
     if (existingToken) {
-      console.log("Токен просрочен, запрашиваем новый");
+      debugLog("Токен", "ПРОВАЛЕНО/ПРОСРОЧЕН");
       localStorage.removeItem('accessToken');
       localStorage.removeItem('refreshToken');
       localStorage.removeItem('jwt_ready');
@@ -90,7 +90,7 @@ console.log("auth.js START");
       success: function(response) {
        
         localStorage.setItem('accessToken', response.access);
-        console.log("AccessToken обновлён через refresh");
+        debugLog("AccessToken", "ОБНОВЛЁН ЧЕРЕЗ REFRESH");
       },
 
       error: function(xhr) {
@@ -131,4 +131,4 @@ console.log("auth.js START");
 
 })();
 
-console.log("auth.js END");
+debugLog("auth.js", "УСПЕШНО");

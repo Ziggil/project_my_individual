@@ -1,7 +1,7 @@
 // Ждём полной отрисовки HTML, потом ищем элементы и запускаем логику
 document.addEventListener('DOMContentLoaded', () => {
 
-  console.log("script quiz working");
+  debugLog("script quiz");
 
   // Гарантируем, что базовый URL всегда заканчивается на слэш
   let url = window.location.href;
@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Достаём ID теста из URL. Например /quizes/7/ - '7'
   const pathParts = window.location.pathname.split('/').filter(Boolean);
   const quizId = pathParts[pathParts.length - 1];
-  console.log("ID теста из URL:", quizId);
+
 
   const quizBox = document.getElementById('quiz-box');
   const scoreBox = document.getElementById('score-box');
@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // --- ФУНКЦИЯ ТАЙМЕРА ---
   const startQuizTimer = (totalQuestions) => {
-    console.log("Функция таймера работает")
+    debugLog("Функция таймера", "ЗАПУЩЕНА");
     if (!timerDisplay) return;
 
     // 1 минута на 1 вопрос
@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const loadQuestions = () => {
     // Если нет quiz-box на странице — выходим
     if (!quizBox) {
-      console.log("quiz-box не найден, пропускаем");
+      debugLog("quiz-box", "НЕ НАЙДЕН; ПРОПУСК");
       return;
     }
 
@@ -248,7 +248,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const loadUserResults = () => {
     const container = document.getElementById('user-results-container');
     if (!container) {
-      console.log("user-results-container не найден на этой странице, пропускаем");
+      debugLog("user-results-container", "НЕ НАЙДЕН; ПРОПУСК");
       return;
     }
 
@@ -333,13 +333,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Подписка на событие от auth.js
   document.addEventListener('jwt_ready', () => {
-    console.log("quiz.js получил сигнал готовности токенов, загружаем результаты...");
+    debugLog("quiz.js", "ПОЛУЧИЛ СИГНАЛ ГОТОВНОСТИ ТОКЕНОВ, ЗАГРУЖАЕМ РЕЗУЛЬТАТЫ...");
     loadUserResults();
   });
 
   // Проверяем: если auth.js уже отработал ДО этого места — грузим сразу
   if (localStorage.getItem('jwt_ready') === 'true') {
-    console.log("quiz.js: jwt_ready уже был, грузим результаты сразу");
+    debugLog("quiz.js", "JWT_READY УЖЕ БЫЛ, ГРУЗИМ РЕЗУЛЬТАТЫ СРАЗУ");
     loadUserResults();
   }
 

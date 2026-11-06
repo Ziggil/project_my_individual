@@ -1,7 +1,7 @@
 // IIFE (Immediately Invoked Function Expression) — изолирует переменные,
 // чтобы не засорять глобальную область видимости (window).
 (function() {
-    console.log("login.js script working");
+    debugLog("login.js");
 
     // Находим форму и кнопку по id (проверь, что они есть в login.html)
     const form = document.querySelector("#login-form");

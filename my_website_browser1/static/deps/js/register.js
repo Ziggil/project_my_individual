@@ -1,7 +1,7 @@
 // IIFE (Immediately Invoked Function Expression) — изолирует переменные,
 // чтобы не засорять глобальную область видимости (window).
 (function() {
-    console.log("register.js script working");
+    debugLog("register.js");
 
     // Находим форму и кнопку по id
     const form = document.querySelector("#register-form");
@@ -59,14 +59,14 @@
 
                 // 4. Успех — редирект на страницу логина
                 success: function(response) {
-                    console.log("Успешная регистрация:", response);
+                    debugLog("Успешная регистрация", "ПОЛЬЗОВАТЕЛЬ СОЗДАН");
                     // Перенаправляем на страницу входа
                     window.location.href = "/users/login/";
                 },
 
                 // 5. Ошибка валидации — показываем рядом с полями
                 error: function(xhr) {
-                    console.log("Ошибка регистрации:", xhr.responseJSON);
+                    console.error("Ошибка регистрации:", xhr.responseJSON);
                     if (xhr.responseJSON) {
                         showErrors(xhr.responseJSON);
                     } else {

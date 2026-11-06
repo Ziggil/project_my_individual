@@ -1,6 +1,4 @@
-console.log("main_quiz.js v2 script working");
-
-
+debugLog("main_quiz.js");
 
 document.addEventListener('DOMContentLoaded', () => {
     // Находим все кнопки открытия модалки
