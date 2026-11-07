@@ -12,6 +12,7 @@ from users.views import get_jwt_from_session
 from rest_framework.routers import DefaultRouter
 from quizes.views import QuizViewSet
 
+
 # Роутер для DRF
 router = DefaultRouter()
 router.register(r'api/quizes', QuizViewSet, basename='quiz-api')

@@ -4,8 +4,10 @@
 {% block content %}
 <div id="content-main">
     <!-- Блоки с моделями (Статьи, Тесты и т.д.) -->
-    <div class="module">
-        {% for app in app_list %}
+    {% for app in app_list %}
+        <!-- Скрываем лишние приложения: online_users и token_blacklist -->
+        {% if app.app_label != 'online_users' and app.app_label != 'token_blacklist' %}
+        <div class="module">
             <table summary="Models available in the {{ app.name }} application.">
                 <caption><a href="{{ app.app_url }}" class="section">{{ app.name }}</a></caption>
                 {% for model in app.models %}
@@ -28,8 +30,9 @@
                     </tr>
                 {% endfor %}
             </table>
-        {% endfor %}
-    </div>
+        </div>
+        {% endif %}
+    {% endfor %}
 
     <!-- Наша новая таблица "Кто сейчас на сайте" -->
     <div class="module" style="margin-top: 20px;">
