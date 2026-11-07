@@ -68,20 +68,23 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
 
     'rest_framework_simplejwt.token_blacklist',
+    
+    'online_users',
 ]
 
 
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    
-    'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
-    
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    
+    'django.contrib.auth.middleware.AuthenticationMiddleware', 
+
+    'online_users.middleware.OnlineNowMiddleware',           
+   
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.locale.LocaleMiddleware',
@@ -100,6 +103,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.debug',
+                'main.context_processors.online_users_processor',
         
             ],
         },

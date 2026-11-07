@@ -10,37 +10,28 @@ from results.serializers import UserResultSummarySerializer
 from django.db.models import Max
 from articles.models import ArticleReadProgress
 
-
 def index(request):
     # Главная страница (лендинг)
     return render(request, 'main/index.html')
 
-
 def about(request):
     return render(request, 'main/about.html')
-
 
 @login_required
 def base(request):
     return render(request, 'main/base.html')
 
-
 @login_required
 def links(request):
     return render(request, 'main/links.html')
-
 
 @login_required
 def home(request):
     # Получаем все прочитанные статьи текущего пользователя и сортируем (новые сверху)
     read_articles = ArticleReadProgress.objects.filter(user=request.user).select_related('article').order_by('-read_at')
-
     
     # Передаем в контекст шаблона
     return render(request, 'main/home.html', {'read_articles': read_articles})
-
-
-
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
