@@ -263,7 +263,8 @@ DB_PORT=5432
 
 4. Примените миграции (создайте таблицы в базе данных) и загрузите фикстуру с учебным контентом (статьи и тесты):
    ```bash
-   docker compose exec web python manage.py createsuperuser
+      docker compose exec web python manage.py migrate
+      docker compose exec web python manage.py loaddata content_fixtures.json
 
 5. (Опционально) Создайте суперпользователя для входа в админку Django:
    ```bash
@@ -271,6 +272,11 @@ DB_PORT=5432
 Введите логин, email и пароль по запросу.
 
 6. Откройте в браузере: http://localhost:8000/
+
+Чтобы остановить контейнеры (данные в базе сохранятся):
+
+docker compose down
+
 </details>  ```
 
 ---
