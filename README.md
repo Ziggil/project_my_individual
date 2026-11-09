@@ -243,20 +243,35 @@ python manage.py runserver
 <details>
 <summary>Нажмите, чтобы развернуть инструкцию для Docker</summary>
 
-1. Убедитесь, что у вас установлен Docker и Docker Compose.
-2. В корне проекта (где лежит `docker-compose.yml`) выполните:
+1. Убедитесь, что у вас установлены Docker и Docker Compose (v2). Проверить версию можно командой:
    ```bash
-   docker compose up --build
+   docker compose version
+2. Скопируйте файл .env.example в .env (если он есть) или создайте .env вручную в корне проекта. Убедитесь, что там указаны переменные для базы данных и секретный ключ. Для локальной разработки обязательно установите DEBUG=True:
 
-3. Примените миграции и загрузите фикстуру (в новом терминале):
+SECRET_KEY=ваш_секретный_ключ
+DEBUG=True
+DB_NAME=web_learning_db
+DB_USER=dev_learning_user
+DB_PASSWORD=12345
+DB_HOST=db
+DB_PORT=5432
+
+3. В корне проекта (где лежит docker-compose.yml) выполните сборку и запуск контейнеров в фоновом режиме:
    ```bash
+   docker compose up --build -d
+Флаг -d (detached) запускает контейнеры в фоне, чтобы вы могли продолжать работу в терминале.
 
-    docker compose exec web python manage.py migrate
-    docker compose exec web python manage.py loaddata content_fixtures.json
+4. Примените миграции (создайте таблицы в базе данных) и загрузите фикстуру с учебным контентом (статьи и тесты):
+   ```bash
+   docker compose exec web python manage.py createsuperuser
 
-4. Откройте в браузере: http://localhost:8000/
+5. (Опционально) Создайте суперпользователя для входа в админку Django:
+   ```bash
+   docker compose exec web python manage.py createsuperuser
+Введите логин, email и пароль по запросу.
 
-</details> ```
+6. Откройте в браузере: http://localhost:8000/
+</details>  ```
 
 ---
 
